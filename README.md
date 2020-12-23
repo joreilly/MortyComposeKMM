@@ -4,8 +4,12 @@ Rick & Morty app to demonstrate use of GraphQL + Jetpack Compose (heavily based 
 This is also a Kotlin Multiplatform project with GraphQL code in shared module (making use of [Apollo library's Kotlin Multiplatform support](https://www.apollographql.com/docs/android/essentials/get-started-multiplatform/)).
 Right now app shows list of characters and episodes but plan is to update to show detail screens as well.
 
+Related Posts:
+* [Jetpack Compose and GraphQL, a very merry combination!](https://johnoreilly.dev/posts/jetpack-compose-graphql/)
+
 
 ![BikeShare Screenshot](/art/characters_screenshot.png?raw=true)
+
 
 The project also makes use of Jetpack Compose's [Paging library](https://developer.android.com/jetpack/androidx/releases/paging#paging_compose_version_100_2)
 that allows setting up `LazyColumn` for example that's driven from `PagingSource` as shown below (that source in our case invokes Apollo GraphQL queries). 
