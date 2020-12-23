@@ -10,10 +10,10 @@ class EpisodesDataSource(private val repository: MortyRepository) : PagingSource
         val pageNumber = params.key ?: 0
 
         val episodesResponse = repository.getEpisodes(pageNumber)
-        val episodes = episodesResponse.data?.episodes?.resultsFilterNotNull()
+        val episodes = episodesResponse?.resultsFilterNotNull()
 
         val prevKey = if (pageNumber > 0) pageNumber - 1 else null
-        val nextKey = episodesResponse.data?.episodes?.info?.next
+        val nextKey = episodesResponse?.info?.next
         return LoadResult.Page(data = episodes ?: emptyList(), prevKey = prevKey, nextKey = nextKey)
     }
 }

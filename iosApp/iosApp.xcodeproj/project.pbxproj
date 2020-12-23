@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AF7E3CE259389C800905739 /* CharactersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3CD259389C800905739 /* CharactersListView.swift */; };
+		1AF7E3D4259389FB00905739 /* EpisodesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3D3259389FB00905739 /* EpisodesListView.swift */; };
+		1AF7E3DA25938B7100905739 /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3D925938B7100905739 /* CharacterListViewModel.swift */; };
+		1AF7E3E025939BEF00905739 /* CharactersListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3DF25939BEF00905739 /* CharactersListRowView.swift */; };
+		1AF7E3EA2593A47400905739 /* KingfisherSwiftUIStatic in Frameworks */ = {isa = PBXBuildFile; productRef = 1AF7E3E92593A47400905739 /* KingfisherSwiftUIStatic */; };
 		7555FF7F242A565900829871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF7E242A565900829871 /* AppDelegate.swift */; };
 		7555FF81242A565900829871 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF80242A565900829871 /* SceneDelegate.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
@@ -51,6 +56,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1AF7E3CD259389C800905739 /* CharactersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListView.swift; sourceTree = "<group>"; };
+		1AF7E3D3259389FB00905739 /* EpisodesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesListView.swift; sourceTree = "<group>"; };
+		1AF7E3D925938B7100905739 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
+		1AF7E3DF25939BEF00905739 /* CharactersListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListRowView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF7E242A565900829871 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7555FF80242A565900829871 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AF7E3EA2593A47400905739 /* KingfisherSwiftUIStatic in Frameworks */,
 				7555FFB2242A642300829871 /* shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +104,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1AF7E3CA2593899700905739 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				1AF7E3CC259389B000905739 /* Episodes */,
+				1AF7E3CB259389A300905739 /* Characters */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		1AF7E3CB259389A300905739 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				1AF7E3CD259389C800905739 /* CharactersListView.swift */,
+				1AF7E3D925938B7100905739 /* CharacterListViewModel.swift */,
+				1AF7E3DF25939BEF00905739 /* CharactersListRowView.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		1AF7E3CC259389B000905739 /* Episodes */ = {
+			isa = PBXGroup;
+			children = (
+				1AF7E3D3259389FB00905739 /* EpisodesListView.swift */,
+			);
+			path = Episodes;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +155,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				1AF7E3CA2593899700905739 /* Features */,
 				7555FF7E242A565900829871 /* AppDelegate.swift */,
 				7555FF80242A565900829871 /* SceneDelegate.swift */,
 				7555FF82242A565900829871 /* ContentView.swift */,
@@ -181,6 +219,9 @@
 			dependencies = (
 			);
 			name = iosApp;
+			packageProductDependencies = (
+				1AF7E3E92593A47400905739 /* KingfisherSwiftUIStatic */,
+			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
 			productType = "com.apple.product-type.application";
@@ -253,6 +294,9 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				1AF7E3E82593A47400905739 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -318,6 +362,10 @@
 			files = (
 				7555FF7F242A565900829871 /* AppDelegate.swift in Sources */,
 				7555FF81242A565900829871 /* SceneDelegate.swift in Sources */,
+				1AF7E3CE259389C800905739 /* CharactersListView.swift in Sources */,
+				1AF7E3E025939BEF00905739 /* CharactersListRowView.swift in Sources */,
+				1AF7E3D4259389FB00905739 /* EpisodesListView.swift in Sources */,
+				1AF7E3DA25938B7100905739 /* CharacterListViewModel.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,7 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -469,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -639,6 +687,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1AF7E3E82593A47400905739 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.15.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1AF7E3E92593A47400905739 /* KingfisherSwiftUIStatic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AF7E3E82593A47400905739 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = KingfisherSwiftUIStatic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

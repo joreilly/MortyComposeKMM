@@ -10,10 +10,10 @@ class CharactersDataSource(private val repository: MortyRepository) : PagingSour
         val pageNumber = params.key ?: 0
 
         val charactersResponse = repository.getCharacters(pageNumber)
-        val characters = charactersResponse.data?.characters?.resultsFilterNotNull()
+        val characters = charactersResponse?.resultsFilterNotNull()
 
         val prevKey = if (pageNumber > 0) pageNumber - 1 else null
-        val nextKey = charactersResponse.data?.characters?.info?.next
+        val nextKey = charactersResponse?.info?.next
         return LoadResult.Page(data = characters ?: emptyList(), prevKey = prevKey, nextKey = nextKey)
     }
 }

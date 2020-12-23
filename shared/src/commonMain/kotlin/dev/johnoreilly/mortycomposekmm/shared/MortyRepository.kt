@@ -21,14 +21,14 @@ class MortyRepository {
         )
     )
 
-    suspend fun getCharacters(page: Int): Response<GetCharactersQuery.Data> {
+    suspend fun getCharacters(page: Int): GetCharactersQuery.Characters? {
         val response = apolloClient.query(GetCharactersQuery(Input.optional(page))).execute().single()
-        return response
+        return response.data?.characters
     }
 
-    suspend fun getEpisodes(page: Int): Response<GetEpisodesQuery.Data> {
+    suspend fun getEpisodes(page: Int): GetEpisodesQuery.Episodes? {
         val response = apolloClient.query(GetEpisodesQuery(Input.optional(page))).execute().single()
-        return response
+        return response.data?.episodes
     }
 
 }

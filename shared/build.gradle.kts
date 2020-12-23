@@ -20,6 +20,7 @@ android {
 
 kotlin {
     android()
+
     ios {
         binaries {
             framework {

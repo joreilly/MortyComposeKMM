@@ -1,14 +1,21 @@
 import SwiftUI
 import shared
 
-func greet() -> String {
-    return Greeting().greeting()
-}
 
 struct ContentView: View {
     var body: some View {
-        Text(greet())
+        TabView {
+            CharactersListView()
+                .tabItem {
+                    Label("Characters", systemImage: "person.crop.square.fill.and.at.rectangle")
+                }
+            EpisodesListView()
+                .tabItem {
+                    Label("Episodes", systemImage: "tv")
+                }
+        }
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
