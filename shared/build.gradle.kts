@@ -6,6 +6,18 @@ plugins {
     id("com.apollographql.apollo").version("2.4.6")
 }
 
+// workaround for https://youtrack.jetbrains.com/issue/KT-43944
+android {
+    configurations {
+        create("androidTestApi")
+        create("androidTestDebugApi")
+        create("androidTestReleaseApi")
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
+    }
+}
+
 kotlin {
     android()
     ios {
@@ -18,7 +30,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2-native-mt"){
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2-native-mt") {
                     isForce = true
                 }
 
