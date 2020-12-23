@@ -8,7 +8,7 @@ Related Posts:
 * [Jetpack Compose and GraphQL, a very merry combination!](https://johnoreilly.dev/posts/jetpack-compose-graphql/)
 
 
-![BikeShare Screenshot](/art/characters_screenshot.png?raw=true)
+![Characters Android Screenshot](/art/characters_screenshot.png?raw=true)
 
 
 The project also makes use of Jetpack Compose's [Paging library](https://developer.android.com/jetpack/androidx/releases/paging#paging_compose_version_100_2)
@@ -39,3 +39,9 @@ fun CharactersListView() {
 ```
 
 
+## iOS App
+
+A small SwiftUI iOS app that uses same shared Kotlin Multiplatform code is in the `iosApp` folder
+ (shows Characters screen using more or less same SwiftUI code that's in https://github.com/Dimillian/MortyUI)
+
+![Characters iOS Screenshot](/art/characters_screenshot_ios.png?raw=true)
