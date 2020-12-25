@@ -28,6 +28,7 @@ object Compose {
     const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
     const val material = "androidx.compose.material:material:${Versions.compose}"
     const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+    const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
     const val paging = "androidx.paging:paging-compose:${Versions.nav_paging}"
     const val accompanist= "dev.chrisbanes.accompanist:accompanist-coil:${Versions.accompanist}"

@@ -2,12 +2,12 @@ package dev.johnoreilly.mortycomposekmm.ui.episodes
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Providers
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
@@ -25,9 +25,13 @@ fun EpisodesListRowView(episode: GetEpisodesQuery.Result, episodeSelected: (epis
         Column(modifier = Modifier.weight(1f)) {
             Text(episode.name ?: "",
                 style = MaterialTheme.typography.h6,
+                fontWeight = FontWeight.Bold,
                 maxLines = 1, overflow = TextOverflow.Ellipsis,)
-            Text(episode.episode ?: "",
-                style = MaterialTheme.typography.subtitle2)
+
+            Providers(AmbientContentAlpha provides ContentAlpha.medium) {
+                Text(episode.episode ?: "",
+                    style = MaterialTheme.typography.body2)
+            }
         }
 
         Text(episode.air_date ?: "", modifier = Modifier.padding(start = 16.dp))

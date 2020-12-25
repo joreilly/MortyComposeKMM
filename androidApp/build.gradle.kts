@@ -64,6 +64,7 @@ dependencies {
     implementation(Compose.foundationLayout)
     implementation(Compose.material)
     implementation(Compose.runtimeLiveData)
+    implementation(Compose.materialIconsExtended)
     implementation(Compose.navigation)
     implementation(Compose.paging)
     implementation(Compose.accompanist)

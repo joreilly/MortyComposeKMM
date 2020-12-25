@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import coil.transform.CircleCropTransformation
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.johnoreilly.mortycomposekmm.GetEpisodeQuery
 import org.koin.androidx.compose.getViewModel
@@ -52,11 +53,8 @@ fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
                     }
 
                 }
-
             }
-
         }
-
     }
 
 }
@@ -72,12 +70,20 @@ private fun EpisodeCharactersList(episode: GetEpisodeQuery.Episode) {
                         Row(modifier = Modifier.padding(vertical = 8.dp)) {
 
                             val imageUrl = character.image
-                            if (imageUrl != null) {
-                                Card(modifier = Modifier.preferredSize(28.dp), shape = CircleShape) {
-                                    CoilImage(data = imageUrl)
+                            Surface(
+                                modifier = Modifier.preferredSize(28.dp),
+                                shape = CircleShape,
+                                color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+                            ) {
+                                character.image?.let {
+                                    CoilImage(
+                                        data = it,
+                                        modifier = Modifier.preferredSize(28.dp),
+                                        requestBuilder = {
+                                            transformations(CircleCropTransformation())
+                                        }
+                                    )
                                 }
-                            } else {
-                                Spacer(modifier = Modifier.preferredSize(28.dp))
                             }
 
                             Text(character.name ?: "",

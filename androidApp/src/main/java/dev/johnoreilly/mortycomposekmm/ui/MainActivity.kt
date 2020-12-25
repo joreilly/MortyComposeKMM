@@ -6,6 +6,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Tv
+import androidx.compose.material.icons.materialIcon
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.setContent
@@ -20,7 +22,7 @@ import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodesListView
 
 sealed class Screens(val route: String, val label: String, val icon: ImageVector? = null) {
     object CharactersScreen : Screens("Characters", "Characters", Icons.Default.Person)
-    object EpisodesScreen : Screens("Episodes", "Episodes", Icons.Default.Face)
+    object EpisodesScreen : Screens("Episodes", "Episodes",  Icons.Default.Tv)
     object CharacterDetailsScreen : Screens("CharacterDetails", "CharacterDetails")
     object EpisodeDetailsScreen : Screens("EpisodeDetails", "CharacterDetails")
 }
