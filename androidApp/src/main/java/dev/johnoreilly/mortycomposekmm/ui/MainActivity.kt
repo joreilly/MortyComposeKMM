@@ -11,8 +11,18 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import dev.johnoreilly.mortycomposekmm.ui.characters.CharacterDetailView
 import dev.johnoreilly.mortycomposekmm.ui.characters.CharactersListView
 import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodesListView
+
+
+
+sealed class Screens(val route: String, val label: String, val icon: ImageVector? = null) {
+    object CharactersScreen : Screens("Characters", "Characters", Icons.Default.Person)
+    object EpisodesScreen : Screens("Episodes", "Episodes", Icons.Default.Face)
+    object CharacterDetailsScreen : Screens("CharacterDetails", "CharacterDetails")
+}
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,58 +37,52 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-sealed class BottomNavigationScreens(val route: String, val label: String, val icon: ImageVector) {
-    object CharactersScreen : BottomNavigationScreens("Characters", "Characters", Icons.Default.Person)
-    object EpisodesScreen : BottomNavigationScreens("Episodes", "Episodes", Icons.Default.Face)
-}
-
 @Composable
 fun MainLayout() {
     val navController = rememberNavController()
-    var title by remember { mutableStateOf("") }
 
-    val bottomNavigationItems = listOf(
-        BottomNavigationScreens.CharactersScreen,
-        BottomNavigationScreens.EpisodesScreen
-    )
+    val bottomNavigationItems = listOf(Screens.CharactersScreen, Screens.EpisodesScreen)
+    val bottomBar: @Composable () -> Unit = { MortyBottomNavigation(navController, bottomNavigationItems) }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text(title) })
-        },
-        bodyContent = {
-            NavHost(navController, startDestination = BottomNavigationScreens.CharactersScreen.route) {
-                composable(BottomNavigationScreens.CharactersScreen.route) {
-                    title = BottomNavigationScreens.CharactersScreen.label
-                    CharactersListView()
-                }
-                composable(BottomNavigationScreens.EpisodesScreen.route) {
-                    title = BottomNavigationScreens.EpisodesScreen.label
-                    EpisodesListView()
-                }
-            }
-        },
-        bottomBar = {
-            BottomNavigation {
-                val currentRoute = currentRoute(navController)
-                bottomNavigationItems.forEach { screen ->
-                    BottomNavigationItem(
-                        icon = { Icon(screen.icon) },
-                        label = { Text(screen.label) },
-                        selected = currentRoute == screen.route,
-                        alwaysShowLabels = false, // This hides the title for the unselected items
-                        onClick = {
-                            // This if check gives us a "singleTop" behavior where we do not create a
-                            // second instance of the composable if we are already on that destination
-                            if (currentRoute != screen.route) {
-                                navController.navigate(screen.route)
-                            }
-                        }
-                    )
-                }
+    NavHost(navController, startDestination = Screens.CharactersScreen.route) {
+        composable(Screens.CharactersScreen.route) {
+            CharactersListView(bottomBar) {
+                navController.navigate(Screens.CharacterDetailsScreen.route+ "/${it.id}")
             }
         }
-    )
+        composable(Screens.CharacterDetailsScreen.route + "/{id}") { backStackEntry ->
+            CharacterDetailView(backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
+        }
+        composable(Screens.EpisodesScreen.route) {
+            EpisodesListView(bottomBar)
+        }
+    }
+}
+
+
+@Composable
+private fun MortyBottomNavigation(
+    navController: NavHostController,
+    items: List<Screens>
+) {
+    BottomNavigation {
+        val currentRoute = currentRoute(navController)
+        items.forEach { screen ->
+            BottomNavigationItem(
+                icon = { screen.icon?.let { Icon(screen.icon) } },
+                label = { Text(screen.label) },
+                selected = currentRoute == screen.route,
+                onClick = {
+                    // This if check gives us a "singleTop" behavior where we do not create a
+                    // second instance of the composable if we are already on that destination
+                    if (currentRoute != screen.route) {
+                        navController.navigate(screen.route)
+                    }
+                }
+            )
+        }
+    }
+
 }
 
 @Composable

@@ -16,9 +16,9 @@ import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.johnoreilly.mortycomposekmm.GetCharactersQuery
 
 @Composable
-fun CharactersListRowView(character: GetCharactersQuery.Result) {
+fun CharactersListRowView(character: GetCharactersQuery.Result, characterSelected: (network: GetCharactersQuery.Result) -> Unit) {
 
-    Row(modifier = Modifier.fillMaxWidth().clickable(onClick = {  }).padding(16.dp),
+    Row(modifier = Modifier.fillMaxWidth().clickable(onClick = { characterSelected(character) }).padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 

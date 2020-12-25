@@ -5,6 +5,7 @@ import com.apollographql.apollo.api.ApolloExperimental
 import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.network.http.ApolloHttpNetworkTransport
+import dev.johnoreilly.mortycomposekmm.GetCharacterQuery
 import dev.johnoreilly.mortycomposekmm.GetCharactersQuery
 import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
 import kotlinx.coroutines.flow.single
@@ -24,6 +25,11 @@ class MortyRepository {
     suspend fun getCharacters(page: Int): GetCharactersQuery.Characters? {
         val response = apolloClient.query(GetCharactersQuery(Input.optional(page))).execute().single()
         return response.data?.characters
+    }
+
+    suspend fun getCharacter(characterId: String): GetCharacterQuery.Character? {
+        val response = apolloClient.query(GetCharacterQuery(characterId)).execute().single()
+        return response.data?.character
     }
 
     suspend fun getEpisodes(page: Int): GetEpisodesQuery.Episodes? {

@@ -1,7 +1,7 @@
 
 object Versions {
     const val kotlin = "1.4.21"
-    const val kotlinCoroutines = "1.4.2-native-mt"
+    const val kotlinxCoroutines = "1.4.2-native-mt"
     const val kotlinxSerialization = "1.0.0-RC"
     const val koin = "2.2.2"
 
