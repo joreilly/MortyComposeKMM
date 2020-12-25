@@ -1,7 +1,7 @@
 package dev.johnoreilly.mortycomposekmm.ui.episodes
 
+import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -42,7 +42,7 @@ fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
     {
         Surface(color = Color.LightGray) {
 
-            Column(modifier = Modifier.padding(top = 16.dp)) {
+            ScrollableColumn(modifier = Modifier.padding(top = 16.dp)) {
                 episode?.let {
 
                     Text("Characters", style = MaterialTheme.typography.h5, color = AmbientContentColor.current,
@@ -64,35 +64,31 @@ private fun EpisodeCharactersList(episode: GetEpisodeQuery.Episode) {
 
     Column(modifier = Modifier.padding(horizontal = 16.dp),) {
         episode.characters?.let { characterList ->
-            LazyColumn {
-                items(characterList) { character ->
-                    character?.let {
-                        Row(modifier = Modifier.padding(vertical = 8.dp)) {
+            characterList.filterNotNull().forEach { character ->
+                Row(modifier = Modifier.padding(vertical = 8.dp)) {
 
-                            val imageUrl = character.image
-                            Surface(
+                    val imageUrl = character.image
+                    Surface(
+                        modifier = Modifier.preferredSize(28.dp),
+                        shape = CircleShape,
+                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+                    ) {
+                        character.image?.let {
+                            CoilImage(
+                                data = it,
                                 modifier = Modifier.preferredSize(28.dp),
-                                shape = CircleShape,
-                                color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
-                            ) {
-                                character.image?.let {
-                                    CoilImage(
-                                        data = it,
-                                        modifier = Modifier.preferredSize(28.dp),
-                                        requestBuilder = {
-                                            transformations(CircleCropTransformation())
-                                        }
-                                    )
+                                requestBuilder = {
+                                    transformations(CircleCropTransformation())
                                 }
-                            }
-
-                            Text(character.name ?: "",
-                                modifier = Modifier.padding(start = 8.dp, end = 8.dp),
-                                style = MaterialTheme.typography.h6)
+                            )
                         }
-                        Divider()
                     }
+
+                    Text(character.name ?: "",
+                        modifier = Modifier.padding(start = 8.dp, end = 8.dp),
+                        style = MaterialTheme.typography.h6)
                 }
+                Divider()
             }
         }
     }

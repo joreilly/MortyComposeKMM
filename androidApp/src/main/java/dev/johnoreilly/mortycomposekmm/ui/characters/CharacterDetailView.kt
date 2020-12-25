@@ -1,7 +1,7 @@
 package dev.johnoreilly.mortycomposekmm.ui.characters
 
+import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
@@ -38,7 +38,7 @@ fun CharacterDetailView(characterId: String, popBack: () -> Unit) {
     {
         Surface(color = Color.LightGray) {
 
-            Column(modifier = Modifier.padding(top = 16.dp)) {
+            ScrollableColumn(modifier = Modifier.padding(top = 16.dp)) {
                 character?.let {
 
                     Text("Mugshot", style = typography.h5, color = AmbientContentColor.current,
@@ -86,19 +86,15 @@ private fun CharacterEpisodeList(character: GetCharacterQuery.Character) {
 
     Column(modifier = Modifier.padding(horizontal = 16.dp),) {
         character.episode?.let { episodeList ->
-            LazyColumn {
-                items(episodeList) { episode ->
-                    episode?.let {
-                        Column {
-                            Text(episode.name ?: "",
-                                style = typography.h6)
-                            Text(episode.air_date ?: "",
-                                style = typography.subtitle2,
-                                color = Color.Gray)
-                        }
-                        Divider()
-                    }
+            episodeList.filterNotNull().forEach { episode ->
+                Column {
+                    Text(episode.name ?: "",
+                        style = typography.h6)
+                    Text(episode.air_date ?: "",
+                        style = typography.subtitle2,
+                        color = Color.Gray)
                 }
+                Divider()
             }
         }
     }
