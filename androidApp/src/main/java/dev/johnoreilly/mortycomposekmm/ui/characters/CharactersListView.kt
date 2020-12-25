@@ -11,13 +11,13 @@ import dev.johnoreilly.mortycomposekmm.GetCharactersQuery
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun CharactersListView(bottmBar: @Composable () -> Unit, characterSelected: (network: GetCharactersQuery.Result) -> Unit) {
+fun CharactersListView(bottomBar: @Composable () -> Unit, characterSelected: (character: GetCharactersQuery.Result) -> Unit) {
     val characterListsViewModel = getViewModel<CharacterListsViewModel>()
     val lazyCharacterList = characterListsViewModel.characters.collectAsLazyPagingItems()
 
     Scaffold(
         topBar = { TopAppBar(title = { Text( "Characters") }) },
-        bottomBar = bottmBar)
+        bottomBar = bottomBar)
     {
         LazyColumn(contentPadding = it) {
             items(lazyCharacterList) { character ->

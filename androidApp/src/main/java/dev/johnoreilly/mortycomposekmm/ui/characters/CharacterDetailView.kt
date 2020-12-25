@@ -2,7 +2,6 @@ package dev.johnoreilly.mortycomposekmm.ui.characters
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
@@ -12,14 +11,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.paging.compose.items
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.johnoreilly.mortycomposekmm.GetCharacterQuery
 import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun CharacterDetailView(characterId: String, popBack: () -> Unit) {
-    var title by remember { mutableStateOf("") }
     val characterListsViewModel = getViewModel<CharacterListsViewModel>()
     val (character, setCharacter) = remember { mutableStateOf<GetCharacterQuery.Character?>(null) }
 

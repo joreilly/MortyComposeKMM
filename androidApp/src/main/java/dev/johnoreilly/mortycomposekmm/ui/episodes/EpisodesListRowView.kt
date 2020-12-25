@@ -1,5 +1,6 @@
 package dev.johnoreilly.mortycomposekmm.ui.episodes
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -12,9 +13,11 @@ import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
 
 
 @Composable
-fun EpisodesListRowView(episode: GetEpisodesQuery.Result) {
-    Row(verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).fillMaxWidth()) {
+fun EpisodesListRowView(episode: GetEpisodesQuery.Result, episodeSelected: (episode: GetEpisodesQuery.Result) -> Unit) {
+
+    Row(modifier = Modifier.fillMaxWidth().clickable(onClick = { episodeSelected(episode) }).padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
 
         Column(modifier = Modifier.weight(1f)) {
             Text(episode.name ?: "",

@@ -7,21 +7,22 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun EpisodesListView(bottmBar: @Composable () -> Unit, ) {
+fun EpisodesListView(bottomBar: @Composable () -> Unit, episodeSelected: (episode: GetEpisodesQuery.Result) -> Unit) {
     val episodesListViewModel = getViewModel<EpisodesListViewModel>()
     val lazyEpisodeList = episodesListViewModel.episodes.collectAsLazyPagingItems()
 
     Scaffold(
         topBar = { TopAppBar(title = { Text( "Episodes") }) },
-        bottomBar = bottmBar)
+        bottomBar = bottomBar)
     {
         LazyColumn(contentPadding = it) {
             items(lazyEpisodeList) { episode ->
                 episode?.let {
-                    EpisodesListRowView(episode)
+                    EpisodesListRowView(episode, episodeSelected)
                 }
             }
         }

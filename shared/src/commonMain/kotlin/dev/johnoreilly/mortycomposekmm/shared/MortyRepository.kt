@@ -3,10 +3,10 @@ package dev.johnoreilly.mortycomposekmm.shared
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.ApolloExperimental
 import com.apollographql.apollo.api.Input
-import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.network.http.ApolloHttpNetworkTransport
 import dev.johnoreilly.mortycomposekmm.GetCharacterQuery
 import dev.johnoreilly.mortycomposekmm.GetCharactersQuery
+import dev.johnoreilly.mortycomposekmm.GetEpisodeQuery
 import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
 import kotlinx.coroutines.flow.single
 
@@ -35,6 +35,11 @@ class MortyRepository {
     suspend fun getEpisodes(page: Int): GetEpisodesQuery.Episodes? {
         val response = apolloClient.query(GetEpisodesQuery(Input.optional(page))).execute().single()
         return response.data?.episodes
+    }
+
+    suspend fun getEpisode(episodeId: String): GetEpisodeQuery.Episode? {
+        val response = apolloClient.query(GetEpisodeQuery(episodeId)).execute().single()
+        return response.data?.episode
     }
 
 }
