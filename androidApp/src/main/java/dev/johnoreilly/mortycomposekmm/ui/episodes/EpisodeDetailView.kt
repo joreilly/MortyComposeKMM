@@ -44,7 +44,7 @@ fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
             Column(modifier = Modifier.padding(top = 16.dp)) {
                 episode?.let {
 
-                    Text("Characters", style = MaterialTheme.typography.h5, color = Color.Gray,
+                    Text("Characters", style = MaterialTheme.typography.h5, color = AmbientContentColor.current,
                         modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp))
 
                     Surface(color = Color.White) {

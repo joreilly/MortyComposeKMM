@@ -41,7 +41,7 @@ fun CharacterDetailView(characterId: String, popBack: () -> Unit) {
             Column(modifier = Modifier.padding(top = 16.dp)) {
                 character?.let {
 
-                    Text("Mugshot", style = typography.h5, color = Color.Gray,
+                    Text("Mugshot", style = typography.h5, color = AmbientContentColor.current,
                         modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp))
 
                     Surface(color = Color.White) {
@@ -62,7 +62,9 @@ fun CharacterDetailView(characterId: String, popBack: () -> Unit) {
                     }
 
 
-                    Text("Episodes", style = typography.h5, color = Color.Gray,
+                    Spacer(modifier = Modifier.preferredHeight(16.dp))
+
+                    Text("Episodes", style = typography.h5, color = AmbientContentColor.current,
                         modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp))
 
                     Surface(color = Color.White) {

@@ -2,6 +2,7 @@ package dev.johnoreilly.mortycomposekmm.ui.episodes
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -15,7 +16,9 @@ import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
 @Composable
 fun EpisodesListRowView(episode: GetEpisodesQuery.Result, episodeSelected: (episode: GetEpisodesQuery.Result) -> Unit) {
 
-    Row(modifier = Modifier.fillMaxWidth().clickable(onClick = { episodeSelected(episode) }).padding(16.dp),
+    Row(modifier = Modifier.fillMaxWidth()
+        .clickable(onClick = { episodeSelected(episode) })
+        .padding(vertical = 8.dp, horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
@@ -29,4 +32,5 @@ fun EpisodesListRowView(episode: GetEpisodesQuery.Result, episodeSelected: (epis
 
         Text(episode.air_date ?: "", modifier = Modifier.padding(start = 16.dp))
     }
+    Divider()
 }
