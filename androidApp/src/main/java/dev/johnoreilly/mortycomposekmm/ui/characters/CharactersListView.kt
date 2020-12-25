@@ -19,7 +19,7 @@ fun CharactersListView(bottmBar: @Composable () -> Unit, characterSelected: (net
         topBar = { TopAppBar(title = { Text( "Characters") }) },
         bottomBar = bottmBar)
     {
-        LazyColumn {
+        LazyColumn(contentPadding = it) {
             items(lazyCharacterList) { character ->
                 character?.let {
                     CharactersListRowView(character, characterSelected)

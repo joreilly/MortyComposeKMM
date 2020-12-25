@@ -18,7 +18,7 @@ fun EpisodesListView(bottmBar: @Composable () -> Unit, ) {
         topBar = { TopAppBar(title = { Text( "Episodes") }) },
         bottomBar = bottmBar)
     {
-        LazyColumn {
+        LazyColumn(contentPadding = it) {
             items(lazyEpisodeList) { episode ->
                 episode?.let {
                     EpisodesListRowView(episode)
