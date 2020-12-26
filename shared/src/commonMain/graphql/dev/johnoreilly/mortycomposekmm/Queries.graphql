@@ -35,23 +35,17 @@ query GetEpisode($id: ID!) {
 query GetLocations($page: Int) {
 	locations(page: $page) {
 		info {
-			count, pages
+			count, pages, next
 		}
 		results {
-			id, name, type, dimension,
-			residents {
-				id, name, image
-			}
+			...LocationDetail
 		}
 	}
 }
 
 query GetLocation($id: ID!) {
 	location(id: $id) {
-		id, name, type, dimension,
-		residents {
-			id, name, image
-		}
+		...LocationDetail
 	}
 }
 
@@ -73,6 +67,13 @@ fragment CharacterDetail on Character {
 fragment EpisodeDetail on Episode {
 	id, name, created, air_date, episode
 	characters {
+		id, name, image
+	}
+}
+
+fragment LocationDetail on Location {
+	id, name, type, dimension,
+	residents {
 		id, name, image
 	}
 }

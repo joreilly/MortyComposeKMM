@@ -1,4 +1,4 @@
-package dev.johnoreilly.mortycomposekmm.ui.episodes
+package dev.johnoreilly.mortycomposekmm.ui.locations
 
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.*
@@ -16,22 +16,23 @@ import androidx.compose.ui.unit.dp
 import coil.transform.CircleCropTransformation
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
+import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
 import org.koin.androidx.compose.getViewModel
 
 
 @Composable
-fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
-    val episodesListsViewModel = getViewModel<EpisodesListViewModel>()
-    val (episode, setEpisode) = remember { mutableStateOf<EpisodeDetail?>(null) }
+fun LocationDetailView(locationId: String, popBack: () -> Unit) {
+    val locationsListViewModel = getViewModel<LocationsListViewModel>()
+    val (location, setLocation) = remember { mutableStateOf<LocationDetail?>(null) }
 
-    LaunchedEffect(episodeId) {
-        setEpisode(episodesListsViewModel.getEpisode(episodeId))
+    LaunchedEffect(locationId) {
+        setLocation(locationsListViewModel.getLocation(locationId))
     }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(episode?.name ?: "") },
+                title = { Text(location?.name ?: "") },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
                         Icon(Icons.Filled.ArrowBack)
@@ -43,13 +44,13 @@ fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
         Surface(color = Color.LightGray) {
 
             ScrollableColumn(modifier = Modifier.padding(top = 16.dp)) {
-                episode?.let {
+                location?.let {
 
-                    Text("Characters", style = MaterialTheme.typography.h5, color = AmbientContentColor.current,
+                    Text("Residents", style = MaterialTheme.typography.h5, color = AmbientContentColor.current,
                         modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp))
 
                     Surface(color = Color.White) {
-                        EpisodeCharactersList(episode)
+                        LocationResidentList(location)
                     }
 
                 }
@@ -60,11 +61,11 @@ fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
 }
 
 @Composable
-private fun EpisodeCharactersList(episode: EpisodeDetail) {
+private fun LocationResidentList(location: LocationDetail) {
 
     Column(modifier = Modifier.padding(horizontal = 16.dp),) {
-        episode.characters?.let { characterList ->
-            characterList.filterNotNull().forEach { character ->
+        location.residents?.let { residentList ->
+            residentList.filterNotNull().forEach { resident ->
                 Row(modifier = Modifier.padding(vertical = 8.dp)) {
 
                     Surface(
@@ -72,7 +73,7 @@ private fun EpisodeCharactersList(episode: EpisodeDetail) {
                         shape = CircleShape,
                         color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
                     ) {
-                        character.image?.let {
+                        resident.image?.let {
                             CoilImage(
                                 data = it,
                                 modifier = Modifier.preferredSize(28.dp),
@@ -83,7 +84,7 @@ private fun EpisodeCharactersList(episode: EpisodeDetail) {
                         }
                     }
 
-                    Text(character.name ?: "",
+                    Text(resident.name ?: "",
                         modifier = Modifier.padding(start = 8.dp, end = 8.dp),
                         style = MaterialTheme.typography.h6)
                 }

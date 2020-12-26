@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Tv
 import androidx.compose.material.icons.materialIcon
@@ -17,14 +18,17 @@ import dev.johnoreilly.mortycomposekmm.ui.characters.CharacterDetailView
 import dev.johnoreilly.mortycomposekmm.ui.characters.CharactersListView
 import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodeDetailView
 import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodesListView
-
+import dev.johnoreilly.mortycomposekmm.ui.locations.LocationDetailView
+import dev.johnoreilly.mortycomposekmm.ui.locations.LocationsListView
 
 
 sealed class Screens(val route: String, val label: String, val icon: ImageVector? = null) {
     object CharactersScreen : Screens("Characters", "Characters", Icons.Default.Person)
     object EpisodesScreen : Screens("Episodes", "Episodes",  Icons.Default.Tv)
+    object LocationsScreen : Screens("Locations", "Locations",  Icons.Default.LocationOn)
     object CharacterDetailsScreen : Screens("CharacterDetails", "CharacterDetails")
     object EpisodeDetailsScreen : Screens("EpisodeDetails", "CharacterDetails")
+    object LocationDetailsScreen : Screens("LocatonDetails", "LocatonDetails")
 }
 
 
@@ -45,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 fun MainLayout() {
     val navController = rememberNavController()
 
-    val bottomNavigationItems = listOf(Screens.CharactersScreen, Screens.EpisodesScreen)
+    val bottomNavigationItems = listOf(Screens.CharactersScreen, Screens.EpisodesScreen, Screens.LocationsScreen)
     val bottomBar: @Composable () -> Unit = { MortyBottomNavigation(navController, bottomNavigationItems) }
 
     NavHost(navController, startDestination = Screens.CharactersScreen.route) {
@@ -64,6 +68,14 @@ fun MainLayout() {
         }
         composable(Screens.EpisodeDetailsScreen.route + "/{id}") { backStackEntry ->
             EpisodeDetailView(backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
+        }
+        composable(Screens.LocationsScreen.route) {
+            LocationsListView(bottomBar) {
+                navController.navigate(Screens.LocationDetailsScreen.route+ "/${it.id}")
+            }
+        }
+        composable(Screens.LocationDetailsScreen.route + "/{id}") { backStackEntry ->
+            LocationDetailView(backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
         }
     }
 }

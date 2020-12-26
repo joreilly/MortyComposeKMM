@@ -4,12 +4,10 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.ApolloExperimental
 import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.network.http.ApolloHttpNetworkTransport
-import dev.johnoreilly.mortycomposekmm.GetCharacterQuery
-import dev.johnoreilly.mortycomposekmm.GetCharactersQuery
-import dev.johnoreilly.mortycomposekmm.GetEpisodeQuery
-import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
+import dev.johnoreilly.mortycomposekmm.*
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
+import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
 import kotlinx.coroutines.flow.single
 
 @ApolloExperimental
@@ -44,4 +42,13 @@ class MortyRepository {
         return response.data?.episode?.fragments?.episodeDetail
     }
 
+    suspend fun getLocations(page: Int): GetLocationsQuery.Locations? {
+        val response = apolloClient.query(GetLocationsQuery(Input.optional(page))).execute().single()
+        return response.data?.locations
+    }
+
+    suspend fun getLocation(locationId: String): LocationDetail? {
+        val response = apolloClient.query(GetLocationQuery(locationId)).execute().single()
+        return response.data?.location?.fragments?.locationDetail
+    }
 }
