@@ -4,18 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import dev.johnoreilly.mortycomposekmm.GetCharacterQuery
-import dev.johnoreilly.mortycomposekmm.GetCharactersQuery
+import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.shared.MortyRepository
 import kotlinx.coroutines.flow.Flow
 
 class CharacterListsViewModel(private val repository: MortyRepository): ViewModel() {
 
-    val characters: Flow<PagingData<GetCharactersQuery.Result>> = Pager(PagingConfig(pageSize = 20)) {
+    val characters: Flow<PagingData<CharacterDetail>> = Pager(PagingConfig(pageSize = 20)) {
         CharactersDataSource(repository)
     }.flow
 
-    suspend fun getCharacter(characterId: String): GetCharacterQuery.Character? {
+    suspend fun getCharacter(characterId: String): CharacterDetail? {
         return repository.getCharacter(characterId)
     }
 

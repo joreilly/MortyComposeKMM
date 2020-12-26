@@ -4,26 +4,14 @@ query GetCharacters($page: Int) {
 			pages, count, next
 		}
 		results {
-			id, name, image,
-			episode {
-				id, name
-			}
+			...CharacterDetail
 		}
 	}
 }
 
 query GetCharacter($id: ID!){
 	character(id: $id) {
-		id, name, image, status, species, type, gender
-		episode {
-			id, name, air_date
-		}
-		location {
-			id, name
-		}
-		origin {
-			name
-		}
+		...CharacterDetail
 	}
 }
 
@@ -33,20 +21,14 @@ query GetEpisodes($page: Int){
 			count, pages, next
 		}
 		results {
-			id, name, created, air_date, episode
-			characters {
-				name, image
-			}
+			...EpisodeDetail
 		}
 	}
 }
 
 query GetEpisode($id: ID!) {
 	episode(id: $id) {
-		id, name, air_date, episode,
-		characters {
-			id, name, image
-		}
+		...EpisodeDetail
 	}
 }
 
@@ -72,5 +54,30 @@ query GetLocation($id: ID!) {
 		}
 	}
 }
+
+
+fragment CharacterDetail on Character {
+	id, name, image, status, species, type, gender
+	episode {
+		id, name, air_date
+	}
+	location {
+		id, name
+	}
+	origin {
+		name
+	}
+}
+
+
+fragment EpisodeDetail on Episode {
+	id, name, created, air_date, episode
+	characters {
+		id, name, image
+	}
+}
+
+
+
 
 

@@ -1,16 +1,16 @@
 package dev.johnoreilly.mortycomposekmm.ui.characters
 
 import androidx.paging.PagingSource
-import dev.johnoreilly.mortycomposekmm.GetCharactersQuery
+import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.shared.MortyRepository
 
-class CharactersDataSource(private val repository: MortyRepository) : PagingSource<Int, GetCharactersQuery.Result>() {
+class CharactersDataSource(private val repository: MortyRepository) : PagingSource<Int, CharacterDetail>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GetCharactersQuery.Result> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterDetail> {
         val pageNumber = params.key ?: 0
 
         val charactersResponse = repository.getCharacters(pageNumber)
-        val characters = charactersResponse?.resultsFilterNotNull()
+        val characters = charactersResponse?.resultsFilterNotNull()?.map { it.fragments.characterDetail }
 
         val prevKey = if (pageNumber > 0) pageNumber - 1 else null
         val nextKey = charactersResponse?.info?.next

@@ -7,11 +7,11 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
+import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun EpisodesListView(bottomBar: @Composable () -> Unit, episodeSelected: (episode: GetEpisodesQuery.Result) -> Unit) {
+fun EpisodesListView(bottomBar: @Composable () -> Unit, episodeSelected: (episode: EpisodeDetail) -> Unit) {
     val episodesListViewModel = getViewModel<EpisodesListViewModel>()
     val lazyEpisodeList = episodesListViewModel.episodes.collectAsLazyPagingItems()
 

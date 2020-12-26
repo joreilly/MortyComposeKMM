@@ -15,14 +15,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil.transform.CircleCropTransformation
 import dev.chrisbanes.accompanist.coil.CoilImage
-import dev.johnoreilly.mortycomposekmm.GetEpisodeQuery
+import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import org.koin.androidx.compose.getViewModel
 
 
 @Composable
 fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
     val episodesListsViewModel = getViewModel<EpisodesListViewModel>()
-    val (episode, setEpisode) = remember { mutableStateOf<GetEpisodeQuery.Episode?>(null) }
+    val (episode, setEpisode) = remember { mutableStateOf<EpisodeDetail?>(null) }
 
     LaunchedEffect(episodeId) {
         setEpisode(episodesListsViewModel.getEpisode(episodeId))
@@ -60,7 +60,7 @@ fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
 }
 
 @Composable
-private fun EpisodeCharactersList(episode: GetEpisodeQuery.Episode) {
+private fun EpisodeCharactersList(episode: EpisodeDetail) {
 
     Column(modifier = Modifier.padding(horizontal = 16.dp),) {
         episode.characters?.let { characterList ->

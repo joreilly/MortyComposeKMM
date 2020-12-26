@@ -10,11 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
+import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 
 
 @Composable
-fun EpisodesListRowView(episode: GetEpisodesQuery.Result, episodeSelected: (episode: GetEpisodesQuery.Result) -> Unit) {
+fun EpisodesListRowView(episode: EpisodeDetail, episodeSelected: (episode: EpisodeDetail) -> Unit) {
 
     Row(modifier = Modifier.fillMaxWidth()
         .clickable(onClick = { episodeSelected(episode) })

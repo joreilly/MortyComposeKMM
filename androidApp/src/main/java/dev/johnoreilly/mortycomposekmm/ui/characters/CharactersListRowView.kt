@@ -15,9 +15,10 @@ import androidx.compose.ui.unit.dp
 import coil.transform.CircleCropTransformation
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.johnoreilly.mortycomposekmm.GetCharactersQuery
+import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 
 @Composable
-fun CharactersListRowView(character: GetCharactersQuery.Result, characterSelected: (network: GetCharactersQuery.Result) -> Unit) {
+fun CharactersListRowView(character: CharacterDetail, characterSelected: (network: CharacterDetail) -> Unit) {
 
     Row(modifier = Modifier.fillMaxWidth().clickable(onClick = { characterSelected(character) }).padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
