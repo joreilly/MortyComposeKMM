@@ -3,7 +3,7 @@ import shared
 import KingfisherSwiftUI
 
 struct CharactersListRowView: View {
-    let character: GetCharactersQuery.Result
+    let character: CharacterDetail
     
     var body: some View {
         HStack {
