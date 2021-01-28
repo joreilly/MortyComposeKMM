@@ -35,7 +35,7 @@ fun LocationDetailView(locationId: String, popBack: () -> Unit) {
                 title = { Text(location?.name ?: "") },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
                     }
                 }
             )
@@ -79,7 +79,8 @@ private fun LocationResidentList(location: LocationDetail) {
                                 modifier = Modifier.preferredSize(28.dp),
                                 requestBuilder = {
                                     transformations(CircleCropTransformation())
-                                }
+                                },
+                                contentDescription = null
                             )
                         }
                     }

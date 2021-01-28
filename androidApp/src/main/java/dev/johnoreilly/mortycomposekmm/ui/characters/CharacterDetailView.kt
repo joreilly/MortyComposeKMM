@@ -30,7 +30,7 @@ fun CharacterDetailView(characterId: String, popBack: () -> Unit) {
                 title = { Text(character?.name ?: "") },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
                     }
                 }
             )
@@ -55,7 +55,7 @@ fun CharacterDetailView(characterId: String, popBack: () -> Unit) {
                                     modifier = Modifier.preferredSize(150.dp),
                                     shape = RoundedCornerShape(25.dp)
                                 ) {
-                                    CoilImage(data = imageUrl)
+                                    CoilImage(data = imageUrl, contentDescription = null)
                                 }
                             }
                         }

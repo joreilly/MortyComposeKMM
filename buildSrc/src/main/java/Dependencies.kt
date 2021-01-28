@@ -1,14 +1,14 @@
 
 object Versions {
-    const val kotlin = "1.4.21"
+    const val kotlin = "1.4.21-2"
     const val kotlinxCoroutines = "1.4.2-native-mt"
     const val kotlinxSerialization = "1.0.0-RC"
     const val koin = "2.2.2"
 
-    const val compose = "1.0.0-alpha10"
-    const val nav_compose = "1.0.0-alpha05"
-    const val nav_paging = "1.0.0-alpha05"
-    const val accompanist = "0.4.2"
+    const val compose = "1.0.0-alpha11"
+    const val nav_compose = "1.0.0-alpha06"
+    const val nav_paging = "1.0.0-alpha06"
+    const val accompanist = "0.5.0"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"

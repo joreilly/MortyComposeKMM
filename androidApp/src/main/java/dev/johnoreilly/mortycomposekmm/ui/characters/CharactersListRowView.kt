@@ -35,7 +35,8 @@ fun CharactersListRowView(character: CharacterDetail, characterSelected: (networ
                     modifier = Modifier.preferredSize(50.dp),
                     requestBuilder = {
                         transformations(CircleCropTransformation())
-                    }
+                    },
+                    contentDescription = null
                 )
             }
         }

@@ -34,7 +34,7 @@ fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
                 title = { Text(episode?.name ?: "") },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
                     }
                 }
             )
@@ -78,7 +78,8 @@ private fun EpisodeCharactersList(episode: EpisodeDetail) {
                                 modifier = Modifier.preferredSize(28.dp),
                                 requestBuilder = {
                                     transformations(CircleCropTransformation())
-                                }
+                                },
+                                contentDescription = null
                             )
                         }
                     }
