@@ -36,7 +36,7 @@ fun CharactersListRowView(character: CharacterDetail, characterSelected: (networ
                     requestBuilder = {
                         transformations(CircleCropTransformation())
                     },
-                    contentDescription = null
+                    contentDescription = character.name
                 )
             }
         }

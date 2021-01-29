@@ -1,7 +1,7 @@
 package dev.johnoreilly.mortycomposekmm.ui.episodes
 
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -34,7 +34,7 @@ fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
                 title = { Text(episode?.name ?: "") },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -42,16 +42,24 @@ fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
     {
         Surface(color = Color.LightGray) {
 
-            ScrollableColumn(modifier = Modifier.padding(top = 16.dp)) {
-                episode?.let {
+            LazyColumn(modifier = Modifier.padding(top = 16.dp)) {
+                // use `item` for separate elements like headers
+                // and `items` for lists of identical elements
+                item {
+                    episode?.let {
 
-                    Text("Characters", style = MaterialTheme.typography.h5, color = AmbientContentColor.current,
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp))
+                        Text(
+                            "Characters",
+                            style = MaterialTheme.typography.h5,
+                            color = AmbientContentColor.current,
+                            modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
+                        )
 
-                    Surface(color = Color.White) {
-                        EpisodeCharactersList(episode)
+                        Surface(color = Color.White) {
+                            EpisodeCharactersList(episode)
+                        }
+
                     }
-
                 }
             }
         }
@@ -79,7 +87,7 @@ private fun EpisodeCharactersList(episode: EpisodeDetail) {
                                 requestBuilder = {
                                     transformations(CircleCropTransformation())
                                 },
-                                contentDescription = null
+                                contentDescription = character.name
                             )
                         }
                     }

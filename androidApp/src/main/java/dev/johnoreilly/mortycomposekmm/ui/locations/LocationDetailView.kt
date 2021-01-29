@@ -1,7 +1,7 @@
 package dev.johnoreilly.mortycomposekmm.ui.locations
 
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -35,7 +35,7 @@ fun LocationDetailView(locationId: String, popBack: () -> Unit) {
                 title = { Text(location?.name ?: "") },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -43,16 +43,24 @@ fun LocationDetailView(locationId: String, popBack: () -> Unit) {
     {
         Surface(color = Color.LightGray) {
 
-            ScrollableColumn(modifier = Modifier.padding(top = 16.dp)) {
-                location?.let {
+            LazyColumn(modifier = Modifier.padding(top = 16.dp)) {
+                // use `item` for separate elements like headers
+                // and `items` for lists of identical elements
+                item {
+                    location?.let {
 
-                    Text("Residents", style = MaterialTheme.typography.h5, color = AmbientContentColor.current,
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp))
+                        Text(
+                            "Residents",
+                            style = MaterialTheme.typography.h5,
+                            color = AmbientContentColor.current,
+                            modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
+                        )
 
-                    Surface(color = Color.White) {
-                        LocationResidentList(location)
+                        Surface(color = Color.White) {
+                            LocationResidentList(location)
+                        }
+
                     }
-
                 }
             }
         }
@@ -80,7 +88,7 @@ private fun LocationResidentList(location: LocationDetail) {
                                 requestBuilder = {
                                     transformations(CircleCropTransformation())
                                 },
-                                contentDescription = null
+                                contentDescription = resident.name
                             )
                         }
                     }

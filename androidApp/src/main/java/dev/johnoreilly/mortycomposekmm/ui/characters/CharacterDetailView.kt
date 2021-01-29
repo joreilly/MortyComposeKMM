@@ -1,7 +1,7 @@
 package dev.johnoreilly.mortycomposekmm.ui.characters
 
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
@@ -30,7 +30,7 @@ fun CharacterDetailView(characterId: String, popBack: () -> Unit) {
                 title = { Text(character?.name ?: "") },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -38,41 +38,52 @@ fun CharacterDetailView(characterId: String, popBack: () -> Unit) {
     {
         Surface(color = Color.LightGray) {
 
-            ScrollableColumn(modifier = Modifier.padding(top = 16.dp)) {
-                character?.let {
+            LazyColumn(modifier = Modifier.padding(top = 16.dp)) {
+                // use `item` for separate elements like headers
+                // and `items` for lists of identical elements
+                item {
+                    character?.let {
 
-                    Text("Mugshot", style = typography.h5, color = AmbientContentColor.current,
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp))
+                        Text(
+                            "Mugshot", style = typography.h5, color = AmbientContentColor.current,
+                            modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
+                        )
 
-                    Surface(color = Color.White) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth().padding(16.dp),
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            val imageUrl = character.image
-                            if (imageUrl != null) {
-                                Card(
-                                    modifier = Modifier.preferredSize(150.dp),
-                                    shape = RoundedCornerShape(25.dp)
-                                ) {
-                                    CoilImage(data = imageUrl, contentDescription = null)
+                        Surface(color = Color.White) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                val imageUrl = character.image
+                                if (imageUrl != null) {
+                                    Card(
+                                        modifier = Modifier.preferredSize(150.dp),
+                                        shape = RoundedCornerShape(25.dp)
+                                    ) {
+                                        CoilImage(
+                                            data = imageUrl,
+                                            contentDescription = character.name
+                                        )
+                                    }
                                 }
                             }
                         }
-                    }
 
 
-                    Spacer(modifier = Modifier.preferredHeight(16.dp))
+                        Spacer(modifier = Modifier.preferredHeight(16.dp))
 
-                    Text("Episodes", style = typography.h5, color = AmbientContentColor.current,
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp))
+                        Text(
+                            "Episodes", style = typography.h5, color = AmbientContentColor.current,
+                            modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
+                        )
 
-                    Surface(color = Color.White) {
-                        CharacterEpisodeList(character)
+                        Surface(color = Color.White) {
+                            CharacterEpisodeList(character)
+                        }
+
                     }
 
                 }
-
             }
 
         }

@@ -90,7 +90,7 @@ private fun MortyBottomNavigation(
         val currentRoute = currentRoute(navController)
         items.forEach { screen ->
             BottomNavigationItem(
-                icon = { screen.icon?.let { Icon(screen.icon, contentDescription = null) } },
+                icon = { screen.icon?.let { Icon(screen.icon, contentDescription = screen.label) } },
                 label = { Text(screen.label) },
                 selected = currentRoute == screen.route,
                 onClick = {
