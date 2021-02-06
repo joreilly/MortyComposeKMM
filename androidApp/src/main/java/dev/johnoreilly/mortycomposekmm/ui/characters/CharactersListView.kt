@@ -10,6 +10,7 @@ import androidx.paging.compose.items
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import org.koin.androidx.compose.getViewModel
 
+
 @Composable
 fun CharactersListView(bottomBar: @Composable () -> Unit, characterSelected: (character: CharacterDetail) -> Unit) {
     val characterListsViewModel = getViewModel<CharacterListsViewModel>()

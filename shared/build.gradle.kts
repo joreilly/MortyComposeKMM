@@ -36,6 +36,7 @@ kotlin {
                 }
 
                 api("com.apollographql.apollo:apollo-runtime-kotlin:2.4.6")
+                api("com.kuuuurt:multiplatform-paging:0.3.2")
             }
         }
         val commonTest by getting {
@@ -87,6 +88,19 @@ val packForXcode by tasks.creating(Sync::class) {
     val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
     val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
     val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
+
+    kotlin.targets.named<KotlinNativeTarget>("iosX64") {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
+            export("com.kuuuurt:multiplatform-paging-iosX64:0.3.2")
+        }
+    }
+
+    kotlin.targets.named<KotlinNativeTarget>("iosArm64") {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
+            export("com.kuuuurt:multiplatform-paging-iosArm64:0.3.2")
+        }
+    }
+
     inputs.property("mode", mode)
     dependsOn(framework.linkTask)
     val targetDir = File(buildDir, "xcode-frameworks")
