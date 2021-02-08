@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.apollographql.apollo").version("2.4.6")
+    id("com.apollographql.apollo").version(Versions.apollo)
 }
 
 // workaround for https://youtrack.jetbrains.com/issue/KT-43944
@@ -35,8 +35,8 @@ kotlin {
                     isForce = true
                 }
 
-                api("com.apollographql.apollo:apollo-runtime-kotlin:2.4.6")
-                api("com.kuuuurt:multiplatform-paging:0.3.2")
+                api(Deps.apolloRuntime)
+                api(Deps.multiplatformPaging)
             }
         }
         val commonTest by getting {
@@ -91,13 +91,13 @@ val packForXcode by tasks.creating(Sync::class) {
 
     kotlin.targets.named<KotlinNativeTarget>("iosX64") {
         binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
-            export("com.kuuuurt:multiplatform-paging-iosX64:0.3.2")
+            export("com.kuuuurt:multiplatform-paging-iosX64:${Versions.multiplatformPaging}")
         }
     }
 
     kotlin.targets.named<KotlinNativeTarget>("iosArm64") {
         binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
-            export("com.kuuuurt:multiplatform-paging-iosArm64:0.3.2")
+            export("com.kuuuurt:multiplatform-paging-iosArm64:${Versions.multiplatformPaging}")
         }
     }
 

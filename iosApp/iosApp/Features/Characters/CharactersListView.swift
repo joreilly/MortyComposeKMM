@@ -32,7 +32,7 @@ struct CharactersListView: View {
             Spacer()
         }
         .onAppear(perform: {
-            data.fetchNextData() //fetchCharacters()
+            data.fetchNextData() 
         })
     }
 }

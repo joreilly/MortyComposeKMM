@@ -5,7 +5,7 @@ import shared
 class CharacterListViewModel: ObservableObject {
     @Published public var characters: [CharacterDetail] = []
     let repository = MortyRepository()
-    var nextPage: Int32? = 1
+    var hasNextPage: Bool = false
     
     func fetchCharacters() {
 //        repository.getCharacters(page: nextPage!) { (data, error) in
@@ -22,6 +22,12 @@ class CharacterListViewModel: ObservableObject {
             
             self.characters = list
         }
+        
+        repository.characterPager.hasNextPage.watch { nullableNextPage in
+            if let hasNextPage = nullableNextPage {
+                self.hasNextPage = hasNextPage.boolValue
+            }
+        }
     }
     
     
@@ -30,8 +36,7 @@ class CharacterListViewModel: ObservableObject {
     }
     
     public var shouldDisplayNextPage: Bool {
-        // TODO how do we check this using paging library?
-        return nextPage != nil
+        return hasNextPage
     }
 }
 

@@ -7,6 +7,7 @@ import com.apollographql.apollo.network.http.ApolloHttpNetworkTransport
 import com.kuuurt.paging.multiplatform.Pager
 import com.kuuurt.paging.multiplatform.PagingConfig
 import com.kuuurt.paging.multiplatform.PagingData
+import com.kuuurt.paging.multiplatform.PagingResult
 import com.kuuurt.paging.multiplatform.helpers.CommonFlow
 import com.kuuurt.paging.multiplatform.helpers.asCommonFlow
 import com.kuuurt.paging.multiplatform.helpers.cachedIn
@@ -62,18 +63,23 @@ class MortyRepository {
     }
 
 
-    val characterPager = Pager<Int, CharacterDetail>(
+    // also accessed from iOS
+    val characterPager = Pager(
         clientScope = scope,
         config = PagingConfig(
-            pageSize = 10,
+            pageSize = 20,
             enablePlaceholders = false // Ignored on iOS
         ),
         initialKey = 1,
-        prevKey = { _, currentKey -> currentKey - 1  }, // Key for previous page, null means don't load previous pages
-        nextKey = { _, currentKey -> currentKey + 1 },
-        getItems = { startAt, size ->
-            val charactersResponse = getCharacters(startAt)
-            charactersResponse?.resultsFilterNotNull()?.map { it.fragments.characterDetail } ?: emptyList()
+        getItems = { currentKey, size ->
+            val charactersResponse = getCharacters(currentKey)
+            val items = charactersResponse?.resultsFilterNotNull()?.map { it.fragments.characterDetail } ?: emptyList()
+            PagingResult(
+                items = items,
+                currentKey = currentKey,
+                prevKey = { null },
+                nextKey = { charactersResponse?.info?.next }
+            )
         }
     )
 
