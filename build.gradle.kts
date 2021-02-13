@@ -7,7 +7,8 @@ buildscript {
 
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("com.android.tools.build:gradle:7.0.0-alpha05")
+        classpath("com.android.tools.build:gradle:7.0.0-alpha06")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}")
     }
 }
 
@@ -16,6 +17,5 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
-        maven(url = "https://dl.bintray.com/ekito/koin")
     }
 }

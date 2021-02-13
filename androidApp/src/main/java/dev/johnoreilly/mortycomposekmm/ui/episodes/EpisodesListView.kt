@@ -8,12 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
-import org.koin.androidx.compose.getViewModel
+import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
 @Composable
-fun EpisodesListView(bottomBar: @Composable () -> Unit, episodeSelected: (episode: EpisodeDetail) -> Unit) {
-    val episodesListViewModel = getViewModel<EpisodesListViewModel>()
-    val lazyEpisodeList = episodesListViewModel.episodes.collectAsLazyPagingItems()
+fun EpisodesListView(viewModel: MainViewModel, bottomBar: @Composable () -> Unit, episodeSelected: (episode: EpisodeDetail) -> Unit) {
+    val lazyEpisodeList = viewModel.episodes.collectAsLazyPagingItems()
 
     Scaffold(
         topBar = { TopAppBar(title = { Text( "Episodes") }) },

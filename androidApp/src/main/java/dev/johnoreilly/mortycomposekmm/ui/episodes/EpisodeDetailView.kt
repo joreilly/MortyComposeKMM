@@ -16,16 +16,15 @@ import androidx.compose.ui.unit.dp
 import coil.transform.CircleCropTransformation
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
-import org.koin.androidx.compose.getViewModel
+import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
 
 @Composable
-fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
-    val episodesListsViewModel = getViewModel<EpisodesListViewModel>()
+fun EpisodeDetailView(viewModel: MainViewModel, episodeId: String, popBack: () -> Unit) {
     val (episode, setEpisode) = remember { mutableStateOf<EpisodeDetail?>(null) }
 
     LaunchedEffect(episodeId) {
-        setEpisode(episodesListsViewModel.getEpisode(episodeId))
+        setEpisode(viewModel.getEpisode(episodeId))
     }
 
     Scaffold(

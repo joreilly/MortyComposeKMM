@@ -8,13 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
-import org.koin.androidx.compose.getViewModel
+import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
 
 @Composable
-fun CharactersListView(bottomBar: @Composable () -> Unit, characterSelected: (character: CharacterDetail) -> Unit) {
-    val characterListsViewModel = getViewModel<CharacterListsViewModel>()
-    val lazyCharacterList = characterListsViewModel.characters.collectAsLazyPagingItems()
+fun CharactersListView(viewModel: MainViewModel, bottomBar: @Composable () -> Unit, characterSelected: (character: CharacterDetail) -> Unit) {
+    val lazyCharacterList = viewModel.characters.collectAsLazyPagingItems()
 
 
     Scaffold(

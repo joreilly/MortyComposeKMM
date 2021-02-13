@@ -9,13 +9,12 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
-import org.koin.androidx.compose.getViewModel
+import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
 
 @Composable
-fun LocationsListView(bottomBar: @Composable () -> Unit, locationSelected: (location: LocationDetail) -> Unit) {
-    val locationsListViewModel = getViewModel<LocationsListViewModel>()
-    val lazyLocationsList = locationsListViewModel.locations.collectAsLazyPagingItems()
+fun LocationsListView(viewModel: MainViewModel, bottomBar: @Composable () -> Unit, locationSelected: (location: LocationDetail) -> Unit) {
+    val lazyLocationsList = viewModel.locations.collectAsLazyPagingItems()
 
     Scaffold(
         topBar = { TopAppBar(title = { Text( "Locations") }) },

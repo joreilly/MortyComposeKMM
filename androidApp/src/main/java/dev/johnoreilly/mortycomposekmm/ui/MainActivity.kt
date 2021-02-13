@@ -2,6 +2,7 @@ package dev.johnoreilly.mortycomposekmm.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import dagger.hilt.android.AndroidEntryPoint
 import dev.johnoreilly.mortycomposekmm.ui.characters.CharacterDetailView
 import dev.johnoreilly.mortycomposekmm.ui.characters.CharactersListView
 import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodeDetailView
@@ -31,22 +33,24 @@ sealed class Screens(val route: String, val label: String, val icon: ImageVector
     object LocationDetailsScreen : Screens("LocatonDetails", "LocatonDetails")
 }
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             MaterialTheme {
-                MainLayout()
+                MainLayout(viewModel)
             }
         }
     }
 }
 
 @Composable
-fun MainLayout() {
+fun MainLayout(viewModel: MainViewModel) {
     val navController = rememberNavController()
 
     val bottomNavigationItems = listOf(Screens.CharactersScreen, Screens.EpisodesScreen, Screens.LocationsScreen)
@@ -54,28 +58,28 @@ fun MainLayout() {
 
     NavHost(navController, startDestination = Screens.CharactersScreen.route) {
         composable(Screens.CharactersScreen.route) {
-            CharactersListView(bottomBar) {
+            CharactersListView(viewModel, bottomBar) {
                 navController.navigate(Screens.CharacterDetailsScreen.route+ "/${it.id}")
             }
         }
         composable(Screens.CharacterDetailsScreen.route + "/{id}") { backStackEntry ->
-            CharacterDetailView(backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
+            CharacterDetailView(viewModel, backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
         }
         composable(Screens.EpisodesScreen.route) {
-            EpisodesListView(bottomBar) {
+            EpisodesListView(viewModel, bottomBar) {
                 navController.navigate(Screens.EpisodeDetailsScreen.route+ "/${it.id}")
             }
         }
         composable(Screens.EpisodeDetailsScreen.route + "/{id}") { backStackEntry ->
-            EpisodeDetailView(backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
+            EpisodeDetailView(viewModel, backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
         }
         composable(Screens.LocationsScreen.route) {
-            LocationsListView(bottomBar) {
+            LocationsListView(viewModel, bottomBar) {
                 navController.navigate(Screens.LocationDetailsScreen.route+ "/${it.id}")
             }
         }
         composable(Screens.LocationDetailsScreen.route + "/{id}") { backStackEntry ->
-            LocationDetailView(backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
+            LocationDetailView(viewModel, backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
         }
     }
 }

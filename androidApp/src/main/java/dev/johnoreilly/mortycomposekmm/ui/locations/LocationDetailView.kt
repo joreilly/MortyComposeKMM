@@ -15,18 +15,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil.transform.CircleCropTransformation
 import dev.chrisbanes.accompanist.coil.CoilImage
-import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
-import org.koin.androidx.compose.getViewModel
+import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
 
 @Composable
-fun LocationDetailView(locationId: String, popBack: () -> Unit) {
-    val locationsListViewModel = getViewModel<LocationsListViewModel>()
+fun LocationDetailView(viewModel: MainViewModel, locationId: String, popBack: () -> Unit) {
     val (location, setLocation) = remember { mutableStateOf<LocationDetail?>(null) }
 
     LaunchedEffect(locationId) {
-        setLocation(locationsListViewModel.getLocation(locationId))
+        setLocation(viewModel.getLocation(locationId))
     }
 
     Scaffold(

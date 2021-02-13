@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -52,12 +54,14 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("com.google.android.material:material:1.2.1")
+    implementation("com.google.android.material:material:1.3.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.0")
+    implementation("androidx.activity:activity-compose:1.3.0-alpha02")
 
     implementation(Compose.ui)
+    implementation(Compose.activity)
     implementation(Compose.uiGraphics)
     implementation(Compose.uiTooling)
     implementation(Compose.foundationLayout)
@@ -68,11 +72,8 @@ dependencies {
     implementation(Compose.paging)
     implementation(Compose.accompanist)
 
-    implementation(Koin.core)
-    implementation(Koin.android)
-    implementation(Koin.androidViewModel)
-    implementation(Koin.compose)
-
+    implementation("com.google.dagger:hilt-android:${Versions.hilt}")
+    kapt("com.google.dagger:hilt-android-compiler:${Versions.hilt}")
 
     testImplementation("junit:junit:4.13.1")
     testImplementation("androidx.test:core:1.3.0")

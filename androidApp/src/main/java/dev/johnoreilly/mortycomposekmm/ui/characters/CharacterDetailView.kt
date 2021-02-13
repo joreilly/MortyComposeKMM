@@ -13,15 +13,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
-import org.koin.androidx.compose.getViewModel
+import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
 @Composable
-fun CharacterDetailView(characterId: String, popBack: () -> Unit) {
-    val characterListsViewModel = getViewModel<CharacterListsViewModel>()
+fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: () -> Unit) {
     val (character, setCharacter) = remember { mutableStateOf<CharacterDetail?>(null) }
 
     LaunchedEffect(characterId) {
-        setCharacter(characterListsViewModel.getCharacter(characterId))
+        setCharacter(viewModel.getCharacter(characterId))
     }
 
     Scaffold(
