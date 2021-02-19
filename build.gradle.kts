@@ -7,8 +7,9 @@ buildscript {
 
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("com.android.tools.build:gradle:7.0.0-alpha06")
+        classpath("com.android.tools.build:gradle:7.0.0-alpha07")
         classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}")
+        classpath("com.apollographql.apollo:apollo-gradle-plugin:${Versions.apollo}")
     }
 }
 

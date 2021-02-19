@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.apollographql.apollo").version(Versions.apollo)
+    id("com.apollographql.apollo")
 }
 
 // workaround for https://youtrack.jetbrains.com/issue/KT-43944
