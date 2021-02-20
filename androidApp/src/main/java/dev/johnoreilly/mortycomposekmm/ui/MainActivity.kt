@@ -29,7 +29,7 @@ sealed class Screens(val route: String, val label: String, val icon: ImageVector
     object EpisodesScreen : Screens("Episodes", "Episodes",  Icons.Default.Tv)
     object LocationsScreen : Screens("Locations", "Locations",  Icons.Default.LocationOn)
     object CharacterDetailsScreen : Screens("CharacterDetails", "CharacterDetails")
-    object EpisodeDetailsScreen : Screens("EpisodeDetails", "CharacterDetails")
+    object EpisodeDetailsScreen : Screens("EpisodeDetails", "EpisodeDetails")
     object LocationDetailsScreen : Screens("LocatonDetails", "LocatonDetails")
 }
 
