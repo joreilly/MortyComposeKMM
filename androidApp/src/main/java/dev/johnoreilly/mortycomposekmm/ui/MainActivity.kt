@@ -2,6 +2,7 @@ package dev.johnoreilly.mortycomposekmm.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -12,7 +13,6 @@ import androidx.compose.material.icons.filled.Tv
 import androidx.compose.material.icons.materialIcon
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import dagger.hilt.android.AndroidEntryPoint

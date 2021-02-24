@@ -58,9 +58,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.0")
-    implementation("androidx.activity:activity-compose:1.3.0-alpha02")
+    implementation("androidx.activity:activity-compose:1.3.0-alpha03")
 
     implementation(Compose.ui)
+    implementation(Compose.runtime)
     implementation(Compose.activity)
     implementation(Compose.uiGraphics)
     implementation(Compose.uiTooling)

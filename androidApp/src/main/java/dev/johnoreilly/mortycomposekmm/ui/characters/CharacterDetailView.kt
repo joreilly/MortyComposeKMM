@@ -44,7 +44,7 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
                     character?.let {
 
                         Text(
-                            "Mugshot", style = typography.h5, color = AmbientContentColor.current,
+                            "Mugshot", style = typography.h5, color = LocalContentColor.current,
                             modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
                         )
 
@@ -56,7 +56,7 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
                                 val imageUrl = character.image
                                 if (imageUrl != null) {
                                     Card(
-                                        modifier = Modifier.preferredSize(150.dp),
+                                        modifier = Modifier.size(150.dp),
                                         shape = RoundedCornerShape(25.dp)
                                     ) {
                                         CoilImage(
@@ -69,10 +69,10 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
                         }
 
 
-                        Spacer(modifier = Modifier.preferredHeight(16.dp))
+                        Spacer(modifier = Modifier.height(16.dp))
 
                         Text(
-                            "Episodes", style = typography.h5, color = AmbientContentColor.current,
+                            "Episodes", style = typography.h5, color = LocalContentColor.current,
                             modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
                         )
 

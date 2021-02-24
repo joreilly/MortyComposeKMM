@@ -6,7 +6,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ProvidedValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,14 +26,14 @@ fun CharactersListRowView(character: CharacterDetail, characterSelected: (networ
     ) {
 
         Surface(
-            modifier = Modifier.preferredSize(50.dp),
+            modifier = Modifier.size(50.dp),
             shape = CircleShape,
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
         ) {
             character.image?.let {
                 CoilImage(
                     data = it,
-                    modifier = Modifier.preferredSize(50.dp),
+                    modifier = Modifier.size(50.dp),
                     requestBuilder = {
                         transformations(CircleCropTransformation())
                     },
@@ -45,7 +46,7 @@ fun CharactersListRowView(character: CharacterDetail, characterSelected: (networ
 
             Text(character.name ?: "", style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.Bold)
-            Providers(AmbientContentAlpha provides ContentAlpha.medium) {
+            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                 Text(
                     "${character.episode?.size ?: 0} episode(s)",
                     style = MaterialTheme.typography.body2

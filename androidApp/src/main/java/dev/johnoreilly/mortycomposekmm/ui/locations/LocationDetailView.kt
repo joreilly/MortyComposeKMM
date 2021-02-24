@@ -50,7 +50,7 @@ fun LocationDetailView(viewModel: MainViewModel, locationId: String, popBack: ()
                         Text(
                             "Residents",
                             style = MaterialTheme.typography.h5,
-                            color = AmbientContentColor.current,
+                            color = LocalContentColor.current,
                             modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
                         )
 
@@ -75,14 +75,14 @@ private fun LocationResidentList(location: LocationDetail) {
                 Row(modifier = Modifier.padding(vertical = 8.dp)) {
 
                     Surface(
-                        modifier = Modifier.preferredSize(28.dp),
+                        modifier = Modifier.size(28.dp),
                         shape = CircleShape,
                         color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
                     ) {
                         resident.image?.let {
                             CoilImage(
                                 data = it,
-                                modifier = Modifier.preferredSize(28.dp),
+                                modifier = Modifier.size(28.dp),
                                 requestBuilder = {
                                     transformations(CircleCropTransformation())
                                 },

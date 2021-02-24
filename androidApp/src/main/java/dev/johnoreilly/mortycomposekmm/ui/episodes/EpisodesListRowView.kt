@@ -4,7 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -28,7 +28,7 @@ fun EpisodesListRowView(episode: EpisodeDetail, episodeSelected: (episode: Episo
                 fontWeight = FontWeight.Bold,
                 maxLines = 1, overflow = TextOverflow.Ellipsis,)
 
-            Providers(AmbientContentAlpha provides ContentAlpha.medium) {
+            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                 Text(episode.episode ?: "",
                     style = MaterialTheme.typography.body2)
             }

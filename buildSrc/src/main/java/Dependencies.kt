@@ -6,10 +6,10 @@ object Versions {
     const val apollo = "2.5.3"
     const val multiplatformPaging = "0.3.7"
 
-    const val compose = "1.0.0-alpha12"
-    const val nav_compose = "1.0.0-alpha07"
-    const val nav_paging = "1.0.0-alpha07"
-    const val accompanist = "0.5.1"
+    const val compose = "1.0.0-beta01"
+    const val nav_compose = "1.0.0-alpha08"
+    const val nav_paging = "1.0.0-alpha08"
+    const val accompanist = "0.6.0"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"
@@ -29,6 +29,7 @@ object Deps {
 
 object Compose {
     const val ui = "androidx.compose.ui:ui:${Versions.compose}"
+    const val runtime = "androidx.compose.runtime:runtime:${Versions.compose}"
     const val activity = "androidx.activity:activity-compose:${Versions.compose}"
     const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
     const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
