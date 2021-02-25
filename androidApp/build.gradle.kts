@@ -53,11 +53,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("com.google.android.material:material:1.3.0")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.0")
     implementation("androidx.activity:activity-compose:1.3.0-alpha03")
 
     implementation(Compose.ui)
@@ -76,7 +71,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:${Versions.hilt}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.hilt}")
 
-    testImplementation("junit:junit:4.13.1")
+    testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.test:core:1.3.0")
     testImplementation("org.robolectric:robolectric:4.4")
     androidTestImplementation("androidx.test:runner:1.3.0")
