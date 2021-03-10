@@ -47,7 +47,6 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.google.android.material:material:1.2.1")
             }
         }
         val androidTest by getting {
