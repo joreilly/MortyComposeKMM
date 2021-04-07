@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil.transform.CircleCropTransformation
-import dev.chrisbanes.accompanist.coil.CoilImage
+import com.google.accompanist.coil.CoilImage
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
