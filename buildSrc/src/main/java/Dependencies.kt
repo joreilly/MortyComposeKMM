@@ -7,7 +7,7 @@ object Versions {
     const val multiplatformPaging = "0.3.7"
 
     const val compose = "1.0.0-beta04"
-    const val nav_compose = "1.0.0-alpha09"
+    const val nav_compose = "1.0.0-alpha10"
     const val nav_paging = "1.0.0-alpha08"
     const val accompanist = "0.7.1"
 
