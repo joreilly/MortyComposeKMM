@@ -6,10 +6,10 @@ object Versions {
     const val apollo = "2.5.6"
     const val multiplatformPaging = "0.3.7"
 
-    const val compose = "1.0.0-beta05"
+    const val compose = "1.0.0-beta06"
     const val nav_compose = "1.0.0-alpha10"
     const val nav_paging = "1.0.0-alpha08"
-    const val accompanist = "0.7.1"
+    const val accompanist = "0.9.0"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"
