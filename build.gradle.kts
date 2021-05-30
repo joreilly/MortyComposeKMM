@@ -3,12 +3,20 @@ buildscript {
         google()
         mavenCentral()
         jcenter()
+        maven(url = "https://oss.sonatype.org/content/repositories/snapshots") {
+            content {
+                includeModule("com.google.dagger", "hilt-android-gradle-plugin")
+            }
+        }
     }
 
     dependencies {
+        classpath("com.android.tools.build:gradle:7.0.0-beta03")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("com.android.tools.build:gradle:4.1.3")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}")
+
+        // https://github.com/google/dagger/issues/2631
+        classpath("com.google.dagger:hilt-android-gradle-plugin:HEAD-SNAPSHOT")
+
         classpath("com.apollographql.apollo:apollo-gradle-plugin:${Versions.apollo}")
     }
 }

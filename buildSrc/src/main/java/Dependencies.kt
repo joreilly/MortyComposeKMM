@@ -2,7 +2,7 @@
 object Versions {
     const val kotlin = "1.4.32"
     const val kotlinxCoroutines = "1.4.3-native-mt"
-    const val hilt = "2.31.2-alpha"
+    const val hilt = "2.35"
     const val apollo = "2.5.6"
     const val multiplatformPaging = "0.3.7"
 
