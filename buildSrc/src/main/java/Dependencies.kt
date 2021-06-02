@@ -1,15 +1,15 @@
 
 object Versions {
-    const val kotlin = "1.4.32"
-    const val kotlinxCoroutines = "1.4.3-native-mt"
+    const val kotlin = "1.5.10"
+    const val kotlinxCoroutines = "1.5.0-native-mt"
     const val hilt = "2.35"
-    const val apollo = "2.5.6"
+    const val apollo = "2.5.8"
     const val multiplatformPaging = "0.3.7"
 
-    const val compose = "1.0.0-beta06"
-    const val nav_compose = "1.0.0-alpha10"
-    const val nav_paging = "1.0.0-alpha08"
-    const val accompanist = "0.9.0"
+    const val compose = "1.0.0-beta08"
+    const val nav_compose = "2.4.0-alpha02"
+    const val paging_compose = "1.0.0-alpha10"
+    const val accompanist = "0.11.0"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"
@@ -37,7 +37,7 @@ object Compose {
     const val material = "androidx.compose.material:material:${Versions.compose}"
     const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
-    const val paging = "androidx.paging:paging-compose:${Versions.nav_paging}"
+    const val paging = "androidx.paging:paging-compose:${Versions.paging_compose}"
     const val accompanist= "com.google.accompanist:accompanist-coil:${Versions.accompanist}"
 }
 

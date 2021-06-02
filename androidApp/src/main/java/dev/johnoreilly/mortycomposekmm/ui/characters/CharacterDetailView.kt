@@ -1,5 +1,6 @@
 package dev.johnoreilly.mortycomposekmm.ui.characters
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,7 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
@@ -38,10 +39,9 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
         Surface(color = Color.LightGray) {
 
             LazyColumn(modifier = Modifier.padding(top = 16.dp)) {
-                // use `item` for separate elements like headers
-                // and `items` for lists of identical elements
-                item {
-                    character?.let {
+                character?.let {
+
+                    item(character.id) {
 
                         Text(
                             "Mugshot", style = typography.h5, color = LocalContentColor.current,
@@ -59,8 +59,7 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
                                         modifier = Modifier.size(150.dp),
                                         shape = RoundedCornerShape(25.dp)
                                     ) {
-                                        CoilImage(
-                                            data = imageUrl,
+                                        Image(painter = rememberCoilPainter(imageUrl),
                                             contentDescription = character.name
                                         )
                                     }

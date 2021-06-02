@@ -1,5 +1,6 @@
 package dev.johnoreilly.mortycomposekmm.ui.episodes
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
@@ -13,8 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import coil.transform.CircleCropTransformation
-import com.google.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
@@ -42,10 +42,10 @@ fun EpisodeDetailView(viewModel: MainViewModel, episodeId: String, popBack: () -
         Surface(color = Color.LightGray) {
 
             LazyColumn(modifier = Modifier.padding(top = 16.dp)) {
-                // use `item` for separate elements like headers
-                // and `items` for lists of identical elements
-                item {
-                    episode?.let {
+
+                episode?.let {
+
+                    item(episode.id) {
 
                         Text(
                             "Characters",
@@ -80,12 +80,9 @@ private fun EpisodeCharactersList(episode: EpisodeDetail) {
                         color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
                     ) {
                         character.image?.let {
-                            CoilImage(
-                                data = it,
+                            Image(
+                                painter = rememberCoilPainter(it),
                                 modifier = Modifier.size(28.dp),
-                                requestBuilder = {
-                                    transformations(CircleCropTransformation())
-                                },
                                 contentDescription = character.name
                             )
                         }
