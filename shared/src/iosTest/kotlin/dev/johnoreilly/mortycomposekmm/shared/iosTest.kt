@@ -12,7 +12,7 @@ class IosGreetingTest {
             val repository = MortyRepository()
 
             val charactersResponse = repository.getCharacters(0)
-            println(charactersResponse.data?.characters)
+            println(charactersResponse?.results)
         }
     }
 }

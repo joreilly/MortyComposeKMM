@@ -21,12 +21,7 @@ class CharacterListViewModel: ObservableObject {
             }
             
             self.characters = list
-        }
-        
-        repository.characterPager.hasNextPage.watch { nullableNextPage in
-            if let hasNextPage = nullableNextPage {
-                self.hasNextPage = hasNextPage.boolValue
-            }
+            self.hasNextPage = self.repository.characterPager.hasNextPage
         }
     }
     

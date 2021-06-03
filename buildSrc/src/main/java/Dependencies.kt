@@ -4,12 +4,12 @@ object Versions {
     const val kotlinxCoroutines = "1.5.0-native-mt"
     const val hilt = "2.35"
     const val apollo = "2.5.8"
-    const val multiplatformPaging = "0.3.7"
+    const val multiplatformPaging = "0.4.1"
 
     const val compose = "1.0.0-beta08"
     const val nav_compose = "2.4.0-alpha02"
     const val paging_compose = "1.0.0-alpha10"
-    const val accompanist = "0.11.0"
+    const val accompanist = "0.11.1"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"
@@ -24,7 +24,8 @@ object AndroidSdk {
 
 object Deps {
     const val apolloRuntime = "com.apollographql.apollo:apollo-runtime-kotlin:${Versions.apollo}"
-    const val multiplatformPaging = "com.kuuuurt:multiplatform-paging:${Versions.multiplatformPaging}"
+    const val multiplatformPaging = "io.github.kuuuurt:multiplatform-paging:${Versions.multiplatformPaging}"
+
 }
 
 object Compose {

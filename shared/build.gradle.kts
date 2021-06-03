@@ -29,6 +29,7 @@ kotlin {
             }
         }
     }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -91,13 +92,13 @@ val packForXcode by tasks.creating(Sync::class) {
 
     kotlin.targets.named<KotlinNativeTarget>("iosX64") {
         binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
-            export("com.kuuuurt:multiplatform-paging-iosX64:${Versions.multiplatformPaging}")
+            export("io.github.kuuuurt:multiplatform-paging-iosX64:${Versions.multiplatformPaging}")
         }
     }
 
     kotlin.targets.named<KotlinNativeTarget>("iosArm64") {
         binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
-            export("com.kuuuurt:multiplatform-paging-iosArm64:${Versions.multiplatformPaging}")
+            export("io.github.kuuuurt:multiplatform-paging-iosArm64:${Versions.multiplatformPaging}")
         }
     }
 

@@ -8,13 +8,13 @@ import com.kuuurt.paging.multiplatform.Pager
 import com.kuuurt.paging.multiplatform.PagingConfig
 import com.kuuurt.paging.multiplatform.PagingData
 import com.kuuurt.paging.multiplatform.PagingResult
-import com.kuuurt.paging.multiplatform.helpers.CommonFlow
-import com.kuuurt.paging.multiplatform.helpers.asCommonFlow
 import com.kuuurt.paging.multiplatform.helpers.cachedIn
 import dev.johnoreilly.mortycomposekmm.*
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
+import dev.johnoreilly.mortycomposekmm.shared.util.CommonFlow
+import dev.johnoreilly.mortycomposekmm.shared.util.asCommonFlow
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.single
 
