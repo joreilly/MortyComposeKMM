@@ -96,10 +96,11 @@ private fun MortyBottomNavigation(
                 label = { Text(screen.label) },
                 selected = currentRoute == screen.route,
                 onClick = {
-                    // This if check gives us a "singleTop" behavior where we do not create a
-                    // second instance of the composable if we are already on that destination
                     if (currentRoute != screen.route) {
-                        navController.navigate(screen.route)
+                        navController.navigate(screen.route) {
+                            popUpTo(navController.graph.startDestinationId)
+                            launchSingleTop = true
+                        }
                     }
                 }
             )
