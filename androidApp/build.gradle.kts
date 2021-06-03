@@ -43,6 +43,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    packagingOptions {
+        exclude("META-INF/licenses/**")
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
+    }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -77,6 +83,9 @@ dependencies {
     testImplementation("androidx.test:core:1.3.0")
     testImplementation("org.robolectric:robolectric:4.4")
     androidTestImplementation("androidx.test:runner:1.3.0")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
+
+    debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
 
     implementation(project(":shared"))
 }
