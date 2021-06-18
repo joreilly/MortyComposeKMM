@@ -1,6 +1,6 @@
 # MortyComposeKMM
 
-Rick & Morty app to demonstrate use of GraphQL + Jetpack Compose (heavily based on https://github.com/Dimillian/MortyUI).
+Rick & Morty app to demonstrate use of GraphQL + Jetpack Compose and SwiftUI (heavily based on https://github.com/Dimillian/MortyUI).
 This is also a Kotlin Multiplatform project with GraphQL code in shared module (making use of [Apollo library's Kotlin Multiplatform support](https://www.apollographql.com/docs/android/essentials/get-started-multiplatform/)).
 
 
