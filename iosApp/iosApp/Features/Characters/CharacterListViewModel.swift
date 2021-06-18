@@ -8,13 +8,6 @@ class CharacterListViewModel: ObservableObject {
     var hasNextPage: Bool = false
     
     func fetchCharacters() {
-//        repository.getCharacters(page: nextPage!) { (data, error) in
-//            if let newCharacters = data?.resultsFilterNotNull()?.map({ $0.fragments.characterDetail }) {
-//                self.characters.append(contentsOf: newCharacters)
-//            }
-//            self.nextPage = data?.info?.next?.int32Value
-//        }
-        
         repository.characterPagingData.watch { nullablePagingData in
             guard let list = nullablePagingData?.compactMap({ $0 as? CharacterDetail }) else {
                 return

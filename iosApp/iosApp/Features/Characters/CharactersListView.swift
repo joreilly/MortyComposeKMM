@@ -1,5 +1,4 @@
 import SwiftUI
-//import KingfisherSwiftUI
 
 struct CharactersListView: View {
     @StateObject private var data = CharacterListViewModel()

@@ -1,10 +1,8 @@
-import org.jetbrains.kotlin.gradle.plugin.PLUGIN_CLASSPATH_CONFIGURATION_NAME
 
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -61,7 +59,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    implementation("androidx.activity:activity-compose:1.3.0-beta01")
+    implementation("androidx.activity:activity-compose:1.3.0-beta02")
     implementation("com.google.android.material:material:1.3.0")
 
     implementation(Compose.ui)
@@ -76,8 +74,10 @@ dependencies {
     implementation(Compose.paging)
     implementation(Compose.accompanist)
 
-    implementation("com.google.dagger:hilt-android:${Versions.hilt}")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.hilt}")
+    implementation(Koin.core)
+    implementation(Koin.android)
+    implementation(Koin.compose)
+
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.test:core:1.3.0")

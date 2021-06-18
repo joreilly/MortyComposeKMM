@@ -3,7 +3,6 @@ package dev.johnoreilly.mortycomposekmm.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
@@ -13,13 +12,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
-import dagger.hilt.android.AndroidEntryPoint
 import dev.johnoreilly.mortycomposekmm.ui.characters.CharacterDetailView
 import dev.johnoreilly.mortycomposekmm.ui.characters.CharactersListView
 import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodeDetailView
 import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodesListView
 import dev.johnoreilly.mortycomposekmm.ui.locations.LocationDetailView
 import dev.johnoreilly.mortycomposekmm.ui.locations.LocationsListView
+import org.koin.androidx.compose.getViewModel
 
 
 sealed class Screens(val route: String, val label: String, val icon: ImageVector? = null) {
@@ -31,24 +30,23 @@ sealed class Screens(val route: String, val label: String, val icon: ImageVector
     object LocationDetailsScreen : Screens("LocatonDetails", "LocatonDetails")
 }
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             MaterialTheme {
-                MainLayout(viewModel)
+                MainLayout()
             }
         }
     }
 }
 
 @Composable
-fun MainLayout(viewModel: MainViewModel) {
+fun MainLayout() {
+    val viewModel = getViewModel<MainViewModel>()
+
     val navController = rememberNavController()
 
     val bottomNavigationItems = listOf(Screens.CharactersScreen, Screens.EpisodesScreen, Screens.LocationsScreen)
