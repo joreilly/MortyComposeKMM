@@ -12,7 +12,7 @@ class LocationsDataSource(private val repository: MortyRepository) : PagingSourc
         val pageNumber = params.key ?: 0
 
         val locationsResponse = repository.getLocations(pageNumber)
-        val episodes = locationsResponse?.resultsFilterNotNull()?.map { it.fragments.locationDetail }
+        val episodes = locationsResponse?.results?.mapNotNull { it?.fragments?.locationDetail }
 
         val prevKey = if (pageNumber > 0) pageNumber - 1 else null
         val nextKey = locationsResponse?.info?.next

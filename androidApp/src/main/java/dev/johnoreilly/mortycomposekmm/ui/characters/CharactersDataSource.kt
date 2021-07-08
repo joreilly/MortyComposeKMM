@@ -11,7 +11,7 @@ class CharactersDataSource(private val repository: MortyRepository) : PagingSour
         val pageNumber = params.key ?: 0
 
         val charactersResponse = repository.getCharacters(pageNumber)
-        val characters = charactersResponse?.resultsFilterNotNull()?.map { it.fragments.characterDetail }
+        val characters = charactersResponse?.results?.mapNotNull { it?.fragments?.characterDetail }
 
         val prevKey = if (pageNumber > 0) pageNumber - 1 else null
         val nextKey = charactersResponse?.info?.next
