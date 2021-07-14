@@ -23,18 +23,21 @@ fun EpisodesListRowView(episode: EpisodeDetail, episodeSelected: (episode: Episo
     ) {
 
         Column(modifier = Modifier.weight(1f)) {
-            Text(episode.name ?: "",
+            Text(
+                episode.name,
                 style = MaterialTheme.typography.h6,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1, overflow = TextOverflow.Ellipsis,)
 
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                Text(episode.episode ?: "",
-                    style = MaterialTheme.typography.body2)
+                Text(
+                    episode.episode,
+                    style = MaterialTheme.typography.body2
+                )
             }
         }
 
-        Text(episode.air_date ?: "", modifier = Modifier.padding(start = 16.dp))
+        Text(episode.air_date, modifier = Modifier.padding(start = 16.dp))
     }
     Divider()
 }

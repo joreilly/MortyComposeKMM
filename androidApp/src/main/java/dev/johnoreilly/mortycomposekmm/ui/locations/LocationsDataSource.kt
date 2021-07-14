@@ -2,7 +2,6 @@ package dev.johnoreilly.mortycomposekmm.ui.locations
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
 import dev.johnoreilly.mortycomposekmm.shared.MortyRepository
 
@@ -12,11 +11,11 @@ class LocationsDataSource(private val repository: MortyRepository) : PagingSourc
         val pageNumber = params.key ?: 0
 
         val locationsResponse = repository.getLocations(pageNumber)
-        val episodes = locationsResponse?.resultsFilterNotNull()?.map { it.fragments.locationDetail }
+        val episodes = locationsResponse.results.mapNotNull { it?.fragments?.locationDetail }
 
         val prevKey = if (pageNumber > 0) pageNumber - 1 else null
-        val nextKey = locationsResponse?.info?.next
-        return LoadResult.Page(data = episodes ?: emptyList(), prevKey = prevKey, nextKey = nextKey)
+        val nextKey = locationsResponse.info.next
+        return LoadResult.Page(data = episodes, prevKey = prevKey, nextKey = nextKey)
     }
 
     override fun getRefreshKey(state: PagingState<Int, LocationDetail>): Int? {

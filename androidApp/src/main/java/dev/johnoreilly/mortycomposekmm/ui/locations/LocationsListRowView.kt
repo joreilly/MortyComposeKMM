@@ -24,14 +24,15 @@ fun LocationsListRowView(location: LocationDetail, locationSelected: (location: 
     ) {
 
         Column(modifier = Modifier.weight(1f)) {
-            Text(location.name ?: "",
+            Text(
+                location.name,
                 style = MaterialTheme.typography.h6,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1, overflow = TextOverflow.Ellipsis,)
 
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                 Text(
-                    "${location.residents?.size ?: 0} resident(s)",
+                    "${location.residents.size} resident(s)",
                     style = MaterialTheme.typography.body2
                 )
             }

@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.apollographql.apollo")
+    id("com.apollographql.apollo3")
 }
 
 // workaround for https://youtrack.jetbrains.com/issue/KT-43944
@@ -116,6 +116,5 @@ val packForXcode by tasks.creating(Sync::class) {
 tasks.getByName("build").dependsOn(packForXcode)
 
 apollo {
-    // instruct the compiler to generate Kotlin models
-    generateKotlinModels.set(true)
+    packageName.set("dev.johnoreilly.mortycomposekmm")
 }

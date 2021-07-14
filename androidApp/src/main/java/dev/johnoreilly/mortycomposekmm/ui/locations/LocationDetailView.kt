@@ -68,31 +68,29 @@ fun LocationDetailView(viewModel: MainViewModel, locationId: String, popBack: ()
 @Composable
 private fun LocationResidentList(location: LocationDetail) {
 
-    Column(modifier = Modifier.padding(horizontal = 16.dp),) {
-        location.residents?.let { residentList ->
-            residentList.filterNotNull().forEach { resident ->
-                Row(modifier = Modifier.padding(vertical = 8.dp)) {
+    Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+        location.residents.filterNotNull().forEach { resident ->
+            Row(modifier = Modifier.padding(vertical = 8.dp)) {
 
-                    Surface(
+                Surface(
+                    modifier = Modifier.size(28.dp),
+                    shape = CircleShape,
+                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+                ) {
+                    Image(
+                        painter = rememberCoilPainter(resident.image),
                         modifier = Modifier.size(28.dp),
-                        shape = CircleShape,
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
-                    ) {
-                        resident.image?.let {
-                            Image(
-                                painter = rememberCoilPainter(it),
-                                modifier = Modifier.size(28.dp),
-                                contentDescription = resident.name
-                            )
-                        }
-                    }
-
-                    Text(resident.name ?: "",
-                        modifier = Modifier.padding(start = 8.dp, end = 8.dp),
-                        style = MaterialTheme.typography.h6)
+                        contentDescription = resident.name
+                    )
                 }
-                Divider()
+
+                Text(
+                    resident.name,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp),
+                    style = MaterialTheme.typography.h6
+                )
             }
+            Divider()
         }
     }
 }

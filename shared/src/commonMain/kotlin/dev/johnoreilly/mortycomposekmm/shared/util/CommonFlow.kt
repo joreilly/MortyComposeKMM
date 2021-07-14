@@ -1,6 +1,6 @@
 package dev.johnoreilly.mortycomposekmm.shared.util
 
-import com.apollographql.apollo.api.internal.json.Closeable
+import com.apollographql.apollo3.api.json.Closeable
 import com.kuuurt.paging.multiplatform.helpers.dispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

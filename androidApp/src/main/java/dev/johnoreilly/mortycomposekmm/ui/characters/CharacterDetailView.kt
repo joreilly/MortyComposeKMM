@@ -54,15 +54,13 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
                                 horizontalArrangement = Arrangement.Center
                             ) {
                                 val imageUrl = character.image
-                                if (imageUrl != null) {
-                                    Card(
-                                        modifier = Modifier.size(150.dp),
-                                        shape = RoundedCornerShape(25.dp)
-                                    ) {
-                                        Image(painter = rememberCoilPainter(imageUrl),
-                                            contentDescription = character.name
-                                        )
-                                    }
+                                Card(
+                                    modifier = Modifier.size(150.dp),
+                                    shape = RoundedCornerShape(25.dp)
+                                ) {
+                                    Image(painter = rememberCoilPainter(imageUrl),
+                                        contentDescription = character.name
+                                    )
                                 }
                             }
                         }
@@ -94,12 +92,14 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
 private fun CharacterEpisodeList(character: CharacterDetail) {
 
     Column(modifier = Modifier.padding(horizontal = 16.dp),) {
-        character.episode?.let { episodeList ->
+        character.episode.let { episodeList ->
             episodeList.filterNotNull().forEach { episode ->
                 Column {
-                    Text(episode.name ?: "",
+                    Text(
+                        episode.name,
                         style = typography.h6)
-                    Text(episode.air_date ?: "",
+                    Text(
+                        episode.air_date,
                         style = typography.subtitle2,
                         color = Color.Gray)
                 }

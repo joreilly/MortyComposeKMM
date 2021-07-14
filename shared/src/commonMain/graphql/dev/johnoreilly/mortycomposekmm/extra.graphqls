@@ -1,0 +1,67 @@
+extend type Query @nonnull(fields: """
+character
+characters
+charactersByIds
+location
+locations
+locationsByIds
+episode
+episodes
+episodesByIds
+""")
+
+extend type Character @nonnull(fields: """
+id
+name
+status
+species
+type
+gender
+origin
+episode
+created
+image
+location
+""")
+
+# Everything except id
+extend type Location @nonnull(fields: """
+name
+type
+dimension
+residents
+created
+""")
+
+extend type Episode @nonnull(field: """
+id
+name
+air_date
+episode
+characters
+created
+""")
+
+extend type Characters @nonnull(fields: """
+info
+results
+""")
+
+extend type Info @nonnull(fields: """
+count
+pages
+next
+prev
+""")
+
+extend type Locations @nonnull(fields: """
+info
+results
+""")
+
+
+extend type Episodes @nonnull(fields: """
+info
+results
+""")
+

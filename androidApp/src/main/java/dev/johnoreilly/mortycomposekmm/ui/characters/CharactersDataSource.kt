@@ -11,11 +11,11 @@ class CharactersDataSource(private val repository: MortyRepository) : PagingSour
         val pageNumber = params.key ?: 0
 
         val charactersResponse = repository.getCharacters(pageNumber)
-        val characters = charactersResponse?.resultsFilterNotNull()?.map { it.fragments.characterDetail }
+        val characters = charactersResponse.results.mapNotNull { it?.fragments?.characterDetail }
 
         val prevKey = if (pageNumber > 0) pageNumber - 1 else null
-        val nextKey = charactersResponse?.info?.next
-        return LoadResult.Page(data = characters ?: emptyList(), prevKey = prevKey, nextKey = nextKey)
+        val nextKey = charactersResponse.info.next
+        return LoadResult.Page(data = characters, prevKey = prevKey, nextKey = nextKey)
     }
 
     override fun getRefreshKey(state: PagingState<Int, CharacterDetail>): Int? {

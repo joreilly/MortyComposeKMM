@@ -20,14 +20,12 @@ struct CharactersListRowView: View {
                     .foregroundColor(.gray)
             }
             VStack(alignment: .leading) {
-                Text(character.name ?? "Loading...")
+                Text(character.name )
                     .font(.title3)
                     .foregroundColor(.accentColor)
-                    .redacted(reason: character.name == nil ? .placeholder : [])
-                Text("\(character.episode?.count ?? 0) episode(s)")
+                Text("\(character.episode.count) episode(s)")
                     .font(.footnote)
                     .foregroundColor(.gray)
-                    .redacted(reason: character.episode == nil ? .placeholder : [])
             }
         }
     }
