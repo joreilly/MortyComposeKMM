@@ -1,4 +1,6 @@
 buildscript {
+    val kotlinVersion: String by project
+
     repositories {
         google()
         mavenCentral()
@@ -6,7 +8,7 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:7.0.0-beta05")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("com.apollographql.apollo3:apollo-gradle-plugin:${Versions.apollo}")
     }
 }
