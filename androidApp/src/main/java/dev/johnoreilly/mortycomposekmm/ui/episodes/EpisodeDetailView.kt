@@ -69,31 +69,29 @@ fun EpisodeDetailView(viewModel: MainViewModel, episodeId: String, popBack: () -
 @Composable
 private fun EpisodeCharactersList(episode: EpisodeDetail) {
 
-    Column(modifier = Modifier.padding(horizontal = 16.dp),) {
-        episode.characters?.let { characterList ->
-            characterList.filterNotNull().forEach { character ->
-                Row(modifier = Modifier.padding(vertical = 8.dp)) {
+    Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+        episode.characters.filterNotNull().forEach { character ->
+            Row(modifier = Modifier.padding(vertical = 8.dp)) {
 
-                    Surface(
+                Surface(
+                    modifier = Modifier.size(28.dp),
+                    shape = CircleShape,
+                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+                ) {
+                    Image(
+                        painter = rememberCoilPainter(character.image),
                         modifier = Modifier.size(28.dp),
-                        shape = CircleShape,
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
-                    ) {
-                        character.image?.let {
-                            Image(
-                                painter = rememberCoilPainter(it),
-                                modifier = Modifier.size(28.dp),
-                                contentDescription = character.name
-                            )
-                        }
-                    }
-
-                    Text(character.name ?: "",
-                        modifier = Modifier.padding(start = 8.dp, end = 8.dp),
-                        style = MaterialTheme.typography.h6)
+                        contentDescription = character.name
+                    )
                 }
-                Divider()
+
+                Text(
+                    character.name,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp),
+                    style = MaterialTheme.typography.h6
+                )
             }
+            Divider()
         }
     }
 }

@@ -1,7 +1,6 @@
 package dev.johnoreilly.mortycomposekmm.shared
 
 import com.apollographql.apollo3.ApolloClient
-import com.apollographql.apollo3.network.http.HttpNetworkTransport
 import com.kuuurt.paging.multiplatform.Pager
 import com.kuuurt.paging.multiplatform.PagingConfig
 import com.kuuurt.paging.multiplatform.PagingData
@@ -18,44 +17,36 @@ import kotlinx.coroutines.MainScope
 class MortyRepository {
     private val scope = MainScope()
 
-    private val apolloClient = ApolloClient(
-        networkTransport = HttpNetworkTransport(
-            serverUrl = "https://rickandmortyapi.com/graphql",
-            headers = mapOf(
-                "Accept" to "application/json",
-                "Content-Type" to "application/json",
-            )
-        )
-    )
+    private val apolloClient = ApolloClient("https://rickandmortyapi.com/graphql")
 
-    suspend fun getCharacters(page: Int): GetCharactersQuery.Characters? {
+    suspend fun getCharacters(page: Int): GetCharactersQuery.Characters {
         val response = apolloClient.query(GetCharactersQuery(page))
-        return response.data?.characters
+        return response.dataOrThrow.characters
     }
 
-    suspend fun getCharacter(characterId: String): CharacterDetail? {
+    suspend fun getCharacter(characterId: String): CharacterDetail {
         val response = apolloClient.query(GetCharacterQuery(characterId))
-        return response.data?.character?.fragments?.characterDetail
+        return response.dataOrThrow.character.fragments.characterDetail
     }
 
-    suspend fun getEpisodes(page: Int): GetEpisodesQuery.Episodes? {
+    suspend fun getEpisodes(page: Int): GetEpisodesQuery.Episodes {
         val response = apolloClient.query(GetEpisodesQuery(page))
-        return response.data?.episodes
+        return response.dataOrThrow.episodes
     }
 
-    suspend fun getEpisode(episodeId: String): EpisodeDetail? {
+    suspend fun getEpisode(episodeId: String): EpisodeDetail {
         val response = apolloClient.query(GetEpisodeQuery(episodeId))
-        return response.data?.episode?.fragments?.episodeDetail
+        return response.dataOrThrow.episode.fragments.episodeDetail
     }
 
-    suspend fun getLocations(page: Int): GetLocationsQuery.Locations? {
+    suspend fun getLocations(page: Int): GetLocationsQuery.Locations {
         val response = apolloClient.query(GetLocationsQuery(page))
-        return response.data?.locations
+        return response.dataOrThrow.locations
     }
 
-    suspend fun getLocation(locationId: String): LocationDetail? {
+    suspend fun getLocation(locationId: String): LocationDetail {
         val response = apolloClient.query(GetLocationQuery(locationId))
-        return response.data?.location?.fragments?.locationDetail
+        return response.dataOrThrow.location.fragments.locationDetail
     }
 
 
@@ -69,12 +60,12 @@ class MortyRepository {
         initialKey = 1,
         getItems = { currentKey, size ->
             val charactersResponse = getCharacters(currentKey)
-            val items = charactersResponse?.results?.mapNotNull { it?.fragments?.characterDetail } ?: emptyList()
+            val items = charactersResponse.results.mapNotNull { it?.fragments?.characterDetail }
             PagingResult(
                 items = items,
                 currentKey = currentKey,
                 prevKey = { null },
-                nextKey = { charactersResponse?.info?.next }
+                nextKey = { charactersResponse.info.next }
             )
         }
     )

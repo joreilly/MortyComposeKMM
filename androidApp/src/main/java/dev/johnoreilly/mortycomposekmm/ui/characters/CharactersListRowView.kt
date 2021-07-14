@@ -29,21 +29,20 @@ fun CharactersListRowView(character: CharacterDetail, characterSelected: (networ
             shape = CircleShape,
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
         ) {
-            character.image?.let {
-                Image(painter = rememberCoilPainter(it),
-                    modifier = Modifier.size(50.dp),
-                    contentDescription = character.name
-                )
-            }
+            Image(painter = rememberCoilPainter(character.image),
+                modifier = Modifier.size(50.dp),
+                contentDescription = character.name
+            )
         }
 
         Column(modifier = Modifier.padding(start = 8.dp, end = 8.dp)) {
 
-            Text(character.name ?: "", style = MaterialTheme.typography.h6,
+            Text(
+                character.name, style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.Bold)
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                 Text(
-                    "${character.episode?.size ?: 0} episode(s)",
+                    "${character.episode.size} episode(s)",
                     style = MaterialTheme.typography.body2
                 )
             }

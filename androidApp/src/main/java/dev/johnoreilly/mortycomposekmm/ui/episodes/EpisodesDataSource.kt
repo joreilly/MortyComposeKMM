@@ -11,11 +11,11 @@ class EpisodesDataSource(private val repository: MortyRepository) : PagingSource
         val pageNumber = params.key ?: 0
 
         val episodesResponse = repository.getEpisodes(pageNumber)
-        val episodes = episodesResponse?.results?.mapNotNull { it?.fragments?.episodeDetail }
+        val episodes = episodesResponse.results.mapNotNull { it?.fragments?.episodeDetail }
 
         val prevKey = if (pageNumber > 0) pageNumber - 1 else null
-        val nextKey = episodesResponse?.info?.next
-        return LoadResult.Page(data = episodes ?: emptyList(), prevKey = prevKey, nextKey = nextKey)
+        val nextKey = episodesResponse.info.next
+        return LoadResult.Page(data = episodes, prevKey = prevKey, nextKey = nextKey)
     }
 
     override fun getRefreshKey(state: PagingState<Int, EpisodeDetail>): Int? {
