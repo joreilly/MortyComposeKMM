@@ -1,9 +1,11 @@
 package dev.johnoreilly.mortycomposekmm.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
@@ -22,11 +24,11 @@ class MainViewModel(private val repository: MortyRepository): ViewModel() {
     // episode and location lists
     val episodes: Flow<PagingData<EpisodeDetail>> = Pager(PagingConfig(pageSize = 20)) {
         EpisodesDataSource(repository)
-    }.flow
+    }.flow.cachedIn(viewModelScope)
 
     val locations: Flow<PagingData<LocationDetail>> = Pager(PagingConfig(pageSize = 20)) {
         LocationsDataSource(repository)
-    }.flow
+    }.flow.cachedIn(viewModelScope)
 
 
     suspend fun getCharacter(characterId: String): CharacterDetail? {
