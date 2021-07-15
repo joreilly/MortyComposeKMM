@@ -30,6 +30,18 @@ kotlin {
         }
     }
 
+    targets.named<KotlinNativeTarget>("iosX64") {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
+            export("io.github.kuuuurt:multiplatform-paging-iosX64:${Versions.multiplatformPaging}")
+        }
+    }
+
+    targets.named<KotlinNativeTarget>("iosArm64") {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
+            export("io.github.kuuuurt:multiplatform-paging-iosArm64:${Versions.multiplatformPaging}")
+        }
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -67,11 +79,11 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = 30
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdk = 21
+        targetSdk = 30
     }
 
     compileOptions {
@@ -85,35 +97,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
-
-
-val packForXcode by tasks.creating(Sync::class) {
-    group = "build"
-    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-    val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
-    val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
-    val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
-
-    kotlin.targets.named<KotlinNativeTarget>("iosX64") {
-        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
-            export("io.github.kuuuurt:multiplatform-paging-iosX64:${Versions.multiplatformPaging}")
-        }
-    }
-
-    kotlin.targets.named<KotlinNativeTarget>("iosArm64") {
-        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
-            export("io.github.kuuuurt:multiplatform-paging-iosArm64:${Versions.multiplatformPaging}")
-        }
-    }
-
-    inputs.property("mode", mode)
-    dependsOn(framework.linkTask)
-    val targetDir = File(buildDir, "xcode-frameworks")
-    from({ framework.outputDirectory })
-    into(targetDir)
-}
-
-tasks.getByName("build").dependsOn(packForXcode)
 
 apollo {
     packageName.set("dev.johnoreilly.mortycomposekmm")
