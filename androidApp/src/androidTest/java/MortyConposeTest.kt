@@ -10,8 +10,9 @@ class MortyConposeTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    val character = CharacterDetail("", "1", "John", null,
-        null, null, null, null, null, null, null)
+    val character = CharacterDetail("", "1", "John", "",
+        "", "", "", emptyList(),
+        CharacterDetail.Location("", ""), CharacterDetail.Origin(""))
 
 
     @Test
@@ -23,7 +24,7 @@ class MortyConposeTest {
 
         composeTestRule
             .onNode(
-        hasText(character.name!!) and
+        hasText(character.name) and
                 hasAnySibling(
                     hasText("0 episode(s)")
                 ),
