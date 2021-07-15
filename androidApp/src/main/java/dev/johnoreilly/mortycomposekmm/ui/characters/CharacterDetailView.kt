@@ -12,7 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.rememberImagePainter
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
@@ -58,7 +58,7 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
                                     modifier = Modifier.size(150.dp),
                                     shape = RoundedCornerShape(25.dp)
                                 ) {
-                                    Image(painter = rememberCoilPainter(imageUrl),
+                                    Image(painter = rememberImagePainter(imageUrl),
                                         contentDescription = character.name
                                     )
                                 }

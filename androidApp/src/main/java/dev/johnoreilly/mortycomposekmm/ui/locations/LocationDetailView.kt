@@ -14,7 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.rememberImagePainter
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
@@ -78,7 +78,7 @@ private fun LocationResidentList(location: LocationDetail) {
                     color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
                 ) {
                     Image(
-                        painter = rememberCoilPainter(resident.image),
+                        painter = rememberImagePainter(resident.image),
                         modifier = Modifier.size(28.dp),
                         contentDescription = resident.name
                     )

@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.rememberImagePainter
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 
 @Composable
@@ -29,7 +29,7 @@ fun CharactersListRowView(character: CharacterDetail, characterSelected: (networ
             shape = CircleShape,
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
         ) {
-            Image(painter = rememberCoilPainter(character.image),
+            Image(painter = rememberImagePainter(character.image),
                 modifier = Modifier.size(50.dp),
                 contentDescription = character.name
             )
