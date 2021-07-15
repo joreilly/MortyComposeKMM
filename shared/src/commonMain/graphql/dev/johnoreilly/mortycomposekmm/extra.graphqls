@@ -50,7 +50,6 @@ results
 extend type Info @nonnull(fields: """
 count
 pages
-next
 prev
 """)
 
