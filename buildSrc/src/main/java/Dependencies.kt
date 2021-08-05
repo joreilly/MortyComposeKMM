@@ -8,7 +8,8 @@ object Versions {
     const val compose = "1.0.1"
     const val nav_compose = "2.4.0-alpha06"
     const val paging_compose = "1.0.0-alpha12"
-    const val accompanist = "0.15.0"
+    const val accompanist = "0.16.0"
+    const val coilComposeVersion = "1.3.1"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"
@@ -37,7 +38,7 @@ object Compose {
     const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
     const val paging = "androidx.paging:paging-compose:${Versions.paging_compose}"
-    const val accompanist= "com.google.accompanist:accompanist-coil:${Versions.accompanist}"
+    const val coilCompose = "io.coil-kt:coil-compose:${Versions.coilComposeVersion}"
 }
 
 object Koin {

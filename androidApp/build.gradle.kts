@@ -59,7 +59,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    implementation("androidx.activity:activity-compose:1.3.0-rc02")
+    implementation("androidx.activity:activity-compose:1.3.1")
     implementation("com.google.android.material:material:1.4.0")
 
     implementation(Compose.ui)
@@ -72,7 +72,7 @@ dependencies {
     implementation(Compose.materialIconsExtended)
     implementation(Compose.navigation)
     implementation(Compose.paging)
-    implementation(Compose.accompanist)
+    implementation(Compose.coilCompose)
 
     implementation(Koin.core)
     implementation(Koin.android)
