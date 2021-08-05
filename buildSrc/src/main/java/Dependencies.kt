@@ -1,12 +1,12 @@
 
 object Versions {
-    const val kotlinxCoroutines = "1.5.0-native-mt"
-    const val koin = "3.1.1"
+    const val kotlinxCoroutines = "1.5.1-native-mt"
+    const val koin = "3.1.2"
     const val apollo = "3.0.0-alpha03"
     const val multiplatformPaging = "0.4.1"
 
-    const val compose = "1.0.0"
-    const val nav_compose = "2.4.0-alpha05"
+    const val compose = "1.0.1"
+    const val nav_compose = "2.4.0-alpha06"
     const val paging_compose = "1.0.0-alpha12"
     const val accompanist = "0.15.0"
 
