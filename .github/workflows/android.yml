@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: macos-11
 
     steps:
     - uses: actions/checkout@v1
@@ -16,5 +16,5 @@ jobs:
     - name: Build android app
       run: ./gradlew assembleDebug
     - name: Build iOS shared code
-      run: ./gradlew -P"kotlinVersion"="1.5.20" :shared:compileKotlinIosArm64
+      run: ./gradlew -P"kotlinVersion"="1.6.0-M1-139" :shared:compileKotlinIosArm64
 
