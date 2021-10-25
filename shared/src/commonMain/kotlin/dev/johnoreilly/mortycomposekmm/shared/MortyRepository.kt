@@ -26,7 +26,7 @@ class MortyRepository {
 
     suspend fun getCharacter(characterId: String): CharacterDetail {
         val response = apolloClient.query(GetCharacterQuery(characterId))
-        return response.dataOrThrow.character.fragments.characterDetail
+        return response.dataOrThrow.character.characterDetail
     }
 
     suspend fun getEpisodes(page: Int): GetEpisodesQuery.Episodes {
@@ -36,7 +36,7 @@ class MortyRepository {
 
     suspend fun getEpisode(episodeId: String): EpisodeDetail {
         val response = apolloClient.query(GetEpisodeQuery(episodeId))
-        return response.dataOrThrow.episode.fragments.episodeDetail
+        return response.dataOrThrow.episode.episodeDetail
     }
 
     suspend fun getLocations(page: Int): GetLocationsQuery.Locations {
@@ -46,7 +46,7 @@ class MortyRepository {
 
     suspend fun getLocation(locationId: String): LocationDetail {
         val response = apolloClient.query(GetLocationQuery(locationId))
-        return response.dataOrThrow.location.fragments.locationDetail
+        return response.dataOrThrow.location.locationDetail
     }
 
 
@@ -60,7 +60,7 @@ class MortyRepository {
         initialKey = 1,
         getItems = { currentKey, size ->
             val charactersResponse = getCharacters(currentKey)
-            val items = charactersResponse.results.mapNotNull { it?.fragments?.characterDetail }
+            val items = charactersResponse.results.mapNotNull { it?.characterDetail }
             PagingResult(
                 items = items,
                 currentKey = currentKey,
