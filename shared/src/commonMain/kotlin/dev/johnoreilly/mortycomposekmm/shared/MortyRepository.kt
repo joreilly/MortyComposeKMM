@@ -17,35 +17,37 @@ import kotlinx.coroutines.MainScope
 class MortyRepository {
     private val scope = MainScope()
 
-    private val apolloClient = ApolloClient("https://rickandmortyapi.com/graphql")
-
+    private val apolloClient = ApolloClient.Builder()
+        .serverUrl("https://rickandmortyapi.com/graphql")
+        .build()
+    
     suspend fun getCharacters(page: Int): GetCharactersQuery.Characters {
-        val response = apolloClient.query(GetCharactersQuery(page))
+        val response = apolloClient.query(GetCharactersQuery(page)).execute()
         return response.dataOrThrow.characters
     }
 
     suspend fun getCharacter(characterId: String): CharacterDetail {
-        val response = apolloClient.query(GetCharacterQuery(characterId))
+        val response = apolloClient.query(GetCharacterQuery(characterId)).execute()
         return response.dataOrThrow.character.characterDetail
     }
 
     suspend fun getEpisodes(page: Int): GetEpisodesQuery.Episodes {
-        val response = apolloClient.query(GetEpisodesQuery(page))
+        val response = apolloClient.query(GetEpisodesQuery(page)).execute()
         return response.dataOrThrow.episodes
     }
 
     suspend fun getEpisode(episodeId: String): EpisodeDetail {
-        val response = apolloClient.query(GetEpisodeQuery(episodeId))
+        val response = apolloClient.query(GetEpisodeQuery(episodeId)).execute()
         return response.dataOrThrow.episode.episodeDetail
     }
 
     suspend fun getLocations(page: Int): GetLocationsQuery.Locations {
-        val response = apolloClient.query(GetLocationsQuery(page))
+        val response = apolloClient.query(GetLocationsQuery(page)).execute()
         return response.dataOrThrow.locations
     }
 
     suspend fun getLocation(locationId: String): LocationDetail {
-        val response = apolloClient.query(GetLocationQuery(locationId))
+        val response = apolloClient.query(GetLocationQuery(locationId)).execute()
         return response.dataOrThrow.location.locationDetail
     }
 
