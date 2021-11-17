@@ -45,7 +45,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinxCoroutines}") {
+                api(Deps.Kotlinx.coroutinesCore) {
                     isForce = true
                 }
 
