@@ -1,6 +1,6 @@
 
 object Versions {
-    const val kotlinxCoroutines = "1.5.2-native-mt"
+    const val kotlinxCoroutines = "1.5.1-new-mm-dev2"
     const val koin = "3.1.2"
     const val apollo = "3.0.0-beta03"
     const val multiplatformPaging = "0.4.3"
@@ -24,6 +24,10 @@ object AndroidSdk {
 object Deps {
     const val apolloRuntime = "com.apollographql.apollo3:apollo-runtime:${Versions.apollo}"
     const val multiplatformPaging = "io.github.kuuuurt:multiplatform-paging:${Versions.multiplatformPaging}"
+
+    object Kotlinx {
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinxCoroutines}"
+    }
 }
 
 object Compose {
