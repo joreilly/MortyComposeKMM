@@ -23,32 +23,32 @@ class MortyRepository {
     
     suspend fun getCharacters(page: Int): GetCharactersQuery.Characters {
         val response = apolloClient.query(GetCharactersQuery(page)).execute()
-        return response.dataOrThrow.characters
+        return response.dataAssertNoErrors.characters
     }
 
     suspend fun getCharacter(characterId: String): CharacterDetail {
         val response = apolloClient.query(GetCharacterQuery(characterId)).execute()
-        return response.dataOrThrow.character.characterDetail
+        return response.dataAssertNoErrors.character.characterDetail
     }
 
     suspend fun getEpisodes(page: Int): GetEpisodesQuery.Episodes {
         val response = apolloClient.query(GetEpisodesQuery(page)).execute()
-        return response.dataOrThrow.episodes
+        return response.dataAssertNoErrors.episodes
     }
 
     suspend fun getEpisode(episodeId: String): EpisodeDetail {
         val response = apolloClient.query(GetEpisodeQuery(episodeId)).execute()
-        return response.dataOrThrow.episode.episodeDetail
+        return response.dataAssertNoErrors.episode.episodeDetail
     }
 
     suspend fun getLocations(page: Int): GetLocationsQuery.Locations {
         val response = apolloClient.query(GetLocationsQuery(page)).execute()
-        return response.dataOrThrow.locations
+        return response.dataAssertNoErrors.locations
     }
 
     suspend fun getLocation(locationId: String): LocationDetail {
         val response = apolloClient.query(GetLocationQuery(locationId)).execute()
-        return response.dataOrThrow.location.locationDetail
+        return response.dataAssertNoErrors.location.locationDetail
     }
 
 

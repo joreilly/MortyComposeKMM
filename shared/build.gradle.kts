@@ -100,4 +100,5 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 apollo {
     packageName.set("dev.johnoreilly.mortycomposekmm")
+    generateOptionalOperationVariables.set(false)
 }
