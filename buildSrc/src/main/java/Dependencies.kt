@@ -1,9 +1,9 @@
 
 object Versions {
-    const val kotlinxCoroutines = "1.5.1-new-mm-dev2"
-    const val koin = "3.1.2"
+    const val kotlinxCoroutines = "1.5.2-native-mt"
+    const val koin = "3.1.4"
     const val apollo = "3.0.0-rc01"
-    const val multiplatformPaging = "0.4.3"
+    const val multiplatformPaging = "0.4.6"
 
     const val compose = "1.0.5"
     const val nav_compose = "2.4.0-beta02"
