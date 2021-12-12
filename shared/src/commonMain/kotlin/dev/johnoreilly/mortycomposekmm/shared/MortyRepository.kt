@@ -52,14 +52,10 @@ class MortyRepository {
     }
 
 
+    private val pagingConfig = PagingConfig(pageSize = 20, enablePlaceholders = false)
+
     // also accessed from iOS
-    val characterPager = Pager(
-        clientScope = scope,
-        config = PagingConfig(
-            pageSize = 20,
-            enablePlaceholders = false // Ignored on iOS
-        ),
-        initialKey = 1,
+    val characterPager = Pager(clientScope = scope, config = pagingConfig, initialKey = 1,
         getItems = { currentKey, size ->
             val charactersResponse = getCharacters(currentKey)
             val items = charactersResponse.results.mapNotNull { it?.characterDetail }
@@ -76,4 +72,24 @@ class MortyRepository {
         get() = characterPager.pagingData
             .cachedIn(scope) // cachedIn from AndroidX Paging. on iOS, this is a no-op
             .asCommonFlow() // So that iOS can consume the Flow
+
+
+    val episodePager = Pager(clientScope = scope, config = pagingConfig, initialKey = 1,
+        getItems = { currentKey, size ->
+            val episodesResponse = getEpisodes(currentKey)
+            val items = episodesResponse.results.mapNotNull { it?.episodeDetail }
+            PagingResult(
+                items = items,
+                currentKey = currentKey,
+                prevKey = { null },
+                nextKey = { episodesResponse.info.next }
+            )
+        }
+    )
+
+    val episodePagingData: CommonFlow<PagingData<EpisodeDetail>>
+        get() = episodePager.pagingData
+            .cachedIn(scope)
+            .asCommonFlow()
+
 }

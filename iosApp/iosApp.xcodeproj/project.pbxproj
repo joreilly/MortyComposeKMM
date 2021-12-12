@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A320EB32766337A00DFE888 /* EpisodeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A320EB22766337A00DFE888 /* EpisodeListViewModel.swift */; };
+		1A320EB52766339400DFE888 /* EpisodesListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A320EB42766339400DFE888 /* EpisodesListRowView.swift */; };
 		1AF7E3CE259389C800905739 /* CharactersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3CD259389C800905739 /* CharactersListView.swift */; };
 		1AF7E3D4259389FB00905739 /* EpisodesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3D3259389FB00905739 /* EpisodesListView.swift */; };
 		1AF7E3DA25938B7100905739 /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3D925938B7100905739 /* CharacterListViewModel.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A320EB22766337A00DFE888 /* EpisodeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewModel.swift; sourceTree = "<group>"; };
+		1A320EB42766339400DFE888 /* EpisodesListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesListRowView.swift; sourceTree = "<group>"; };
 		1AF7E3CD259389C800905739 /* CharactersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListView.swift; sourceTree = "<group>"; };
 		1AF7E3D3259389FB00905739 /* EpisodesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesListView.swift; sourceTree = "<group>"; };
 		1AF7E3D925938B7100905739 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				1AF7E3D3259389FB00905739 /* EpisodesListView.swift */,
+				1A320EB22766337A00DFE888 /* EpisodeListViewModel.swift */,
+				1A320EB42766339400DFE888 /* EpisodesListRowView.swift */,
 			);
 			path = Episodes;
 			sourceTree = "<group>";
@@ -358,10 +364,12 @@
 			files = (
 				7555FF7F242A565900829871 /* AppDelegate.swift in Sources */,
 				7555FF81242A565900829871 /* SceneDelegate.swift in Sources */,
+				1A320EB52766339400DFE888 /* EpisodesListRowView.swift in Sources */,
 				1AF7E3CE259389C800905739 /* CharactersListView.swift in Sources */,
 				1AF7E3E025939BEF00905739 /* CharactersListRowView.swift in Sources */,
 				1AF7E3D4259389FB00905739 /* EpisodesListView.swift in Sources */,
 				1AF7E3DA25938B7100905739 /* CharacterListViewModel.swift in Sources */,
+				1A320EB32766337A00DFE888 /* EpisodeListViewModel.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
