@@ -13,7 +13,6 @@
 		1AF7E3D4259389FB00905739 /* EpisodesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3D3259389FB00905739 /* EpisodesListView.swift */; };
 		1AF7E3DA25938B7100905739 /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3D925938B7100905739 /* CharacterListViewModel.swift */; };
 		1AF7E3E025939BEF00905739 /* CharactersListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7E3DF25939BEF00905739 /* CharactersListRowView.swift */; };
-		1AF7E3EA2593A47400905739 /* KingfisherSwiftUIStatic in Frameworks */ = {isa = PBXBuildFile; productRef = 1AF7E3E92593A47400905739 /* KingfisherSwiftUIStatic */; };
 		7555FF7F242A565900829871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF7E242A565900829871 /* AppDelegate.swift */; };
 		7555FF81242A565900829871 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF80242A565900829871 /* SceneDelegate.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
@@ -83,7 +82,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AF7E3EA2593A47400905739 /* KingfisherSwiftUIStatic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +220,6 @@
 			);
 			name = iosApp;
 			packageProductDependencies = (
-				1AF7E3E92593A47400905739 /* KingfisherSwiftUIStatic */,
 			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
@@ -540,6 +537,7 @@
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -560,6 +558,7 @@
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -702,14 +701,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1AF7E3E92593A47400905739 /* KingfisherSwiftUIStatic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1AF7E3E82593A47400905739 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = KingfisherSwiftUIStatic;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

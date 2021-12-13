@@ -1,6 +1,6 @@
 import SwiftUI
 import shared
-import KingfisherSwiftUI
+
 
 struct CharactersListRowView: View {
     let character: CharacterDetail
@@ -9,11 +9,13 @@ struct CharactersListRowView: View {
         HStack {
             if let image = character.image,
                let url = URL(string: image) {
-                KFImage(url)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(25)
+                AsyncImage(url: url) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 50, height: 50)
+                .clipShape(RoundedRectangle(cornerRadius: 25))
             } else {
                 RoundedRectangle(cornerRadius: 25)
                     .frame(width: 50, height: 50)
