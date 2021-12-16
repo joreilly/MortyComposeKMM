@@ -31,15 +31,15 @@ class MainViewModel(private val repository: MortyRepository): ViewModel() {
     }.flow.cachedIn(viewModelScope)
 
 
-    suspend fun getCharacter(characterId: String): CharacterDetail? {
+    suspend fun getCharacter(characterId: String): CharacterDetail {
         return repository.getCharacter(characterId)
     }
 
-    suspend fun getEpisode(episodeId: String): EpisodeDetail? {
+    suspend fun getEpisode(episodeId: String): EpisodeDetail {
         return repository.getEpisode(episodeId)
     }
 
-    suspend fun getLocation(episodeId: String): LocationDetail? {
+    suspend fun getLocation(episodeId: String): LocationDetail {
         return repository.getLocation(episodeId)
     }
 }
