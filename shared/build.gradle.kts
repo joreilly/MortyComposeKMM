@@ -6,50 +6,31 @@ plugins {
     id("com.apollographql.apollo3")
 }
 
-// workaround for https://youtrack.jetbrains.com/issue/KT-43944
-android {
-    configurations {
-        create("androidTestApi")
-        create("androidTestDebugApi")
-        create("androidTestReleaseApi")
-        create("testApi")
-        create("testDebugApi")
-        create("testReleaseApi")
-    }
-}
-
-
 kotlin {
     android()
 
-    val iosArm64 = iosArm64()
-    val iosX64 = iosX64()
-    val iosSimulatorArm64 = iosSimulatorArm64()
-
-    targets.named<KotlinNativeTarget>("iosX64") {
-        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
-            export("io.github.kuuuurt:multiplatform-paging-iosX64:${Versions.multiplatformPaging}")
-        }
-    }
-
-    targets.named<KotlinNativeTarget>("iosArm64") {
-        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
-            export("io.github.kuuuurt:multiplatform-paging-iosArm64:${Versions.multiplatformPaging}")
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "shared"
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(Deps.Kotlinx.coroutinesCore) {
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinxCoroutines}") {
                     isForce = true
                 }
 
                 // koin
                 api(Koin.core)
-                api(Koin.test)
 
                 api(Deps.apolloRuntime)
+                api(Deps.apolloNormalizedCache)
                 api(Deps.multiplatformPaging)
             }
         }
@@ -70,25 +51,23 @@ kotlin {
             }
         }
 
-        val appleMain by creating {
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
             dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
         }
-        val appleTest by creating {
+        val iosX64Test by getting
+        val iosArm64Test by getting
+        val iosSimulatorArm64Test by getting
+        val iosTest by creating {
             dependsOn(commonTest)
-        }
-
-        listOf(
-            iosArm64, iosX64, iosSimulatorArm64
-        ).forEach {
-            it.binaries.framework {
-                baseName = "shared"
-            }
-            getByName("${it.targetName}Main") {
-                dependsOn(appleMain)
-            }
-            getByName("${it.targetName}Test") {
-                dependsOn(appleTest)
-            }
+            iosX64Test.dependsOn(this)
+            iosArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
         }
 
     }
@@ -101,18 +80,8 @@ android {
         minSdk = 21
         targetSdk = 30
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-}
 
 apollo {
     packageName.set("dev.johnoreilly.mortycomposekmm")

@@ -1,6 +1,8 @@
 package dev.johnoreilly.mortycomposekmm.shared
 
 import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.cache.normalized.api.MemoryCacheFactory
+import com.apollographql.apollo3.cache.normalized.normalizedCache
 import com.kuuurt.paging.multiplatform.Pager
 import com.kuuurt.paging.multiplatform.PagingConfig
 import com.kuuurt.paging.multiplatform.PagingData
@@ -14,13 +16,18 @@ import dev.johnoreilly.mortycomposekmm.shared.util.CommonFlow
 import dev.johnoreilly.mortycomposekmm.shared.util.asCommonFlow
 import kotlinx.coroutines.MainScope
 
+
 class MortyRepository {
     private val scope = MainScope()
 
+    // Creates a 10MB MemoryCacheFactory
+    val cacheFactory = MemoryCacheFactory(maxSizeBytes = 10 * 1024 * 1024)
+
     private val apolloClient = ApolloClient.Builder()
         .serverUrl("https://rickandmortyapi.com/graphql")
+        .normalizedCache(cacheFactory)
         .build()
-    
+
     suspend fun getCharacters(page: Int): GetCharactersQuery.Characters {
         val response = apolloClient.query(GetCharactersQuery(page)).execute()
         return response.dataAssertNoErrors.characters
