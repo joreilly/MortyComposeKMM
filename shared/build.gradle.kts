@@ -22,9 +22,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinxCoroutines}") {
-                    isForce = true
-                }
+                api(Deps.Kotlinx.coroutinesCore)
 
                 // koin
                 api(Koin.core)
@@ -47,7 +45,7 @@ kotlin {
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.1")
+                implementation("junit:junit:4.13.2")
             }
         }
 
