@@ -6,12 +6,12 @@ object Versions {
     const val apollo = "3.3.0"
     const val multiplatformPaging = "0.4.7"
 
-    const val compose = "1.2.0-beta01"
-    const val composeCompiler = "1.2.0-beta01"
+    const val compose = "1.2.0-rc01"
+    const val composeCompiler = "1.2.0-rc01"
     const val navCompose = "2.4.2"
-    const val pagingCompose = "1.0.0-alpha14"
+    const val pagingCompose = "1.0.0-alpha15"
     const val accompanist = "0.23.0"
-    const val coilComposeVersion = "2.0.0"
+    const val coilComposeVersion = "2.1.0"
 
     const val junit = "4.13"
 }
@@ -19,7 +19,7 @@ object Versions {
 
 object AndroidSdk {
     const val min = 21
-    const val compile = 31
+    const val compile = 32
     const val target = compile
 }
 
