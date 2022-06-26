@@ -1,6 +1,6 @@
 package dev.johnoreilly.mortycomposekmm.ui.characters
 
-import androidx.compose.foundation.Image
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,12 +10,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
+import coil.compose.AsyncImage
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: () -> Unit) {
     val (character, setCharacter) = remember { mutableStateOf<CharacterDetail?>(null) }
@@ -53,15 +56,12 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
                                 modifier = Modifier.fillMaxWidth().padding(16.dp),
                                 horizontalArrangement = Arrangement.Center
                             ) {
-                                val imageUrl = character.image
-                                Card(
-                                    modifier = Modifier.size(150.dp),
-                                    shape = RoundedCornerShape(25.dp)
-                                ) {
-                                    Image(painter = rememberImagePainter(imageUrl),
-                                        contentDescription = character.name
-                                    )
-                                }
+                                AsyncImage(
+                                    model = character.image,
+                                    contentDescription = character.name,
+                                    contentScale = ContentScale.Fit,
+                                    modifier = Modifier.size(150.dp).clip(RoundedCornerShape(20.dp))
+                                )
                             }
                         }
 

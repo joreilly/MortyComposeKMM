@@ -1,6 +1,6 @@
 package dev.johnoreilly.mortycomposekmm.ui.episodes
 
-import androidx.compose.foundation.Image
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
@@ -12,13 +12,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
+import coil.compose.AsyncImage
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun EpisodeDetailView(viewModel: MainViewModel, episodeId: String, popBack: () -> Unit) {
     val (episode, setEpisode) = remember { mutableStateOf<EpisodeDetail?>(null) }
@@ -73,17 +76,12 @@ private fun EpisodeCharactersList(episode: EpisodeDetail) {
         episode.characters.filterNotNull().forEach { character ->
             Row(modifier = Modifier.padding(vertical = 8.dp)) {
 
-                Surface(
-                    modifier = Modifier.size(28.dp),
-                    shape = CircleShape,
-                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
-                ) {
-                    Image(
-                        painter = rememberImagePainter(character.image),
-                        modifier = Modifier.size(28.dp),
-                        contentDescription = character.name
-                    )
-                }
+                AsyncImage(
+                    model = character.image,
+                    contentDescription = character.name,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.size(28.dp).clip(CircleShape)
+                )
 
                 Text(
                     character.name,
