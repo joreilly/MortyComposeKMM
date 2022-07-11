@@ -33,7 +33,7 @@ residents
 created
 """)
 
-extend type Episode @nonnull(field: """
+extend type Episode @nonnull(fields: """
 id
 name
 air_date

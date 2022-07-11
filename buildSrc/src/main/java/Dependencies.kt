@@ -3,7 +3,7 @@ object Versions {
     const val kotlinVersion = "1.7.0"
     const val kotlinxCoroutines = "1.6.3"
     const val koin = "3.2.0"
-    const val apollo = "3.3.0"
+    const val apollo = "3.4.0"
     const val multiplatformPaging = "0.4.7"
 
     const val compose = "1.2.0-rc03"
