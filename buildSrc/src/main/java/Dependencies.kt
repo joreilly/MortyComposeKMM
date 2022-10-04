@@ -1,17 +1,17 @@
 
 object Versions {
-    const val kotlinVersion = "1.7.10"
+    const val kotlinVersion = "1.7.20"
     const val kotlinxCoroutines = "1.6.4"
-    const val koin = "3.2.0"
-    const val apollo = "3.5.0"
-    const val multiplatformPaging = "0.4.7"
+    const val koin = "3.2.1"
+    const val apollo = "3.6.1"
+    const val multiplatformPaging = "0.5.0"
 
-    const val compose = "1.2.1"
-    const val composeCompiler = "1.3.0"
-    const val navCompose = "2.5.1"
-    const val pagingCompose = "1.0.0-alpha15"
-    const val accompanist = "0.25.1"
-    const val coilComposeVersion = "2.1.0"
+    const val compose = "1.3.0-beta03"
+    const val composeCompiler = "1.3.2"
+    const val navCompose = "2.5.2"
+    const val pagingCompose = "1.0.0-alpha16"
+    const val accompanist = "0.26.2-beta"
+    const val coilCompose = "2.2.2"
 
     const val junit = "4.13"
 }
@@ -19,7 +19,7 @@ object Versions {
 
 object AndroidSdk {
     const val min = 21
-    const val compile = 32
+    const val compile = 33
     const val target = compile
 }
 
@@ -45,7 +45,7 @@ object Compose {
     const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.navCompose}"
     const val paging = "androidx.paging:paging-compose:${Versions.pagingCompose}"
-    const val coilCompose = "io.coil-kt:coil-compose:${Versions.coilComposeVersion}"
+    const val coilCompose = "io.coil-kt:coil-compose:${Versions.coilCompose}"
 }
 
 object Koin {
