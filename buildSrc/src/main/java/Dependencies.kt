@@ -6,7 +6,7 @@ object Versions {
     const val apollo = "3.6.2"
     const val multiplatformPaging = "0.5.0"
 
-    const val compose = "1.3.0-beta03"
+    const val compose = "1.3.0-rc01"
     const val composeCompiler = "1.3.2"
     const val navCompose = "2.5.2"
     const val pagingCompose = "1.0.0-alpha16"
