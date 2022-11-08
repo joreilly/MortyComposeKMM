@@ -2,15 +2,17 @@
 object Versions {
     const val kotlinVersion = "1.7.20"
     const val kotlinxCoroutines = "1.6.4"
-    const val koin = "3.2.1"
-    const val apollo = "3.6.2"
+    const val koinCore = "3.2.2"
+    const val koinAndroid = "3.3.0"
+    const val koinAndroidCompose = "3.3.0"
+    const val apollo = "3.7.0"
     const val multiplatformPaging = "0.5.0"
 
-    const val compose = "1.3.0-rc01"
+    const val compose = "1.3.0"
     const val composeCompiler = "1.3.2"
     const val navCompose = "2.5.2"
     const val pagingCompose = "1.0.0-alpha16"
-    const val accompanist = "0.26.2-beta"
+    const val accompanist = "0.27.0"
     const val coilCompose = "2.2.2"
 
     const val junit = "4.13"
@@ -49,10 +51,10 @@ object Compose {
 }
 
 object Koin {
-    val core = "io.insert-koin:koin-core:${Versions.koin}"
-    val test = "io.insert-koin:koin-test:${Versions.koin}"
-    val testJUnit4 = "io.insert-koin:koin-test-junit4:${Versions.koin}"
-    val android = "io.insert-koin:koin-android:${Versions.koin}"
-    val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+    val core = "io.insert-koin:koin-core:${Versions.koinCore}"
+    val test = "io.insert-koin:koin-test:${Versions.koinCore}"
+    val testJUnit4 = "io.insert-koin:koin-test-junit4:${Versions.koinCore}"
+    val android = "io.insert-koin:koin-android:${Versions.koinAndroid}"
+    val compose = "io.insert-koin:koin-androidx-compose:${Versions.koinAndroidCompose}"
 }
 
