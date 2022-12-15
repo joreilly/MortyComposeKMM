@@ -2,13 +2,13 @@
 object Versions {
     const val kotlinVersion = "1.7.20"
     const val kotlinxCoroutines = "1.6.4"
-    const val koinCore = "3.2.2"
-    const val koinAndroid = "3.3.0"
-    const val koinAndroidCompose = "3.3.0"
+    const val koinCore = "3.3.0"
+    const val koinAndroid = "3.3.1"
+    const val koinAndroidCompose = "3.4.0"
     const val apollo = "3.7.0"
     const val multiplatformPaging = "0.5.0"
 
-    const val compose = "1.3.0"
+    const val compose = "1.4.0-alpha03"
     const val composeCompiler = "1.3.2"
     const val navCompose = "2.5.2"
     const val pagingCompose = "1.0.0-alpha16"
