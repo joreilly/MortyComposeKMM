@@ -5,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.3.0")
+        classpath("com.android.tools.build:gradle:7.4.0-rc03")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}")
         classpath("com.apollographql.apollo3:apollo-gradle-plugin:${Versions.apollo}")
     }
@@ -15,6 +15,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
+        maven("https://androidx.dev/storage/compose-compiler/repository")
     }
 }
