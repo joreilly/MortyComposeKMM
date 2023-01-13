@@ -5,7 +5,7 @@ object Versions {
     const val koinCore = "3.3.2"
     const val koinAndroid = "3.3.2"
     const val koinAndroidCompose = "3.4.1"
-    const val apollo = "3.7.3"
+    const val apollo = "3.7.4"
     const val multiplatformPaging = "0.5.0"
 
     const val compose = "1.4.0-alpha03"
