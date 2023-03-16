@@ -75,7 +75,7 @@ dependencies {
 
 
     testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.test:core:1.4.0")
+    testImplementation("androidx.test:core:1.5.0")
     testImplementation("org.robolectric:robolectric:4.7.3")
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
