@@ -49,7 +49,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.activity:activity-compose:1.6.1")
+    implementation("androidx.activity:activity-compose:1.7.0")
     implementation("com.google.android.material:material:1.8.0")
 
     with (Compose) {
