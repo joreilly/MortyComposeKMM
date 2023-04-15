@@ -1,15 +1,16 @@
 
 object Versions {
-    const val kotlinVersion = "1.8.0"
+    const val kotlinVersion = "1.8.20"
     const val kotlinxCoroutines = "1.6.4"
-    const val koinCore = "3.3.2"
-    const val koinAndroid = "3.3.2"
-    const val koinAndroidCompose = "3.4.1"
-    const val apollo = "3.7.4"
+    const val apollo = "3.7.5"
+    const val koinCore = "3.4.0"
+    const val koinAndroid = "3.4.0"
+    const val koinAndroidCompose = "3.4.3"
+
     const val multiplatformPaging = "0.5.0"
 
-    const val compose = "1.4.0-alpha03"
-    const val composeCompiler = "1.4.0-dev-k1.8.0-RC-4c1865595ed"
+    const val compose = "1.4.0"
+    const val composeCompiler = "1.4.5"
     const val navCompose = "2.5.2"
     const val pagingCompose = "1.0.0-alpha16"
     const val accompanist = "0.27.0"
