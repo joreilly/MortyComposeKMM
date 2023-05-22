@@ -7,7 +7,7 @@ object Versions {
     const val koinAndroid = "3.4.0"
     const val koinAndroidCompose = "3.4.4"
 
-    const val multiplatformPaging = "0.5.0"
+    const val multiplatformPaging = "0.6.2"
 
     const val compose = "1.4.3"
     const val composeCompiler = "1.4.7"
