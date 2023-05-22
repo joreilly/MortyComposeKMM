@@ -19,6 +19,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
@@ -34,23 +35,22 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
-
         freeCompilerArgs += listOf(
             "-P",
             "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
         )
     }
+    namespace = "dev.johnoreilly.mortycomposekmm"
 }
 
 dependencies {
-    implementation("androidx.activity:activity-compose:1.7.0")
-    implementation("com.google.android.material:material:1.8.0")
+    implementation("androidx.activity:activity-compose:1.7.1")
+    implementation("com.google.android.material:material:1.9.0")
 
     with (Compose) {
         implementation(compiler)
