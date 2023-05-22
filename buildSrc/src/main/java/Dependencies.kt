@@ -14,7 +14,7 @@ object Versions {
     const val navCompose = "2.5.3"
     const val pagingCompose = "1.0.0-alpha16"
     const val accompanist = "0.30.1"
-    const val coilCompose = "2.2.2"
+    const val coilCompose = "2.4.0"
 
     const val junit = "4.13"
 }
