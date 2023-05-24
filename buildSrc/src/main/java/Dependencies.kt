@@ -12,7 +12,7 @@ object Versions {
     const val compose = "1.4.3"
     const val composeCompiler = "1.4.7"
     const val navCompose = "2.5.3"
-    const val pagingCompose = "1.0.0-alpha16"
+    const val pagingCompose = "1.0.0-alpha20"
     const val accompanist = "0.30.1"
     const val coilCompose = "2.2.2"
 
