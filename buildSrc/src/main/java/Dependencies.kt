@@ -2,7 +2,7 @@
 object Versions {
     const val kotlinVersion = "1.8.21"
     const val kotlinxCoroutines = "1.7.1"
-    const val apollo = "3.8.1"
+    const val apollo = "3.8.2"
     const val koinCore = "3.4.0"
     const val koinAndroid = "3.4.0"
     const val koinAndroidCompose = "3.4.4"
