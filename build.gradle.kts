@@ -1,20 +1,8 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.0.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}")
-        classpath("com.apollographql.apollo3:apollo-gradle-plugin:${Versions.apollo}")
-    }
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.kotlinMultiplatform) apply false
+    alias(libs.plugins.apollo) apply(false)
+    alias(libs.plugins.kmpNativeCoroutines) apply(false)
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://androidx.dev/storage/compose-compiler/repository")
-    }
-}

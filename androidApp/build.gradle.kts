@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -6,11 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         applicationId = "dev.johnoreilly.mortyuicomposekmp"
-        minSdk = AndroidSdk.min
-        targetSdk = AndroidSdk.target
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
 
         versionCode = 1
         versionName = "1.0"
@@ -23,7 +22,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
 
     buildTypes {
@@ -49,38 +48,36 @@ android {
 }
 
 dependencies {
-    implementation("androidx.activity:activity-compose:1.7.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation(libs.androidx.activity.compose)
 
-    with (Compose) {
-        implementation(compiler)
-        implementation(ui)
-        implementation(runtime)
-        implementation(activity)
-        implementation(uiGraphics)
-        implementation(uiTooling)
-        implementation(foundationLayout)
-        implementation(material)
-        implementation(materialIconsExtended)
-        implementation(navigation)
-        implementation(paging)
-        implementation(coilCompose)
-    }
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material.iconsExtended)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
 
-    with (Koin) {
-        implementation(core)
-        implementation(android)
-        implementation(compose)
-    }
+    implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.coilCompose)
+
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+
+    testImplementation(libs.junit)
 
 
-    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+
     testImplementation("androidx.test:core:1.5.0")
-    testImplementation("org.robolectric:robolectric:4.10")
+    testImplementation("org.robolectric:robolectric:4.10.3")
     androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
-
-    debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
 
     implementation(project(":shared"))
 }
