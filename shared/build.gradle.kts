@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
@@ -7,7 +5,7 @@ plugins {
 }
 
 kotlin {
-    android()
+    androidTarget()
 
     listOf(
         iosX64(),
@@ -22,14 +20,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(Deps.Kotlinx.coroutinesCore)
+                implementation(libs.coroutines.core)
+                implementation(libs.koin.core)
 
-                // koin
-                api(Koin.core)
+                api(libs.apollo.runtime)
+                implementation(libs.apollo.normalized.cache)
+                implementation(libs.apollo.normalized.cache.sqlite)
 
-                api(Deps.apolloRuntime)
-                api(Deps.apolloNormalizedCache)
-                api(Deps.multiplatformPaging)
+                api(libs.multiplatformPaging)
             }
         }
         val commonTest by getting {
@@ -40,12 +38,6 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-            }
-        }
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
             }
         }
 
@@ -72,11 +64,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = libs.versions.compileSdk.get().toInt()
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 21
-        targetSdk = 31
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 
     compileOptions {
