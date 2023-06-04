@@ -15,7 +15,7 @@ androidxPagingCompose = "1.0.0-alpha20"
 androidxNavigationCompose = "2.5.3"
 accompanist = "0.30.1"
 coilCompose = "2.4.0"
-multiplatformPaging = "0.5.0"
+multiplatformPaging = "0.6.2"
 
 junit = "4.13.2"
 
