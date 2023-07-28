@@ -4,7 +4,7 @@ ksp = "1.9.0-1.0.11"
 coroutines = "1.7.2"
 androidGradlePlugin = "8.0.2"
 koin = "3.4.1"
-koinCompose = "3.4.5"
+koinCompose = "3.4.6"
 apollo = "3.8.2"
 kmpNativeCoroutines = "1.0.0-ALPHA-13"
 
