@@ -1,6 +1,6 @@
 [versions]
 kotlin = "1.9.0"
-ksp = "1.9.0-1.0.12"
+ksp = "1.9.10-1.0.13"
 coroutines = "1.7.3"
 androidGradlePlugin = "8.1.0"
 koin = "3.4.3"
