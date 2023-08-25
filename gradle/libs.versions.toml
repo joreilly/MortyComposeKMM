@@ -1,6 +1,6 @@
 [versions]
-kotlin = "1.9.0"
-ksp = "1.9.0-1.0.12"
+kotlin = "1.9.10"
+ksp = "1.9.10-1.0.13"
 coroutines = "1.7.3"
 androidGradlePlugin = "8.1.0"
 koin = "3.4.3"
@@ -9,10 +9,10 @@ apollo = "3.8.2"
 kmpNativeCoroutines = "1.0.0-ALPHA-13"
 
 androidxActivity = "1.7.2"
-androidxComposeCompiler = "1.5.0-dev-k1.9.0-6a60475e07f"
-androidxComposeBom = "2023.06.01"
+androidxComposeCompiler = "1.5.3-dev-k1.9.10-593b4c95fce"
+androidxComposeBom = "2023.08.00"
 androidxPagingCompose = "1.0.0-alpha20"
-androidxNavigationCompose = "2.6.0"
+androidxNavigationCompose = "2.7.1"
 accompanist = "0.30.1"
 coilCompose = "2.4.0"
 multiplatformPaging = "0.6.2"
@@ -20,8 +20,8 @@ multiplatformPaging = "0.6.2"
 junit = "4.13.2"
 
 minSdk = "24"
-targetSdk = "33"
-compileSdk = "33"
+targetSdk = "34"
+compileSdk = "34"
 
 
 
