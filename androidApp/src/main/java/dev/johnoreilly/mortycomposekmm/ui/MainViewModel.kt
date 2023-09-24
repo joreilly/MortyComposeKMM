@@ -20,7 +20,7 @@ class MainViewModel(private val repository: MortyRepository): ViewModel() {
     // currently only using MultiplatformPaging library for character data
     val characters = repository.characterPagingData
 
-    // continuing to use androidx paging library directly (as constrast) for
+    // continuing to use androidx paging library directly (as contrast) for
     // episode and location lists
     val episodes: Flow<PagingData<EpisodeDetail>> = Pager(PagingConfig(pageSize = 20)) {
         EpisodesDataSource(repository)
