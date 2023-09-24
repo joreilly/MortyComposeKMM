@@ -22,12 +22,12 @@ import org.koin.androidx.compose.getViewModel
 
 
 sealed class Screens(val route: String, val label: String, val icon: ImageVector? = null) {
-    object CharactersScreen : Screens("Characters", "Characters", Icons.Default.Person)
-    object EpisodesScreen : Screens("Episodes", "Episodes",  Icons.Default.Tv)
-    object LocationsScreen : Screens("Locations", "Locations",  Icons.Default.LocationOn)
-    object CharacterDetailsScreen : Screens("CharacterDetails", "CharacterDetails")
-    object EpisodeDetailsScreen : Screens("EpisodeDetails", "EpisodeDetails")
-    object LocationDetailsScreen : Screens("LocatonDetails", "LocatonDetails")
+    data object CharactersScreen : Screens("Characters", "Characters", Icons.Default.Person)
+    data object EpisodesScreen : Screens("Episodes", "Episodes",  Icons.Default.Tv)
+    data object LocationsScreen : Screens("Locations", "Locations",  Icons.Default.LocationOn)
+    data object CharacterDetailsScreen : Screens("CharacterDetails", "CharacterDetails")
+    data object EpisodeDetailsScreen : Screens("EpisodeDetails", "EpisodeDetails")
+    data object LocationDetailsScreen : Screens("LocationDetails", "LocationDetails")
 }
 
 class MainActivity : ComponentActivity() {
@@ -59,7 +59,7 @@ fun MainLayout() {
             }
         }
         composable(Screens.CharacterDetailsScreen.route + "/{id}") { backStackEntry ->
-            CharacterDetailView(viewModel, backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
+            CharacterDetailView(viewModel, backStackEntry.arguments?.getString("id") as String, popBack = { navController.popBackStack() })
         }
         composable(Screens.EpisodesScreen.route) {
             EpisodesListView(viewModel, bottomBar) {
@@ -67,7 +67,7 @@ fun MainLayout() {
             }
         }
         composable(Screens.EpisodeDetailsScreen.route + "/{id}") { backStackEntry ->
-            EpisodeDetailView(viewModel, backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
+            EpisodeDetailView(viewModel, backStackEntry.arguments?.getString("id") as String, popBack = { navController.popBackStack() })
         }
         composable(Screens.LocationsScreen.route) {
             LocationsListView(viewModel, bottomBar) {
@@ -75,7 +75,7 @@ fun MainLayout() {
             }
         }
         composable(Screens.LocationDetailsScreen.route + "/{id}") { backStackEntry ->
-            LocationDetailView(viewModel, backStackEntry.arguments?.get("id") as String, popBack = { navController.popBackStack() })
+            LocationDetailView(viewModel, backStackEntry.arguments?.getString("id") as String, popBack = { navController.popBackStack() })
         }
     }
 }

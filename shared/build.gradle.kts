@@ -5,8 +5,6 @@ plugins {
 }
 
 kotlin {
-    targetHierarchy.default()
-
     androidTarget()
 
     listOf(
@@ -20,7 +18,7 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(libs.coroutines.core)
                 implementation(libs.koin.core)
@@ -52,6 +50,8 @@ android {
 
 
 apollo {
-    packageName.set("dev.johnoreilly.mortycomposekmm")
-    generateOptionalOperationVariables.set(false)
+    service("service") {
+        packageName.set("dev.johnoreilly.mortycomposekmm")
+        generateOptionalOperationVariables.set(false)
+    }
 }

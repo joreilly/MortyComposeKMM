@@ -91,7 +91,7 @@ fun CharacterDetailView(viewModel: MainViewModel, characterId: String, popBack: 
 @Composable
 private fun CharacterEpisodeList(character: CharacterDetail) {
 
-    Column(modifier = Modifier.padding(horizontal = 16.dp),) {
+    Column(modifier = Modifier.padding(horizontal = 16.dp)) {
         character.episode.let { episodeList ->
             episodeList.filterNotNull().forEach { episode ->
                 Column {
