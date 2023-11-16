@@ -2,7 +2,7 @@
 kotlin = "1.9.20"
 ksp = "1.9.20-1.0.13"
 coroutines = "1.7.3"
-androidGradlePlugin = "8.1.2"
+androidGradlePlugin = "8.1.4"
 koin = "3.5.0"
 koinCompose = "3.5.0"
 apollo = "3.8.2"
