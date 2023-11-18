@@ -5,7 +5,7 @@ coroutines = "1.7.3"
 androidGradlePlugin = "8.1.4"
 koin = "3.5.0"
 koinCompose = "3.5.0"
-apollo = "3.8.2"
+apollo = "4.0.0-alpha.2"
 kmpNativeCoroutines = "1.0.0-ALPHA-20"
 
 androidxActivity = "1.8.0"
