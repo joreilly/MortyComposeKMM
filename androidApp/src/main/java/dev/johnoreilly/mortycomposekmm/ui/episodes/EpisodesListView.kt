@@ -6,9 +6,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
+
 
 @Composable
 fun EpisodesListView(viewModel: MainViewModel, bottomBar: @Composable () -> Unit, episodeSelected: (episode: EpisodeDetail) -> Unit) {
@@ -19,7 +21,12 @@ fun EpisodesListView(viewModel: MainViewModel, bottomBar: @Composable () -> Unit
         bottomBar = bottomBar)
     {
         LazyColumn(contentPadding = it) {
-            items(lazyEpisodeList) { episode ->
+            items(
+                count = lazyEpisodeList.itemCount,
+                key = lazyEpisodeList.itemKey { it.id },
+                contentType = lazyEpisodeList.itemContentType { "MyPagingItems" }
+            ) { index ->
+                val episode = lazyEpisodeList[index]
                 episode?.let {
                     EpisodesListRowView(episode, episodeSelected)
                 }
