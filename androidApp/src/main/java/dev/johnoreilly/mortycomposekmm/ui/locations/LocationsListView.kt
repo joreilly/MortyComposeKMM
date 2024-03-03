@@ -6,9 +6,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
+import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodesListRowView
 
 
 @Composable
@@ -20,7 +22,12 @@ fun LocationsListView(viewModel: MainViewModel, bottomBar: @Composable () -> Uni
         bottomBar = bottomBar)
     {
         LazyColumn(contentPadding = it) {
-            items(lazyLocationsList) { location ->
+            items(
+                count = lazyLocationsList.itemCount,
+                key = lazyLocationsList.itemKey { it.name },
+                contentType = lazyLocationsList.itemContentType { "MyPagingItems" }
+            ) { index ->
+                val location = lazyLocationsList[index]
                 location?.let {
                     LocationsListRowView(location, locationSelected)
                 }

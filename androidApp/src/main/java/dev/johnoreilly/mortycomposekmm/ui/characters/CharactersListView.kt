@@ -6,7 +6,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
 
@@ -21,7 +22,13 @@ fun CharactersListView(viewModel: MainViewModel, bottomBar: @Composable () -> Un
         bottomBar = bottomBar)
     {
         LazyColumn(contentPadding = it) {
-            items(lazyCharacterList) { character ->
+
+            items(
+                count = lazyCharacterList.itemCount,
+                key = lazyCharacterList.itemKey { it.id },
+                contentType = lazyCharacterList.itemContentType { "MyPagingItems" }
+            ) { index ->
+                val character = lazyCharacterList[index]
                 character?.let {
                     CharactersListRowView(character, characterSelected)
                 }
