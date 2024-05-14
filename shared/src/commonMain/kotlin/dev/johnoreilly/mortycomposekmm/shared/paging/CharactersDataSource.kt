@@ -1,4 +1,4 @@
-package dev.johnoreilly.mortycomposekmm.ui.characters
+package dev.johnoreilly.mortycomposekmm.shared.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
