@@ -27,6 +27,7 @@ kotlin {
                 implementation(libs.apollo.normalized.cache)
                 implementation(libs.apollo.normalized.cache.sqlite)
 
+                api(libs.androidx.paging.common)
                 api(libs.multiplatformPaging)
             }
         }
