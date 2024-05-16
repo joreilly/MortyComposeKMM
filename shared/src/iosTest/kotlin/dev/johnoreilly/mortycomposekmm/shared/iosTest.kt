@@ -11,8 +11,8 @@ class IosGreetingTest {
         runBlocking {
             val repository = MortyRepository()
 
-            val charactersResponse = repository.getCharacters(0)
-            println(charactersResponse?.results)
+//            val charactersResponse = repository.getCharacters(0)
+//            println(charactersResponse?.results)
         }
     }
 }
