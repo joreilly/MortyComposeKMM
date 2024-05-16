@@ -1,30 +1,27 @@
 import Foundation
 import SwiftUI
 import shared
+import KMPNativeCoroutinesAsync
 
+@MainActor
 class CharacterListViewModel: ObservableObject {
     @Published public var characters: [CharacterDetail] = []
-    let repository = MortyRepository()
+    @State var repository = MortyRepository()
     var hasNextPage: Bool = false
     
-    func fetchCharacters() {
-        repository.characterPagingData.watch { nullablePagingData in
-            guard let list = nullablePagingData?.compactMap({ $0 as? CharacterDetail }) else {
-                return
+    func fetchCharacters() async {
+         do {
+            for try await characters in asyncSequence(for: repository.charactersSnapshotList) {
+                self.characters = characters as! [CharacterDetail]
             }
-            
-            self.characters = list
-            self.hasNextPage = self.repository.characterPager.hasNextPage
+        } catch {
+            print("Failed with error: \(error)")
         }
     }
     
     
-    func fetchNextData() {
-        repository.characterPager.loadNext()
-    }
-    
-    public var shouldDisplayNextPage: Bool {
-        return hasNextPage
+    func getElement(index: Int) -> CharacterDetail?  {
+        return repository.charactersPagingDataPresenter.get(index: Int32(index))
     }
 }
 

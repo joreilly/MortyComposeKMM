@@ -2,9 +2,13 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("com.apollographql.apollo3")
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.kmpNativeCoroutines)
 }
 
 kotlin {
+    jvmToolchain(17)
+
     androidTarget()
 
     listOf(
@@ -28,7 +32,6 @@ kotlin {
                 implementation(libs.apollo.normalized.cache.sqlite)
 
                 api(libs.androidx.paging.common)
-                api(libs.multiplatformPaging)
             }
         }
     }
@@ -55,4 +58,8 @@ apollo {
         packageName.set("dev.johnoreilly.mortycomposekmm")
         generateOptionalOperationVariables.set(false)
     }
+}
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }

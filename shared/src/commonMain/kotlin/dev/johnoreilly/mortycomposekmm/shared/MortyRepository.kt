@@ -1,32 +1,103 @@
 package dev.johnoreilly.mortycomposekmm.shared
 
+import androidx.paging.ItemSnapshotList
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.PagingDataEvent
+import androidx.paging.PagingDataPresenter
+import androidx.paging.cachedIn
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.cache.normalized.api.MemoryCacheFactory
 import com.apollographql.apollo3.cache.normalized.normalizedCache
-import com.kuuurt.paging.multiplatform.Pager
-import com.kuuurt.paging.multiplatform.PagingConfig
-import com.kuuurt.paging.multiplatform.PagingData
-import com.kuuurt.paging.multiplatform.PagingResult
-import com.kuuurt.paging.multiplatform.helpers.cachedIn
-import dev.johnoreilly.mortycomposekmm.*
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
+import dev.johnoreilly.mortycomposekmm.GetCharacterQuery
+import dev.johnoreilly.mortycomposekmm.GetCharactersQuery
+import dev.johnoreilly.mortycomposekmm.GetEpisodeQuery
+import dev.johnoreilly.mortycomposekmm.GetEpisodesQuery
+import dev.johnoreilly.mortycomposekmm.GetLocationQuery
+import dev.johnoreilly.mortycomposekmm.GetLocationsQuery
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
-import dev.johnoreilly.mortycomposekmm.shared.util.CommonFlow
-import dev.johnoreilly.mortycomposekmm.shared.util.asCommonFlow
+import dev.johnoreilly.mortycomposekmm.shared.paging.CharactersDataSource
+import dev.johnoreilly.mortycomposekmm.shared.paging.EpisodesDataSource
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class MortyRepository {
-    private val scope = MainScope()
+    @NativeCoroutineScope
+    val coroutineScope: CoroutineScope = MainScope()
 
     // Creates a 10MB MemoryCacheFactory
     val cacheFactory = MemoryCacheFactory(maxSizeBytes = 10 * 1024 * 1024)
+
+    // TODO use persistent cache as well, also inject apolloClient
 
     private val apolloClient = ApolloClient.Builder()
         .serverUrl("https://rickandmortyapi.com/graphql")
         .normalizedCache(cacheFactory)
         .build()
+
+    private val charactersFlow: Flow<PagingData<CharacterDetail>> = Pager(PagingConfig(pageSize = 20)) {
+        CharactersDataSource(this)
+    }.flow
+
+    private val episodesFlow: Flow<PagingData<EpisodeDetail>> = Pager(PagingConfig(pageSize = 20)) {
+        EpisodesDataSource(this)
+    }.flow
+
+
+    // TODO split this logic in to separate class
+    val charactersPagingDataPresenter = object : PagingDataPresenter<CharacterDetail>() {
+        override suspend fun presentPagingDataEvent(event: PagingDataEvent<CharacterDetail>) {
+            updateCharactersSnapshotList()
+        }
+    }
+
+    val episodesPagingDataPresenter = object : PagingDataPresenter<EpisodeDetail>() {
+        override suspend fun presentPagingDataEvent(event: PagingDataEvent<EpisodeDetail>) {
+            updateEpisodesSnapshotList()
+        }
+    }
+
+    @NativeCoroutines
+    val charactersSnapshotList = MutableStateFlow<ItemSnapshotList<CharacterDetail>>(charactersPagingDataPresenter.snapshot())
+
+    @NativeCoroutines
+    val episodesSnapshotList = MutableStateFlow<ItemSnapshotList<EpisodeDetail>>(episodesPagingDataPresenter.snapshot())
+
+
+    init {
+        collectPagingData()
+    }
+
+    private fun updateCharactersSnapshotList() {
+        charactersSnapshotList.value = charactersPagingDataPresenter.snapshot()
+    }
+
+    private fun updateEpisodesSnapshotList() {
+        episodesSnapshotList.value = episodesPagingDataPresenter.snapshot()
+    }
+
+    private fun collectPagingData() {
+        coroutineScope.launch {
+            charactersFlow.collectLatest {
+                charactersPagingDataPresenter.collectFrom(it)
+            }
+        }
+        coroutineScope.launch {
+            episodesFlow.collectLatest {
+                episodesPagingDataPresenter.collectFrom(it)
+            }
+        }
+    }
 
     suspend fun getCharacters(page: Int): GetCharactersQuery.Characters {
         val response = apolloClient.query(GetCharactersQuery(page)).execute()
@@ -57,46 +128,4 @@ class MortyRepository {
         val response = apolloClient.query(GetLocationQuery(locationId)).execute()
         return response.dataAssertNoErrors.location.locationDetail
     }
-
-
-    private val pagingConfig = PagingConfig(pageSize = 20, enablePlaceholders = false)
-
-    // also accessed from iOS
-    val characterPager = Pager(clientScope = scope, config = pagingConfig, initialKey = 1,
-        getItems = { currentKey, size ->
-            val charactersResponse = getCharacters(currentKey)
-            val items = charactersResponse.results.mapNotNull { it?.characterDetail }
-            PagingResult(
-                items = items,
-                currentKey = currentKey,
-                prevKey = { null },
-                nextKey = { charactersResponse.info.next }
-            )
-        }
-    )
-
-    val characterPagingData: CommonFlow<PagingData<CharacterDetail>>
-        get() = characterPager.pagingData
-            .cachedIn(scope) // cachedIn from AndroidX Paging. on iOS, this is a no-op
-            .asCommonFlow() // So that iOS can consume the Flow
-
-
-    val episodePager = Pager(clientScope = scope, config = pagingConfig, initialKey = 1,
-        getItems = { currentKey, size ->
-            val episodesResponse = getEpisodes(currentKey)
-            val items = episodesResponse.results.mapNotNull { it?.episodeDetail }
-            PagingResult(
-                items = items,
-                currentKey = currentKey,
-                prevKey = { null },
-                nextKey = { episodesResponse.info.next }
-            )
-        }
-    )
-
-    val episodePagingData: CommonFlow<PagingData<EpisodeDetail>>
-        get() = episodePager.pagingData
-            .cachedIn(scope)
-            .asCommonFlow()
-
 }

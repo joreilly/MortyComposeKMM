@@ -1,34 +1,33 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Kingfisher",
-        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
-        "state": {
-          "branch": null,
-          "revision": "1a0c2df04b31ed7aa318354f3583faea24f006fc",
-          "version": "5.15.8"
-        }
-      },
-      {
-        "package": "KMPNativeCoroutines",
-        "repositoryURL": "https://github.com/rickclephas/KMP-NativeCoroutines.git",
-        "state": {
-          "branch": "master",
-          "revision": "37ac6c8f82d218819db976bedc2fd3a2919d3996",
-          "version": null
-        }
-      },
-      {
-        "package": "RxSwift",
-        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "7c17a6ccca06b5c107cfa4284e634562ddaf5951",
-          "version": "6.2.0"
-        }
+  "originHash" : "41fe9248410bb338b6ddaaea943a41b4429f9e0f1c8f742b65ca21807b47858c",
+  "pins" : [
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "1a0c2df04b31ed7aa318354f3583faea24f006fc",
+        "version" : "5.15.8"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "kmp-nativecoroutines",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rickclephas/KMP-NativeCoroutines.git",
+      "state" : {
+        "revision" : "caf590ab2d260be1a9810c64cbcd9ed896330167",
+        "version" : "1.0.0-ALPHA-30"
+      }
+    },
+    {
+      "identity" : "rxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveX/RxSwift.git",
+      "state" : {
+        "revision" : "7c17a6ccca06b5c107cfa4284e634562ddaf5951",
+        "version" : "6.2.0"
+      }
+    }
+  ],
+  "version" : 3
 }

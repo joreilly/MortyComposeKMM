@@ -14,32 +14,8 @@ Related Posts:
 ![Characters Android Screenshot](/art/characters_screenshot.png?raw=true)
 
 
-The project also makes use of Jetpack Compose's [Paging library](https://developer.android.com/jetpack/androidx/releases/paging#paging_compose_version_100_2)
-that allows setting up `LazyColumn` for example that's driven from `PagingSource` as shown below (that source in our case invokes Apollo GraphQL queries). (UPDATE: have started to use [multiplatform-paging](https://github.com/kuuuurt/multiplatform-paging) library for managing paging within the Kotlin Multiplatform shared code).
-
-```kotlin
-class CharacterListsViewModel(private val repository: MortyRepository): ViewModel() {
-    
-    val characters: Flow<PagingData<CharacterDetail>> = Pager(PagingConfig(pageSize = 20)) {
-        CharactersDataSource(repository)
-    }.flow
-
-}
-
-@Composable
-fun CharactersListView() {
-    val characterListsViewModel = getViewModel<CharacterListsViewModel>()
-    val lazyCharacterList = characterListsViewModel.characters.collectAsLazyPagingItems()
-
-    LazyColumn {
-        items(lazyCharacterList) { character ->
-            character?.let {
-                CharactersListRowView(character)
-            }
-        }
-    }
-}
-```
+The project also now makes use of the KMP support now provided by the Jetpack
+Paging library.
 
 
 ## iOS App
