@@ -7,6 +7,7 @@ koin = "3.5.6"
 koinCompose = "3.5.6"
 apollo = "4.0.0-beta.6"
 kmpNativeCoroutines = "1.0.0-ALPHA-30-kotlin-2.0.0-RC3"
+kmpObservableViewModel = "1.0.0-BETA-2-kotlin-2.0.0-RC3"
 
 androidxActivity = "1.9.0"
 #androidxComposeCompiler = "1.5.11-dev-k2.0.0-Beta4-21f5e479a96"
@@ -58,6 +59,8 @@ apollo-normalized-cache = { group = "com.apollographql.apollo3", name = "apollo-
 apollo-normalized-cache-sqlite = { group = "com.apollographql.apollo3", name = "apollo-normalized-cache-sqlite", version.ref = "apollo" }
 apollo-mockserver = { group = "com.apollographql.apollo3", name = "apollo-mockserver", version.ref = "apollo" }
 apollo-testing-support = { group = "com.apollographql.apollo3", name = "apollo-testing-support", version.ref = "apollo" }
+
+kmpObservableViewModel = { module = "com.rickclephas.kmp:kmp-observableviewmodel-core", version.ref = "kmpObservableViewModel" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
 
