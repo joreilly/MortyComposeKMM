@@ -1,9 +1,9 @@
 pluginManagement {
     listOf(repositories, dependencyResolutionManagement.repositories).forEach {
         it.apply {
+            mavenCentral()
             google()
             gradlePluginPortal()
-            mavenCentral()
             maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
             maven("https://androidx.dev/storage/compose-compiler/repository")
         }
