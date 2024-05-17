@@ -18,12 +18,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
-import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
+import dev.johnoreilly.mortycomposekmm.shared.viewmodel.EpisodesViewModel
+import org.koin.compose.koinInject
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun EpisodeDetailView(viewModel: MainViewModel, episodeId: String, popBack: () -> Unit) {
+fun EpisodeDetailView(episodeId: String, popBack: () -> Unit) {
+    val viewModel: EpisodesViewModel = koinInject()
     val (episode, setEpisode) = remember { mutableStateOf<EpisodeDetail?>(null) }
 
     LaunchedEffect(episodeId) {

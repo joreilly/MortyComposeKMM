@@ -22,6 +22,10 @@ kotlin {
     }
 
     sourceSets {
+        all {
+            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+        }
+
         commonMain {
             dependencies {
                 implementation(libs.coroutines.core)
@@ -31,7 +35,8 @@ kotlin {
                 implementation(libs.apollo.normalized.cache)
                 implementation(libs.apollo.normalized.cache.sqlite)
 
-                api(libs.androidx.paging.common)
+                implementation(libs.androidx.paging.common)
+                api(libs.kmpObservableViewModel)
             }
         }
     }

@@ -9,27 +9,24 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
-import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
+import dev.johnoreilly.mortycomposekmm.shared.viewmodel.EpisodesViewModel
+import org.koin.compose.koinInject
 
 
 @Composable
-fun EpisodesListView(viewModel: MainViewModel, bottomBar: @Composable () -> Unit, episodeSelected: (episode: EpisodeDetail) -> Unit) {
-    val lazyEpisodeList = viewModel.episodes.collectAsLazyPagingItems()
+fun EpisodesListView(episodeSelected: (episode: EpisodeDetail) -> Unit) {
+    val viewModel: EpisodesViewModel = koinInject()
+    val lazyEpisodeList = viewModel.episodesFlow.collectAsLazyPagingItems()
 
-    Scaffold(
-        topBar = { TopAppBar(title = { Text( "Episodes") }) },
-        bottomBar = bottomBar)
-    {
-        LazyColumn(contentPadding = it) {
-            items(
-                count = lazyEpisodeList.itemCount,
-                key = lazyEpisodeList.itemKey { it.id },
-                contentType = lazyEpisodeList.itemContentType { "MyPagingItems" }
-            ) { index ->
-                val episode = lazyEpisodeList[index]
-                episode?.let {
-                    EpisodesListRowView(episode, episodeSelected)
-                }
+    LazyColumn {
+        items(
+            count = lazyEpisodeList.itemCount,
+            key = lazyEpisodeList.itemKey { it.id },
+            contentType = lazyEpisodeList.itemContentType { "MyPagingItems" }
+        ) { index ->
+            val episode = lazyEpisodeList[index]
+            episode?.let {
+                EpisodesListRowView(episode, episodeSelected)
             }
         }
     }

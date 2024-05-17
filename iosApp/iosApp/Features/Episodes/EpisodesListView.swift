@@ -1,20 +1,18 @@
 import SwiftUI
+import shared
+import KMPObservableViewModelSwiftUI
 
 struct EpisodesListView: View {
-    @StateObject private var viewModel = EpisodeListViewModel()
+    @StateViewModel var viewModel = EpisodesViewModel()
     
     var body: some View {
         List {
-            ForEach(viewModel.episodes.indices, id: \.self) { index in
-                let episode = viewModel.getElement(index: index)
-                if let episode {
+            ForEach(viewModel.episodesSnapshotList.indices, id: \.self) { index in
+                if let episode = viewModel.getElement(index: Int32(index)) {
                     EpisodesListRowView(episode: episode)
                 }
             }
         }
         .navigationTitle("Episodes")
-        .task {
-            await viewModel.fetchEpisodes()
-        }
     }
 }

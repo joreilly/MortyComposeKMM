@@ -18,12 +18,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
-import dev.johnoreilly.mortycomposekmm.ui.MainViewModel
+import dev.johnoreilly.mortycomposekmm.shared.viewmodel.LocationsViewModel
+import org.koin.compose.koinInject
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun LocationDetailView(viewModel: MainViewModel, locationId: String, popBack: () -> Unit) {
+fun LocationDetailView(locationId: String, popBack: () -> Unit) {
+    val viewModel: LocationsViewModel = koinInject()
     val (location, setLocation) = remember { mutableStateOf<LocationDetail?>(null) }
 
     LaunchedEffect(locationId) {
