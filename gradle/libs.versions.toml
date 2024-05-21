@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.0.0-RC3"
+kotlin = "2.0.0"
 ksp = "2.0.0-RC3-1.0.20"
 coroutines = "1.8.1"
 androidGradlePlugin = "8.1.4"
