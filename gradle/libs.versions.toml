@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.0.0-RC3"
+kotlin = "2.0.0"
 ksp = "2.0.0-RC3-1.0.20"
 coroutines = "1.8.1"
 androidGradlePlugin = "8.1.4"
@@ -10,7 +10,6 @@ kmpNativeCoroutines = "1.0.0-ALPHA-30-kotlin-2.0.0-RC3"
 kmpObservableViewModel = "1.0.0-BETA-2-kotlin-2.0.0-RC3"
 
 androidxActivity = "1.9.0"
-#androidxComposeCompiler = "1.5.11-dev-k2.0.0-Beta4-21f5e479a96"
 androidxComposeBom = "2024.05.00"
 androidxPaging = "3.3.0"
 androidxNavigationCompose = "2.7.7"
