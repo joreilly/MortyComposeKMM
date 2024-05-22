@@ -7,7 +7,7 @@ koin = "3.5.6"
 koinCompose = "3.5.6"
 apollo = "4.0.0-beta.6"
 kmpNativeCoroutines = "1.0.0-ALPHA-31"
-kmpObservableViewModel = "1.0.0-BETA-2-kotlin-2.0.0-RC3"
+kmpObservableViewModel = "1.0.0-BETA-3"
 
 androidxActivity = "1.9.0"
 androidxComposeBom = "2024.05.00"
