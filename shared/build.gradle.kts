@@ -28,7 +28,7 @@ kotlin {
 
         commonMain {
             dependencies {
-                implementation(libs.coroutines.core)
+                implementation(libs.kotlinx.coroutines)
                 implementation(libs.koin.core)
 
                 api(libs.apollo.runtime)

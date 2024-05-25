@@ -1,13 +1,14 @@
 [versions]
 kotlin = "2.0.0"
 ksp = "2.0.0-1.0.21"
-coroutines = "1.8.1"
+kotlinx-coroutines = "1.8.1"
+
 androidGradlePlugin = "8.1.4"
 koin = "3.5.6"
 koinCompose = "3.5.6"
 apollo = "4.0.0-beta.6"
 kmpNativeCoroutines = "1.0.0-ALPHA-31"
-kmpObservableViewModel = "1.0.0-BETA-2-kotlin-2.0.0-RC3"
+kmpObservableViewModel = "1.0.0-BETA-3"
 
 androidxActivity = "1.9.0"
 androidxComposeBom = "2024.05.00"
@@ -25,8 +26,8 @@ compileSdk = "34"
 
 
 [libraries]
-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
