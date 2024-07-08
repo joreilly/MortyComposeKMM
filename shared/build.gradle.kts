@@ -1,8 +1,8 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    id("com.apollographql.apollo3")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.apollo)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kmpNativeCoroutines)
 }
 
