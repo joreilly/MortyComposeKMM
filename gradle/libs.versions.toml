@@ -15,7 +15,7 @@ androidxComposeBom = "2024.06.00"
 androidxPaging = "3.3.0"
 androidxNavigationCompose = "2.7.7"
 accompanist = "0.30.1"
-coilCompose = "2.6.0"
+coilCompose = "2.7.0"
 
 junit = "4.13.2"
 
