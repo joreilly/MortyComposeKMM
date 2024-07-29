@@ -6,7 +6,7 @@ kotlinx-coroutines = "1.9.0-RC"
 androidGradlePlugin = "8.1.4"
 koin = "3.5.6"
 koinCompose = "3.5.6"
-apollo = "4.0.0-rc.1"
+apollo = "4.0.0"
 kmpNativeCoroutines = "1.0.0-ALPHA-31"
 kmpObservableViewModel = "1.0.0-BETA-3"
 
