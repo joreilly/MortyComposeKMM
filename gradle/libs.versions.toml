@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.0.0"
-ksp = "2.0.0-1.0.22"
+ksp = "2.0.20-1.0.25"
 kotlinx-coroutines = "1.9.0-RC"
 
 androidGradlePlugin = "8.1.4"
