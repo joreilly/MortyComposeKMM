@@ -21,7 +21,6 @@ import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodeDetailView
 import dev.johnoreilly.mortycomposekmm.ui.episodes.EpisodesListView
 import dev.johnoreilly.mortycomposekmm.ui.locations.LocationDetailView
 import dev.johnoreilly.mortycomposekmm.ui.locations.LocationsListView
-import org.koin.androidx.compose.getViewModel
 
 
 sealed class Screens(val route: String, val label: String, val icon: ImageVector? = null) {
