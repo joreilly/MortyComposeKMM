@@ -1,19 +1,19 @@
 [versions]
-kotlin = "2.0.20"
-ksp = "2.0.20-1.0.25"
+kotlin = "2.0.21"
+ksp = "2.0.21-1.0.25"
 kotlinx-coroutines = "1.9.0"
 
-androidGradlePlugin = "8.7.0"
+androidGradlePlugin = "8.7.1"
 koin = "4.0.0"
 koinCompose = "4.0.0"
-apollo = "4.0.0"
-kmpNativeCoroutines = "1.0.0-ALPHA-35"
-kmpObservableViewModel = "1.0.0-BETA-5"
+apollo = "4.0.1"
+kmpNativeCoroutines = "1.0.0-ALPHA-37"
+kmpObservableViewModel = "1.0.0-BETA-7"
 
-androidxActivity = "1.9.2"
-androidxComposeBom = "2024.09.03"
+androidxActivity = "1.9.3"
+androidxComposeBom = "2024.10.00"
 androidxPaging = "3.3.2"
-androidxNavigationCompose = "2.8.2"
+androidxNavigationCompose = "2.8.3"
 accompanist = "0.30.1"
 coilCompose = "2.7.0"
 
