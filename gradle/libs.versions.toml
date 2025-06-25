@@ -7,7 +7,7 @@ androidGradlePlugin = "8.7.1"
 koin = "4.0.0"
 koinCompose = "4.0.0"
 apollo = "4.0.1"
-kmpNativeCoroutines = "1.0.0-ALPHA-37"
+kmpNativeCoroutines = "1.0.0-ALPHA-45"
 kmpObservableViewModel = "1.0.0-BETA-7"
 
 androidxActivity = "1.9.3"
