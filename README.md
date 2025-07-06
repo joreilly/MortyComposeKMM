@@ -1,6 +1,6 @@
 # MortyCompose
 
-![kotlin-version](https://img.shields.io/badge/kotlin-2.0.0-blue?logo=kotlin)
+![kotlin-version](https://img.shields.io/badge/kotlin-2.2.0-blue?logo=kotlin)
 
 
 Kotlin Multiplatform sample that demonstrates use of GraphQL + Jetpack Compose and SwiftUI (based on https://github.com/Dimillian/MortyUI SwiftUI project).
