@@ -15,6 +15,7 @@ import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
 import dev.johnoreilly.mortycomposekmm.shared.MortyRepository
 import dev.johnoreilly.mortycomposekmm.shared.paging.LocationsDataSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -36,7 +37,7 @@ open class LocationsViewModel(): ViewModel(), KoinComponent {
     }
 
     @NativeCoroutinesState
-    val locationsSnapshotList = MutableStateFlow<ItemSnapshotList<LocationDetail>>(viewModelScope, locationsPagingDataPresenter.snapshot())
+    val locationsSnapshotList: MutableStateFlow<ItemSnapshotList<LocationDetail>> = MutableStateFlow<ItemSnapshotList<LocationDetail>>(viewModelScope, locationsPagingDataPresenter.snapshot())
 
     init {
         viewModelScope.coroutineScope.launch {

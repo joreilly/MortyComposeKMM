@@ -15,6 +15,7 @@ import dev.johnoreilly.mortycomposekmm.fragment.EpisodeDetail
 import dev.johnoreilly.mortycomposekmm.shared.MortyRepository
 import dev.johnoreilly.mortycomposekmm.shared.paging.EpisodesDataSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -36,7 +37,7 @@ open class EpisodesViewModel(): ViewModel(), KoinComponent {
     }
 
     @NativeCoroutinesState
-    val episodesSnapshotList = MutableStateFlow<ItemSnapshotList<EpisodeDetail>>(viewModelScope, episodesPagingDataPresenter.snapshot())
+    val episodesSnapshotList: MutableStateFlow<ItemSnapshotList<EpisodeDetail>> = MutableStateFlow<ItemSnapshotList<EpisodeDetail>>(viewModelScope, episodesPagingDataPresenter.snapshot())
 
     init {
         viewModelScope.coroutineScope.launch {

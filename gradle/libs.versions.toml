@@ -1,27 +1,27 @@
 [versions]
-kotlin = "2.0.21"
-ksp = "2.0.21-1.0.25"
-kotlinx-coroutines = "1.9.0"
+kotlin = "2.2.0"
+ksp = "2.2.0-2.0.2"
+kotlinx-coroutines = "1.10.2"
 
-androidGradlePlugin = "8.7.1"
-koin = "4.0.0"
-koinCompose = "4.0.0"
-apollo = "4.0.1"
-kmpNativeCoroutines = "1.0.0-ALPHA-37"
-kmpObservableViewModel = "1.0.0-BETA-7"
+androidGradlePlugin = "8.11.0"
+koin = "4.1.0"
+koinCompose = "4.1.0"
+apollo = "4.3.1"
+kmpNativeCoroutines = "1.0.0-ALPHA-45"
+kmpObservableViewModel = "1.0.0-BETA-12"
 
-androidxActivity = "1.9.3"
-androidxComposeBom = "2024.10.00"
-androidxPaging = "3.3.2"
-androidxNavigationCompose = "2.8.3"
+androidxActivity = "1.10.1"
+androidxComposeBom = "2025.06.01"
+androidxPaging = "3.3.6"
+androidxNavigationCompose = "2.9.1"
 accompanist = "0.30.1"
 coilCompose = "2.7.0"
 
 junit = "4.13.2"
 
 minSdk = "24"
-targetSdk = "34"
-compileSdk = "34"
+targetSdk = "36"
+compileSdk = "36"
 
 
 
