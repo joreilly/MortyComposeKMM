@@ -7,7 +7,7 @@
             android:name="dev.johnoreilly.mortycomposekmm.MortyComposeKMMApplication"
             android:allowBackup="false"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <activity android:name="dev.johnoreilly.mortycomposekmm.ui.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
