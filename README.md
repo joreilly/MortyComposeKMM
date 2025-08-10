@@ -41,3 +41,4 @@ A small SwiftUI iOS app that uses same shared Kotlin Multiplatform code is in th
 *  StarWars (https://github.com/joreilly/StarWars)
 *  WordMasterKMP (https://github.com/joreilly/WordMasterKMP)
 *  Chip-8 (https://github.com/joreilly/chip-8)
+*  FirebaseAILogicKMPSample (https://github.com/joreilly/FirebaseAILogicKMPSample)
