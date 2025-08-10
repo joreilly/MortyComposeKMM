@@ -13,19 +13,10 @@ Related Posts:
 * [Jetpack Compose and GraphQL, a very merry combination!](https://johnoreilly.dev/posts/jetpack-compose-graphql/)
 
 
-## Android App
-
-![Characters Android Screenshot](/art/characters_screenshot.png?raw=true)
+## Android/iOS Apps
 
 
-
-
-## iOS App
-
-A small SwiftUI iOS app that uses same shared Kotlin Multiplatform code is in the `iosApp` folder
- (shows Characters screen using more or less same SwiftUI code that's in https://github.com/Dimillian/MortyUI)
-
-![Characters iOS Screenshot](/art/characters_screenshot_ios.png?raw=true)
+<img width="959" height="487" alt="Screenshot 2025-08-10 at 19 52 25" src="https://github.com/user-attachments/assets/432078bd-03c1-4735-b81e-b41fedf4fd95" />
 
 
 ## Full set of Kotlin Multiplatform/Compose/SwiftUI samples
