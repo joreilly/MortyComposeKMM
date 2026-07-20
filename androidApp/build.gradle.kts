@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    kotlin("android")
     alias(libs.plugins.compose.compiler)
 }
 
@@ -34,12 +33,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        freeCompilerArgs += listOf(
-            "-P",
-            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
-        )
-    }
     namespace = "dev.johnoreilly.mortycomposekmm"
 }
 
@@ -59,7 +52,8 @@ dependencies {
 
     implementation(libs.androidx.paging.compose)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.coilCompose)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)
@@ -73,9 +67,9 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    testImplementation("androidx.test:core:1.6.1")
-    testImplementation("org.robolectric:robolectric:4.13")
-    androidTestImplementation("androidx.test:runner:1.6.2")
+    testImplementation("androidx.test:core:1.7.0")
+    testImplementation("org.robolectric:robolectric:4.16.1")
+    androidTestImplementation("androidx.test:runner:1.7.0")
 
     implementation(project(":shared"))
 }
