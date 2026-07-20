@@ -10,12 +10,16 @@ class LocationsDataSource(private val repository: MortyRepository) : PagingSourc
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, LocationDetail> {
         val pageNumber = params.key ?: 0
 
-        val locationsResponse = repository.getLocations(pageNumber)
-        val episodes = locationsResponse.results.mapNotNull { it?.locationDetail }
+        return try {
+            val locationsResponse = repository.getLocations(pageNumber)
+            val episodes = locationsResponse.results.mapNotNull { it?.locationDetail }
 
-        val prevKey = if (pageNumber > 0) pageNumber - 1 else null
-        val nextKey = locationsResponse.info.next
-        return LoadResult.Page(data = episodes, prevKey = prevKey, nextKey = nextKey)
+            val prevKey = if (pageNumber > 0) pageNumber - 1 else null
+            val nextKey = locationsResponse.info.next
+            LoadResult.Page(data = episodes, prevKey = prevKey, nextKey = nextKey)
+        } catch (e: Exception) {
+            LoadResult.Error(e)
+        }
     }
 
     override fun getRefreshKey(state: PagingState<Int, LocationDetail>): Int? {
