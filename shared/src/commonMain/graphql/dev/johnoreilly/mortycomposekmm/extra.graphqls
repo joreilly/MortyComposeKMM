@@ -1,66 +1,59 @@
-extend type Query @nonnull(fields: """
-character
-characters
-charactersByIds
-location
-locations
-locationsByIds
-episode
-episodes
-episodesByIds
-""")
+extend schema @link(url: "https://specs.apollo.dev/nullability/v0.4", import: ["@semanticNonNullField", "@semanticNonNull", "@catch", "@catchByDefault"])
+extend schema @catchByDefault(to: THROW)
 
-extend type Character @nonnull(fields: """
-id
-name
-status
-species
-type
-gender
-origin
-episode
-created
-image
-location
-""")
+extend type Query
+  @semanticNonNullField(name: "character")
+  @semanticNonNullField(name: "characters")
+  @semanticNonNullField(name: "charactersByIds")
+  @semanticNonNullField(name: "location")
+  @semanticNonNullField(name: "locations")
+  @semanticNonNullField(name: "locationsByIds")
+  @semanticNonNullField(name: "episode")
+  @semanticNonNullField(name: "episodes")
+  @semanticNonNullField(name: "episodesByIds")
+
+extend type Character
+  @semanticNonNullField(name: "id")
+  @semanticNonNullField(name: "name")
+  @semanticNonNullField(name: "status")
+  @semanticNonNullField(name: "species")
+  @semanticNonNullField(name: "type")
+  @semanticNonNullField(name: "gender")
+  @semanticNonNullField(name: "origin")
+  @semanticNonNullField(name: "episode")
+  @semanticNonNullField(name: "created")
+  @semanticNonNullField(name: "image")
+  @semanticNonNullField(name: "location")
 
 # Everything except id
-extend type Location @nonnull(fields: """
-name
-type
-dimension
-residents
-created
-""")
+extend type Location
+  @semanticNonNullField(name: "name")
+  @semanticNonNullField(name: "type")
+  @semanticNonNullField(name: "dimension")
+  @semanticNonNullField(name: "residents")
+  @semanticNonNullField(name: "created")
 
-extend type Episode @nonnull(fields: """
-id
-name
-air_date
-episode
-characters
-created
-""")
+extend type Episode
+  @semanticNonNullField(name: "id")
+  @semanticNonNullField(name: "name")
+  @semanticNonNullField(name: "air_date")
+  @semanticNonNullField(name: "episode")
+  @semanticNonNullField(name: "characters")
+  @semanticNonNullField(name: "created")
 
-extend type Characters @nonnull(fields: """
-info
-results
-""")
+extend type Characters
+  @semanticNonNullField(name: "info")
+  @semanticNonNullField(name: "results")
 
-extend type Info @nonnull(fields: """
-count
-pages
-prev
-""")
+extend type Info
+  @semanticNonNullField(name: "count")
+  @semanticNonNullField(name: "pages")
+  @semanticNonNullField(name: "prev")
 
-extend type Locations @nonnull(fields: """
-info
-results
-""")
+extend type Locations
+  @semanticNonNullField(name: "info")
+  @semanticNonNullField(name: "results")
 
-
-extend type Episodes @nonnull(fields: """
-info
-results
-""")
-
+extend type Episodes
+  @semanticNonNullField(name: "info")
+  @semanticNonNullField(name: "results")

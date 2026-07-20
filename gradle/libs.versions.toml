@@ -1,21 +1,20 @@
 [versions]
-kotlin = "2.2.0"
-ksp = "2.2.0-2.0.2"
-kotlinx-coroutines = "1.10.2"
+kotlin = "2.4.10"
+ksp = "2.3.10"
+kotlinx-coroutines = "1.11.0"
 
-androidGradlePlugin = "8.12.0"
-koin = "4.1.0"
-koinCompose = "4.1.0"
-apollo = "4.3.2"
-kmpNativeCoroutines = "1.0.0-ALPHA-45"
-kmpObservableViewModel = "1.0.0-BETA-12"
+androidGradlePlugin = "9.1.1"
+koin = "4.2.2"
+koinCompose = "4.2.2"
+apollo = "5.0.1"
+kmpNativeCoroutines = "1.0.5"
+kmpObservableViewModel = "1.0.6"
 
-androidxActivity = "1.10.1"
-androidxComposeBom = "2025.07.00"
-androidxPaging = "3.3.6"
-androidxNavigationCompose = "2.9.3"
-accompanist = "0.30.1"
-coilCompose = "2.7.0"
+androidxActivity = "1.13.0"
+androidxComposeBom = "2026.06.01"
+androidxPaging = "3.5.0"
+androidxNavigationCompose = "2.9.8"
+coil = "3.5.0"
 
 junit = "4.13.2"
 
@@ -48,8 +47,8 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidxPaging" }
 androidx-paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "androidxPaging" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigationCompose" }
-accompanist-insets = { group = "com.google.accompanist", name = "accompanist-insets", version.ref = "accompanist" }
-coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
@@ -59,8 +58,6 @@ koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 apollo-runtime = { group = "com.apollographql.apollo", name = "apollo-runtime", version.ref = "apollo" }
 apollo-normalized-cache = { group = "com.apollographql.apollo", name = "apollo-normalized-cache", version.ref = "apollo" }
 apollo-normalized-cache-sqlite = { group = "com.apollographql.apollo", name = "apollo-normalized-cache-sqlite", version.ref = "apollo" }
-apollo-mockserver = { group = "com.apollographql.apollo", name = "apollo-mockserver", version.ref = "apollo" }
-apollo-testing-support = { group = "com.apollographql.apollo", name = "apollo-testing-support", version.ref = "apollo" }
 
 kmpObservableViewModel = { module = "com.rickclephas.kmp:kmp-observableviewmodel-core", version.ref = "kmpObservableViewModel" }
 
@@ -69,7 +66,7 @@ junit = { module = "junit:junit", version.ref = "junit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
-android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidGradlePlugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 apollo = { id = "com.apollographql.apollo", version.ref = "apollo" }
