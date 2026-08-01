@@ -1,26 +1,45 @@
 name: iOS CI
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+# Cancel superseded runs for the same PR/branch
+concurrency:
+  group: ios-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   build:
-
     runs-on: macos-latest
-
+    timeout-minutes: 45
     steps:
-    - uses: actions/checkout@v7
-    - name: set up JDK 17
-      uses: actions/setup-java@v5
-      with:
-        distribution: 'zulu'
-        java-version: 17
-    - name: Build iOS app
-      working-directory: iosApp
-      run: |
-        xcodebuild build \
-          -project iosApp.xcodeproj \
-          -scheme iosApp \
-          -configuration Debug \
-          -sdk iphonesimulator \
-          -destination 'generic/platform=iOS Simulator' \
-          CODE_SIGNING_ALLOWED=NO
+      - uses: actions/checkout@v7
+      - name: set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Cache Kotlin/Native (konan)
+        uses: actions/cache@v6
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-konan-${{ hashFiles('**/libs.versions.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-
+
+      - name: Build iOS app
+        working-directory: iosApp
+        run: |
+          xcodebuild build \
+            -project iosApp.xcodeproj \
+            -scheme iosApp \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO
