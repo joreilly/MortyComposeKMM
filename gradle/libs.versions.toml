@@ -20,7 +20,7 @@ junit = "4.13.2"
 
 minSdk = "24"
 targetSdk = "36"
-compileSdk = "36"
+compileSdk = "37"
 
 
 
