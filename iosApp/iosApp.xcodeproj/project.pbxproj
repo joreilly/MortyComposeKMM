@@ -371,7 +371,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode -PXCODE_CONFIGURATION=${CONFIGURATION}";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -724,7 +724,7 @@
 			repositoryURL = "https://github.com/rickclephas/KMP-ObservableViewModel.git";
 			requirement = {
 				kind = exactVersion;
-				version = "1.0.6";
+				version = 1.0.6;
 			};
 		};
 		1AF7E3E82593A47400905739 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
