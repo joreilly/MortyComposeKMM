@@ -11,6 +11,7 @@ The project also now makes use of the KMP support now provided by the Jetpack Pa
 
 Related Posts:
 * [Jetpack Compose and GraphQL, a very merry combination!](https://johnoreilly.dev/posts/jetpack-compose-graphql/)
+* [Consuming Jetpack Paging KMP code in SwiftUI and Compose clients](https://johnoreilly.dev/posts/jetpack_paging_kmp/)
 
 
 ## Android/iOS Apps
