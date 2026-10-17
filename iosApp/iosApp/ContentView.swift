@@ -29,6 +29,25 @@ struct ContentView: View {
     }
 }
 
+/// Shown in place of a list whose first page failed to load, which would otherwise just be empty.
+struct LoadErrorView: View {
+    let message: String
+    let retry: () -> Void
+
+    var body: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.largeTitle)
+                .foregroundColor(.secondary)
+            Text(message)
+                .font(.headline)
+            Button("Retry", action: retry)
+                .buttonStyle(.borderedProminent)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
