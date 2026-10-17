@@ -8,6 +8,15 @@ appId: ${APP_ID}
 - extendedWaitUntil:
     visible: "Rick Sanchez"
     timeout: 30000
+# The character images download after the text is up, and the screen can sit still in between,
+# so waitForAnimationToEnd alone returns too early. Maestro has no sleep: wait for text that never
+# appears (optional, so its timeout just continues) to give them time, then let the screen settle.
+- extendedWaitUntil:
+    visible: "maestro-image-delay-never-shown"
+    timeout: 10000
+    optional: true
+- waitForAnimationToEnd:
+    timeout: 15000
 - takeScreenshot: MortyComposeKMM
 
 - tapOn: "Episodes"
