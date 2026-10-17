@@ -18,7 +18,8 @@ import org.robolectric.annotation.Config
 // A plain Application: the app's own starts Koin, which this composable doesn't need (and which
 // can't be started twice across tests).
 @RunWith(RobolectricTestRunner::class)
-@Config(application = android.app.Application::class)
+// SDK 35: Robolectric's SDK 36 runtime needs Java 21, and CI runs the tests on 17
+@Config(application = android.app.Application::class, sdk = [35])
 class CharactersListRowViewTest {
 
     @get:Rule
