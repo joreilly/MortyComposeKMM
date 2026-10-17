@@ -20,6 +20,11 @@ Related Posts:
 <img width="959" height="487" alt="Screenshot 2025-08-10 at 19 52 25" src="https://github.com/user-attachments/assets/432078bd-03c1-4735-b81e-b41fedf4fd95" />
 
 
+### UI tests
+
+There's a [Maestro](https://maestro.mobile.dev/) UI test flow shared by the Android and iOS clients, run by CI on
+an emulator and a simulator (e.g. `maestro test -e APP_ID=dev.johnoreilly.mortyuicomposekmp maestro/MortyComposeKMM.flow`).
+
 ## Full set of Kotlin Multiplatform/Compose/SwiftUI samples
 
 *  PeopleInSpace (https://github.com/joreilly/PeopleInSpace)
