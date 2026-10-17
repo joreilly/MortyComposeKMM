@@ -1,6 +1,7 @@
 package dev.johnoreilly.mortycomposekmm.shared.viewmodel
 
 import androidx.paging.ItemSnapshotList
+import androidx.paging.LoadState
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -39,7 +40,18 @@ open class CharactersViewModel(): ViewModel(), KoinComponent {
     @NativeCoroutinesState
     val charactersSnapshotList: MutableStateFlow<ItemSnapshotList<CharacterDetail>> = MutableStateFlow<ItemSnapshotList<CharacterDetail>>(viewModelScope, charactersPagingDataPresenter.snapshot())
 
+    // Set when the first page fails to load (the list would otherwise just stay empty), so the
+    // iOS list can show an error with a retry; cleared once a load succeeds.
+    @NativeCoroutinesState
+    val charactersLoadError: MutableStateFlow<String?> = MutableStateFlow<String?>(viewModelScope, null)
+
     init {
+        viewModelScope.coroutineScope.launch {
+            charactersPagingDataPresenter.loadStateFlow.collect { loadStates ->
+                charactersLoadError.value =
+                    if (loadStates?.refresh is LoadState.Error) "Could not load characters" else null
+            }
+        }
         viewModelScope.coroutineScope.launch {
             charactersFlow.collectLatest {
                 charactersPagingDataPresenter.collectFrom(it)
@@ -53,6 +65,10 @@ open class CharactersViewModel(): ViewModel(), KoinComponent {
 
     fun getElement(index: Int): CharacterDetail? {
         return charactersPagingDataPresenter.get(index)
+    }
+
+    fun retry() {
+        charactersPagingDataPresenter.retry()
     }
 
     suspend fun getCharacter(characterId: String): CharacterDetail {

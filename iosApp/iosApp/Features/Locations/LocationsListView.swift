@@ -7,18 +7,24 @@ struct LocationsListView: View {
     @State private var selectedLocation: LocationDetail? = nil
     
     var body: some View {
-        List {
-            ForEach(viewModel.locationsSnapshotList.indices, id: \.self) { index in
-                if let location = viewModel.getElement(index: Int32(index)) {
-                    NavigationLink(
-                        destination: LocationDetailView(location: location),
-                        tag: location,
-                        selection: $selectedLocation
-                    ) {
-                        LocationsListRowView(location: location)
-                            .onTapGesture {
-                                selectedLocation = location
+        Group {
+            if let error = viewModel.locationsLoadError {
+                LoadErrorView(message: error) { viewModel.retry() }
+            } else {
+                List {
+                    ForEach(viewModel.locationsSnapshotList.indices, id: \.self) { index in
+                        if let location = viewModel.getElement(index: Int32(index)) {
+                            NavigationLink(
+                                destination: LocationDetailView(location: location),
+                                tag: location,
+                                selection: $selectedLocation
+                            ) {
+                                LocationsListRowView(location: location)
+                                    .onTapGesture {
+                                        selectedLocation = location
+                                    }
                             }
+                        }
                     }
                 }
             }
