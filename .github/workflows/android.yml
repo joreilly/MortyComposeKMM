@@ -27,6 +27,8 @@ jobs:
       - uses: gradle/actions/setup-gradle@v6
       - name: Build android app
         run: ./gradlew assembleDebug
+      - name: Run Compose UI tests (Robolectric, no emulator)
+        run: ./gradlew :androidApp:testDebugUnitTest
       - name: Build iOS shared code
         run: ./gradlew :shared:compileKotlinIosArm64
 
