@@ -1,6 +1,7 @@
 package dev.johnoreilly.mortycomposekmm.shared.viewmodel
 
 import androidx.paging.ItemSnapshotList
+import androidx.paging.LoadState
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -39,7 +40,18 @@ open class EpisodesViewModel(): ViewModel(), KoinComponent {
     @NativeCoroutinesState
     val episodesSnapshotList: MutableStateFlow<ItemSnapshotList<EpisodeDetail>> = MutableStateFlow<ItemSnapshotList<EpisodeDetail>>(viewModelScope, episodesPagingDataPresenter.snapshot())
 
+    // Set when the first page fails to load (the list would otherwise just stay empty), so the
+    // iOS list can show an error with a retry; cleared once a load succeeds.
+    @NativeCoroutinesState
+    val episodesLoadError: MutableStateFlow<String?> = MutableStateFlow<String?>(viewModelScope, null)
+
     init {
+        viewModelScope.coroutineScope.launch {
+            episodesPagingDataPresenter.loadStateFlow.collect { loadStates ->
+                episodesLoadError.value =
+                    if (loadStates?.refresh is LoadState.Error) "Could not load episodes" else null
+            }
+        }
         viewModelScope.coroutineScope.launch {
             episodesFlow.collectLatest {
                 episodesPagingDataPresenter.collectFrom(it)
@@ -53,6 +65,10 @@ open class EpisodesViewModel(): ViewModel(), KoinComponent {
 
     fun getElement(index: Int): EpisodeDetail? {
         return episodesPagingDataPresenter.get(index)
+    }
+
+    fun retry() {
+        episodesPagingDataPresenter.retry()
     }
 
     suspend fun getEpisode(episodeId: String): EpisodeDetail {

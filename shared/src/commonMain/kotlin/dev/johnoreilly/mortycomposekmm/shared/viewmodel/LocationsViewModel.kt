@@ -1,6 +1,7 @@
 package dev.johnoreilly.mortycomposekmm.shared.viewmodel
 
 import androidx.paging.ItemSnapshotList
+import androidx.paging.LoadState
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -39,7 +40,18 @@ open class LocationsViewModel(): ViewModel(), KoinComponent {
     @NativeCoroutinesState
     val locationsSnapshotList: MutableStateFlow<ItemSnapshotList<LocationDetail>> = MutableStateFlow<ItemSnapshotList<LocationDetail>>(viewModelScope, locationsPagingDataPresenter.snapshot())
 
+    // Set when the first page fails to load (the list would otherwise just stay empty), so the
+    // iOS list can show an error with a retry; cleared once a load succeeds.
+    @NativeCoroutinesState
+    val locationsLoadError: MutableStateFlow<String?> = MutableStateFlow<String?>(viewModelScope, null)
+
     init {
+        viewModelScope.coroutineScope.launch {
+            locationsPagingDataPresenter.loadStateFlow.collect { loadStates ->
+                locationsLoadError.value =
+                    if (loadStates?.refresh is LoadState.Error) "Could not load locations" else null
+            }
+        }
         viewModelScope.coroutineScope.launch {
             locationsFlow.collectLatest {
                 locationsPagingDataPresenter.collectFrom(it)
@@ -53,6 +65,10 @@ open class LocationsViewModel(): ViewModel(), KoinComponent {
 
     fun getElement(index: Int): LocationDetail? {
         return locationsPagingDataPresenter.get(index)
+    }
+
+    fun retry() {
+        locationsPagingDataPresenter.retry()
     }
 
     suspend fun getLocation(episodeId: String): LocationDetail {
