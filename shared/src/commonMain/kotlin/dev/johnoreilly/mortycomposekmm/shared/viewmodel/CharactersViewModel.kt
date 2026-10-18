@@ -1,6 +1,5 @@
 package dev.johnoreilly.mortycomposekmm.shared.viewmodel
 
-import androidx.paging.ItemSnapshotList
 import androidx.paging.LoadState
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -8,15 +7,15 @@ import androidx.paging.PagingData
 import androidx.paging.PagingDataEvent
 import androidx.paging.PagingDataPresenter
 import androidx.paging.cachedIn
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
-import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
-import com.rickclephas.kmp.observableviewmodel.ViewModel
-import com.rickclephas.kmp.observableviewmodel.coroutineScope
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dev.johnoreilly.mortycomposekmm.fragment.CharacterDetail
 import dev.johnoreilly.mortycomposekmm.shared.MortyRepository
 import dev.johnoreilly.mortycomposekmm.shared.paging.CharactersDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -28,7 +27,7 @@ open class CharactersViewModel(): ViewModel(), KoinComponent {
 
     val charactersFlow: Flow<PagingData<CharacterDetail>> = Pager(PagingConfig(pageSize = 20)) {
         CharactersDataSource(repository)
-    }.flow.cachedIn(viewModelScope.coroutineScope)
+    }.flow.cachedIn(viewModelScope)
 
 
     private val charactersPagingDataPresenter = object : PagingDataPresenter<CharacterDetail>() {
@@ -37,22 +36,23 @@ open class CharactersViewModel(): ViewModel(), KoinComponent {
         }
     }
 
-    @NativeCoroutinesState
-    val charactersSnapshotList: MutableStateFlow<ItemSnapshotList<CharacterDetail>> = MutableStateFlow<ItemSnapshotList<CharacterDetail>>(viewModelScope, charactersPagingDataPresenter.snapshot())
+    // A plain List (not paging's ItemSnapshotList) so Swift Export maps it to a Swift array
+    private val _charactersSnapshotList = MutableStateFlow<List<CharacterDetail?>>(charactersPagingDataPresenter.snapshot())
+    val charactersSnapshotList: StateFlow<List<CharacterDetail?>> = _charactersSnapshotList.asStateFlow()
 
     // Set when the first page fails to load (the list would otherwise just stay empty), so the
     // iOS list can show an error with a retry; cleared once a load succeeds.
-    @NativeCoroutinesState
-    val charactersLoadError: MutableStateFlow<String?> = MutableStateFlow<String?>(viewModelScope, null)
+    private val _charactersLoadError = MutableStateFlow<String?>(null)
+    val charactersLoadError: StateFlow<String?> = _charactersLoadError.asStateFlow()
 
     init {
-        viewModelScope.coroutineScope.launch {
+        viewModelScope.launch {
             charactersPagingDataPresenter.loadStateFlow.collect { loadStates ->
-                charactersLoadError.value =
+                _charactersLoadError.value =
                     if (loadStates?.refresh is LoadState.Error) "Could not load characters" else null
             }
         }
-        viewModelScope.coroutineScope.launch {
+        viewModelScope.launch {
             charactersFlow.collectLatest {
                 charactersPagingDataPresenter.collectFrom(it)
             }
@@ -60,7 +60,7 @@ open class CharactersViewModel(): ViewModel(), KoinComponent {
     }
 
     private fun updateCharactersSnapshotList() {
-        charactersSnapshotList.value = charactersPagingDataPresenter.snapshot()
+        _charactersSnapshotList.value = charactersPagingDataPresenter.snapshot()
     }
 
     fun getElement(index: Int): CharacterDetail? {

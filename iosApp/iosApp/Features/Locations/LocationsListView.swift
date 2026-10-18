@@ -1,28 +1,29 @@
 import SwiftUI
-import shared
-import KMPObservableViewModelSwiftUI
+import Shared
 
 struct LocationsListView: View {
-    @StateViewModel var viewModel = LocationsViewModel()
+    @State private var viewModel = shared.viewmodel.LocationsViewModel()
     @State private var selectedLocation: LocationDetail? = nil
     
     var body: some View {
-        Group {
-            if let error = viewModel.locationsLoadError {
+        Observing(viewModel.locationsLoadError) { error in
+            if let error {
                 LoadErrorView(message: error) { viewModel.retry() }
             } else {
-                List {
-                    ForEach(viewModel.locationsSnapshotList.indices, id: \.self) { index in
-                        if let location = viewModel.getElement(index: Int32(index)) {
-                            NavigationLink(
-                                destination: LocationDetailView(location: location),
-                                tag: location,
-                                selection: $selectedLocation
-                            ) {
-                                LocationsListRowView(location: location)
-                                    .onTapGesture {
-                                        selectedLocation = location
-                                    }
+                Observing(viewModel.locationsSnapshotList) { snapshotList in
+                    List {
+                        ForEach(snapshotList.indices, id: \.self) { index in
+                            if let location = viewModel.getElement(index: Int32(index)) {
+                                NavigationLink(
+                                    destination: LocationDetailView(location: location),
+                                    tag: location,
+                                    selection: $selectedLocation
+                                ) {
+                                    LocationsListRowView(location: location)
+                                        .onTapGesture {
+                                            selectedLocation = location
+                                        }
+                                }
                             }
                         }
                     }

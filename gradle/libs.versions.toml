@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.4.21"
+kotlin = "2.5.0-Beta2-58"
 ksp = "2.3.12"
 kotlinx-coroutines = "1.11.0"
 
@@ -7,8 +7,7 @@ androidGradlePlugin = "9.1.1"
 koin = "4.2.2"
 koinCompose = "4.2.2"
 apollo = "5.2.0"
-kmpNativeCoroutines = "1.0.6"
-kmpObservableViewModel = "1.1.0"
+lifecycle = "2.11.0"
 
 androidxActivity = "1.13.0"
 androidxComposeBom = "2026.06.01"
@@ -59,7 +58,7 @@ apollo-runtime = { group = "com.apollographql.apollo", name = "apollo-runtime", 
 apollo-normalized-cache = { group = "com.apollographql.apollo", name = "apollo-normalized-cache", version.ref = "apollo" }
 apollo-normalized-cache-sqlite = { group = "com.apollographql.apollo", name = "apollo-normalized-cache-sqlite", version.ref = "apollo" }
 
-kmpObservableViewModel = { module = "com.rickclephas.kmp:kmp-observableviewmodel-core", version.ref = "kmpObservableViewModel" }
+lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
 
@@ -70,5 +69,4 @@ android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 apollo = { id = "com.apollographql.apollo", version.ref = "apollo" }
-kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmpNativeCoroutines" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

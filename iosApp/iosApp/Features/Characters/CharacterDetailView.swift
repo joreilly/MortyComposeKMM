@@ -1,5 +1,5 @@
 import SwiftUI
-import shared
+import Shared
 
 struct CharacterDetailView: View {
     let character: CharacterDetail

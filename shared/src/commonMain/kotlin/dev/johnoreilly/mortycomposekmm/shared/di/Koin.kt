@@ -11,8 +11,11 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
         modules(commonModule())
     }
 
-// called by iOS etc
-fun initKoin() = initKoin() {}
+// called by iOS etc. Returns Unit: Swift Export turns a function returning a type it
+// doesn't export (KoinApplication) into a fatalError() stub
+fun initKoin() {
+    initKoin {}
+}
 
 fun commonModule() = module {
     single { MortyRepository() }

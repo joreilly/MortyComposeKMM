@@ -9,8 +9,9 @@ query GetCharacters($page: Int) {
 	}
 }
 
-query GetCharacter($id: ID!){
-	character(id: $id) {
+# Not $id: Swift Export can't export a query property named id next to Apollo's Operation.id()
+query GetCharacter($characterId: ID!){
+	character(id: $characterId) {
 		...CharacterDetail
 	}
 }
@@ -26,8 +27,8 @@ query GetEpisodes($page: Int){
 	}
 }
 
-query GetEpisode($id: ID!) {
-	episode(id: $id) {
+query GetEpisode($episodeId: ID!) {
+	episode(id: $episodeId) {
 		...EpisodeDetail
 	}
 }
@@ -43,8 +44,8 @@ query GetLocations($page: Int) {
 	}
 }
 
-query GetLocation($id: ID!) {
-	location(id: $id) {
+query GetLocation($locationId: ID!) {
+	location(id: $locationId) {
 		...LocationDetail
 	}
 }

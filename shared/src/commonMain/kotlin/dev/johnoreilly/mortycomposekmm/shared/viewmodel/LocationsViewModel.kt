@@ -1,6 +1,5 @@
 package dev.johnoreilly.mortycomposekmm.shared.viewmodel
 
-import androidx.paging.ItemSnapshotList
 import androidx.paging.LoadState
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -8,15 +7,15 @@ import androidx.paging.PagingData
 import androidx.paging.PagingDataEvent
 import androidx.paging.PagingDataPresenter
 import androidx.paging.cachedIn
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
-import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
-import com.rickclephas.kmp.observableviewmodel.ViewModel
-import com.rickclephas.kmp.observableviewmodel.coroutineScope
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dev.johnoreilly.mortycomposekmm.fragment.LocationDetail
 import dev.johnoreilly.mortycomposekmm.shared.MortyRepository
 import dev.johnoreilly.mortycomposekmm.shared.paging.LocationsDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -28,7 +27,7 @@ open class LocationsViewModel(): ViewModel(), KoinComponent {
 
     val locationsFlow: Flow<PagingData<LocationDetail>> = Pager(PagingConfig(pageSize = 20)) {
         LocationsDataSource(repository)
-    }.flow.cachedIn(viewModelScope.coroutineScope)
+    }.flow.cachedIn(viewModelScope)
 
 
     private val locationsPagingDataPresenter = object : PagingDataPresenter<LocationDetail>() {
@@ -37,22 +36,23 @@ open class LocationsViewModel(): ViewModel(), KoinComponent {
         }
     }
 
-    @NativeCoroutinesState
-    val locationsSnapshotList: MutableStateFlow<ItemSnapshotList<LocationDetail>> = MutableStateFlow<ItemSnapshotList<LocationDetail>>(viewModelScope, locationsPagingDataPresenter.snapshot())
+    // A plain List (not paging's ItemSnapshotList) so Swift Export maps it to a Swift array
+    private val _locationsSnapshotList = MutableStateFlow<List<LocationDetail?>>(locationsPagingDataPresenter.snapshot())
+    val locationsSnapshotList: StateFlow<List<LocationDetail?>> = _locationsSnapshotList.asStateFlow()
 
     // Set when the first page fails to load (the list would otherwise just stay empty), so the
     // iOS list can show an error with a retry; cleared once a load succeeds.
-    @NativeCoroutinesState
-    val locationsLoadError: MutableStateFlow<String?> = MutableStateFlow<String?>(viewModelScope, null)
+    private val _locationsLoadError = MutableStateFlow<String?>(null)
+    val locationsLoadError: StateFlow<String?> = _locationsLoadError.asStateFlow()
 
     init {
-        viewModelScope.coroutineScope.launch {
+        viewModelScope.launch {
             locationsPagingDataPresenter.loadStateFlow.collect { loadStates ->
-                locationsLoadError.value =
+                _locationsLoadError.value =
                     if (loadStates?.refresh is LoadState.Error) "Could not load locations" else null
             }
         }
-        viewModelScope.coroutineScope.launch {
+        viewModelScope.launch {
             locationsFlow.collectLatest {
                 locationsPagingDataPresenter.collectFrom(it)
             }
@@ -60,7 +60,7 @@ open class LocationsViewModel(): ViewModel(), KoinComponent {
     }
 
     private fun updateLocationsSnapshotList() {
-        locationsSnapshotList.value = locationsPagingDataPresenter.snapshot()
+        _locationsSnapshotList.value = locationsPagingDataPresenter.snapshot()
     }
 
     fun getElement(index: Int): LocationDetail? {
