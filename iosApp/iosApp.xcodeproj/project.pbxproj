@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A320EB52766339400DFE888 /* EpisodesListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A320EB42766339400DFE888 /* EpisodesListRowView.swift */; };
-		1A78A3132BF75E4C00D39199 /* KMPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A78A3122BF75E4C00D39199 /* KMPViewModel.swift */; };
-		1A78A3152BF75FEF00D39199 /* KMPObservableViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A78A3142BF75FEF00D39199 /* KMPObservableViewModelCore */; };
-		1A78A3172BF75FF400D39199 /* KMPObservableViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A78A3162BF75FF400D39199 /* KMPObservableViewModelSwiftUI */; };
+		1A78A3132BF75E4C00D39199 /* Observing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A78A3122BF75E4C00D39199 /* Observing.swift */; };
 		1AC98ADA2E4914A000FCC8C2 /* LocationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC98AD82E4914A000FCC8C2 /* LocationsListView.swift */; };
 		1AC98ADB2E4914A000FCC8C2 /* LocationsListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC98AD72E4914A000FCC8C2 /* LocationsListRowView.swift */; };
 		1AC98ADD2E49163F00FCC8C2 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC98ADC2E49163F00FCC8C2 /* CharacterDetailView.swift */; };
@@ -59,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		1A320EB42766339400DFE888 /* EpisodesListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesListRowView.swift; sourceTree = "<group>"; };
-		1A78A3122BF75E4C00D39199 /* KMPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMPViewModel.swift; sourceTree = "<group>"; };
+		1A78A3122BF75E4C00D39199 /* Observing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observing.swift; sourceTree = "<group>"; };
 		1AC98AD72E4914A000FCC8C2 /* LocationsListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListRowView.swift; sourceTree = "<group>"; };
 		1AC98AD82E4914A000FCC8C2 /* LocationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListView.swift; sourceTree = "<group>"; };
 		1AC98ADC2E49163F00FCC8C2 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
@@ -88,8 +86,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A78A3172BF75FF400D39199 /* KMPObservableViewModelSwiftUI in Frameworks */,
-				1A78A3152BF75FEF00D39199 /* KMPObservableViewModelCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +176,7 @@
 				7555FF89242A565B00829871 /* LaunchScreen.storyboard */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				7555FF86242A565B00829871 /* Preview Content */,
-				1A78A3122BF75E4C00D39199 /* KMPViewModel.swift */,
+				1A78A3122BF75E4C00D39199 /* Observing.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -238,8 +234,6 @@
 			);
 			name = iosApp;
 			packageProductDependencies = (
-				1A78A3142BF75FEF00D39199 /* KMPObservableViewModelCore */,
-				1A78A3162BF75FF400D39199 /* KMPObservableViewModelSwiftUI */,
 			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
@@ -315,7 +309,6 @@
 			mainGroup = 7555FF72242A565900829871;
 			packageReferences = (
 				1AF7E3E82593A47400905739 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				1A78A3112BF75E1F00D39199 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */,
 			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
@@ -371,7 +364,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode -PXCODE_CONFIGURATION=${CONFIGURATION}";
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :ios-export:embedSwiftExportForXcode";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -390,7 +383,7 @@
 				1AF7E3E025939BEF00905739 /* CharactersListRowView.swift in Sources */,
 				1AF7E3D4259389FB00905739 /* EpisodesListView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
-				1A78A3132BF75E4C00D39199 /* KMPViewModel.swift in Sources */,
+				1A78A3132BF75E4C00D39199 /* Observing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -543,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -561,9 +554,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -583,9 +575,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -719,14 +710,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1A78A3112BF75E1F00D39199 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rickclephas/KMP-ObservableViewModel.git";
-			requirement = {
-				kind = exactVersion;
-				version = 1.0.6;
-			};
-		};
 		1AF7E3E82593A47400905739 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -738,16 +721,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1A78A3142BF75FEF00D39199 /* KMPObservableViewModelCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A78A3112BF75E1F00D39199 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
-			productName = KMPObservableViewModelCore;
-		};
-		1A78A3162BF75FF400D39199 /* KMPObservableViewModelSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A78A3112BF75E1F00D39199 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
-			productName = KMPObservableViewModelSwiftUI;
-		};
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;

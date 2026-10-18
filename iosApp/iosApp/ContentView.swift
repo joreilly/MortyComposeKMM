@@ -1,5 +1,10 @@
 import SwiftUI
-import shared
+import Shared
+
+// Apollo fragments live in their own Kotlin package; alias them so views can name them directly
+typealias CharacterDetail = fragment.CharacterDetail
+typealias EpisodeDetail = fragment.EpisodeDetail
+typealias LocationDetail = fragment.LocationDetail
 
 
 struct ContentView: View {

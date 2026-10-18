@@ -1,28 +1,29 @@
 import SwiftUI
-import shared
-import KMPObservableViewModelSwiftUI
+import Shared
 
 struct EpisodesListView: View {
-    @StateViewModel var viewModel = EpisodesViewModel()
+    @State private var viewModel = shared.viewmodel.EpisodesViewModel()
     @State private var selectedEpisode: EpisodeDetail? = nil
     
     var body: some View {
-        Group {
-            if let error = viewModel.episodesLoadError {
+        Observing(viewModel.episodesLoadError) { error in
+            if let error {
                 LoadErrorView(message: error) { viewModel.retry() }
             } else {
-                List {
-                    ForEach(viewModel.episodesSnapshotList.indices, id: \.self) { index in
-                        if let episode = viewModel.getElement(index: Int32(index)) {
-                            NavigationLink(
-                                destination: EpisodeDetailView(episode: episode),
-                                tag: episode,
-                                selection: $selectedEpisode
-                            ) {
-                                EpisodesListRowView(episode: episode)
-                                    .onTapGesture {
-                                        selectedEpisode = episode
-                                    }
+                Observing(viewModel.episodesSnapshotList) { snapshotList in
+                    List {
+                        ForEach(snapshotList.indices, id: \.self) { index in
+                            if let episode = viewModel.getElement(index: Int32(index)) {
+                                NavigationLink(
+                                    destination: EpisodeDetailView(episode: episode),
+                                    tag: episode,
+                                    selection: $selectedEpisode
+                                ) {
+                                    EpisodesListRowView(episode: episode)
+                                        .onTapGesture {
+                                            selectedEpisode = episode
+                                        }
+                                }
                             }
                         }
                     }

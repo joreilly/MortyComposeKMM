@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.apollo)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.kmpNativeCoroutines)
 }
 
 kotlin {
@@ -45,7 +44,7 @@ kotlin {
                 implementation(libs.apollo.normalized.cache.sqlite)
 
                 implementation(libs.androidx.paging.common)
-                api(libs.kmpObservableViewModel)
+                implementation(libs.lifecycle.viewmodel)
             }
         }
     }
