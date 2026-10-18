@@ -1,4 +1,4 @@
-package com.surrus.common.di
+package dev.johnoreilly.mortycomposekmm.shared.di
 
 import dev.johnoreilly.mortycomposekmm.shared.MortyRepository
 import org.koin.core.context.startKoin

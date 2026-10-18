@@ -1,7 +1,7 @@
 package dev.johnoreilly.mortycomposekmm
 
 import android.app.Application
-import com.surrus.common.di.initKoin
+import dev.johnoreilly.mortycomposekmm.shared.di.initKoin
 import dev.johnoreilly.mortycomposekmm.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
