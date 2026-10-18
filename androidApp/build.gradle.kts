@@ -12,7 +12,18 @@ android {
 
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    // Compose UI tests run on the JVM with Robolectric, which needs the merged resources
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        // Robolectric touches java.io.FileDescriptor internals, which newer JDKs (e.g. 25) close off
+        unitTests.all {
+            it.jvmArgs(
+                "--add-opens=java.base/java.io=ALL-UNNAMED",
+                "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
+            )
+        }
     }
 
     buildFeatures {
@@ -62,14 +73,13 @@ dependencies {
     testImplementation(libs.junit)
 
 
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.androidx.compose.ui.test)
+    testImplementation(libs.androidx.compose.ui.test.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     testImplementation("androidx.test:core:1.7.0")
     testImplementation("org.robolectric:robolectric:4.17")
-    androidTestImplementation("androidx.test:runner:1.7.0")
 
     implementation(project(":shared"))
 }
