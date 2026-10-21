@@ -6,6 +6,15 @@ plugins {
 }
 
 kotlin {
+    // Swift module name and package flattening for this module, picked up by :ios-export.
+    @OptIn(org.jetbrains.kotlin.gradle.swiftexport.ExperimentalSwiftExportDsl::class)
+    export {
+        swift {
+            moduleName = "Shared"
+            rootPackage = "dev.johnoreilly.mortycomposekmm"
+        }
+    }
+
     jvmToolchain(17)
 
     android {
