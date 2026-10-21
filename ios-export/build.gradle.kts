@@ -25,10 +25,6 @@ kotlin {
         swift {
             moduleName = "MortyKit"
             xcodeIntegration {
-                configure(project(":shared")) {
-                    moduleName = "Shared"
-                    rootPackage = "dev.johnoreilly.mortycomposekmm"
-                }
                 listOf(
                     "io.insert-koin:koin-core",
                     "androidx.paging:paging-common",
