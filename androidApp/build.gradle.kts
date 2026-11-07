@@ -83,3 +83,10 @@ dependencies {
 
     implementation(project(":shared"))
 }
+
+// Only debug unit tests run (ui-test-manifest, which provides createComposeRule()'s
+// ComponentActivity, is debug-only). The other variants' unit-test components exist only so
+// AGP 9.5's Compose Preview task can be created; see gradle.properties.
+tasks.withType<Test>().configureEach {
+    enabled = name.contains("Debug")
+}
